@@ -3,12 +3,7 @@
   style: {
     navigationBarTitleText: '通屏+下拉刷新+自定义导航栏',
     enablePullDownRefresh: false,
-    backgroundColor: '#23c09c', // 这个背景色要与页面的.top-section的背景图差不多，这样下拉刷新看起来才比较协调
-    'app-plus': {
-      titleNView: {
-        type: 'transparent',
-      },
-    },
+    backgroundColor: '#018d71', // 这个背景色要与页面的.top-section的背景图差不多，这样下拉刷新看起来才比较协调
     'mp-weixin': {
       navigationStyle: 'custom',
     },
@@ -17,16 +12,25 @@
 </route>
 
 <template>
-  <view class="scroll-view-bg flex-1 h-full">
-    <view class="top-section" :style="{ paddingTop: safeAreaInsets?.top + 'px' }"></view>
-    <!-- <view class="p-2 leading-6 bg-white"> -->
-    <wd-card title="经营分析">
-      一般的，检举内容由承办的党的委员会或纪律检查委员会将处理意见或复议、复查结论同申诉人见面，听取其意见。复议、复查的结论和决定，应交给申诉人一份。
-      <template #footer>
-        <wd-button size="small" plain>查看详情</wd-button>
-      </template>
-    </wd-card>
-    <!-- </view> -->
+  <view class="scroll-view-bg bg-gray-100 flex-1 h-full">
+    <view  class="top-section" :style="{ paddingTop: safeAreaInsets?.top + 'px' }">
+
+      <wd-img class="mt-20"   round width="80px" height="80px" src="https://image.mcode.fun/avatar.png" mode="aspectFit" custom-class="profile-img" />
+    </view>
+    <view class="user-info mb-[0rpx]">
+      <view class="flex items-center justify-between px-[50rpx] pb-[50rpx] pt-[40rpx]">
+            <view class="flex items-center">
+                <view class="text-white ml-[20rpx]">
+                 
+                  <view class="text-2xl">小明</view>
+                  <view class="text-xs mt-[18rpx]">
+                        账号：99999999      
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
     <view class="bg-white">
       <fly-content :line="30" />
     </view>
@@ -66,7 +70,7 @@ const onRefresherRefresh = async () => {
 .scroll-view-bg {
   // 这个背景色要与.top-section的背景图差不多，这样下拉刷新看起来才比较协调
   // background-color: #23c09c;
-  background-image: url(https://image.mcode.fun/background.jpg);
+  // background-image: url(https://image.mcode.fun/background.jpg);
 }
 
 // 这个区域最好要大于200rpx，效果会更好
@@ -74,11 +78,12 @@ const onRefresherRefresh = async () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 200rpx;
+  min-height: 300rpx;
   padding: 40rpx 0;
   line-height: 2;
-  color: #fff;
-  background-image: url('https://image.mcode.fun/background-team.jpg');
+  color: #4D80F0;
+  background-color: #4D80F0;
+  // background-image: url('https://image.mcode.fun/background-team.jpg');
   background-size: cover;
 }
 

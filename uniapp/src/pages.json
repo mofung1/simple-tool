@@ -65,12 +65,7 @@
       "style": {
         "navigationBarTitleText": "通屏+下拉刷新+自定义导航栏",
         "enablePullDownRefresh": false,
-        "backgroundColor": "#23c09c",
-        "app-plus": {
-          "titleNView": {
-            "type": "transparent"
-          }
-        },
+        "backgroundColor": "#018d71",
         "mp-weixin": {
           "navigationStyle": "custom"
         }
