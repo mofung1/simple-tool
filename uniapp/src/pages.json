@@ -48,8 +48,10 @@
       "path": "pages/index/index",
       "type": "home",
       "style": {
-        "navigationStyle": "custom",
-        "navigationBarTitleText": "首页"
+        "navigationStyle": "default",
+        "navigationBarTitleText": "免费去水印",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#517CF0"
       }
     },
     {
@@ -63,12 +65,8 @@
       "path": "pages/user/user",
       "type": "page",
       "style": {
-        "navigationBarTitleText": "通屏+下拉刷新+自定义导航栏",
-        "enablePullDownRefresh": false,
-        "backgroundColor": "#018d71",
-        "mp-weixin": {
-          "navigationStyle": "custom"
-        }
+        "navigationBarTitleText": "我的",
+        "backgroundColor": "#666666"
       }
     }
   ],
