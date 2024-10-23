@@ -12,8 +12,9 @@
 <template>
   <view class="h-screen w-screen bg-slate-200 pb-1">
     <wd-notice-bar
-      text="本工具仅供学习交流使用，请勿用于商业用途，否则后果自负。"
+      text="本工具仅供学习交流使用，请勿用于商业用途。"
       prefix="warn-bold"
+      custom-class="space"
     />
     <view class="mt-5 px-4">
       <wd-cell-group custom-class="group" title="分享链接">
@@ -45,12 +46,6 @@ const pasteFromClipboard = async () => {
   } catch (err) {
     console.error('无法从剪切板读取内容:', err)
   }
-}
-
-// 一键去水印的处理函数
-const removeWatermark = () => {
-  // 实现去水印的逻辑
-  console.log('去水印功能已触发：', content.value)
 }
 </script>
 
