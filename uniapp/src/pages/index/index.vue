@@ -1,4 +1,3 @@
-<!-- 使用 type="home" 属性设置首页，其他页面不需要设置，默认为page；推荐使用json5，更强大，且允许注释 -->
 <route lang="json5" type="home">
 {
   style: {
@@ -9,21 +8,52 @@
   },
 }
 </route>
+
 <template>
   <view class="h-screen w-screen bg-slate-200 pb-1">
     <wd-notice-bar
       text="本工具仅供学习交流使用，请勿用于商业用途，否则后果自负。"
       prefix="warn-bold"
     />
-    <view class="mt-5">
-      <wd-card title="分享链接">
-        <wd-textarea v-model="value" size="large" placeholder="直接粘贴短视频分享链接" clearable />
-      </wd-card>
-      <view class="px-4"><wd-button block>一键去水印</wd-button></view>
+    <view class="mt-5 px-4">
+      <wd-cell-group custom-class="group" title="分享链接">
+        <wd-textarea
+          type="textarea"
+          v-model="content"
+          placeholder="直接粘贴短视频分享链接"
+          clearable
+          prop="content"
+        />
+      </wd-cell-group>
+      <view class="mt-5">
+        <wd-button block @click="pasteFromClipboard()">一键去水印</wd-button>
+      </view>
     </view>
   </view>
 </template>
 
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { ref } from 'vue'
 
-<style lang="scss" scoped></style>
+const content = ref('')
+
+// 从剪切板粘贴
+const pasteFromClipboard = async () => {
+  try {
+    const text = await navigator.clipboard.readText()
+    console.log('从剪切板读取到的文本:', text)
+  } catch (err) {
+    console.error('无法从剪切板读取内容:', err)
+  }
+}
+
+// 一键去水印的处理函数
+const removeWatermark = () => {
+  // 实现去水印的逻辑
+  console.log('去水印功能已触发：', content.value)
+}
+</script>
+
+<style lang="scss" scoped>
+/* 添加必要的样式 */
+</style>
