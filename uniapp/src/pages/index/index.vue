@@ -41,10 +41,8 @@ const content = ref('')
 // 从剪切板粘贴
 const pasteFromClipboard = async () => {
   try {
-    const text = await navigator.clipboard.readText()
-    console.log('从剪切板读取到的文本:', text)
   } catch (err) {
-    console.error('无法从剪切板读取内容:', err)
+    console.error('错误:', err)
   }
 }
 </script>
