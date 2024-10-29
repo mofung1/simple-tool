@@ -40,11 +40,19 @@ import { parseVideoAPI } from '@/service/index/parse'
 const content = ref('')
 const pasteFromClipboard = async () => {
   try {
-    const { loading, error, data, run } = useRequest<any>(() => parseVideoAPI(content.value))
-    console.log(loading.value)
-    console.log(error.value)
-    console.log(data.value)
-    run()
+    // const { loading, error, data, run } = useRequest<any>(() => parseVideoAPI(content.value))
+    // console.log(loading.value)
+    // console.log(error.value)
+    // console.log("data的值-start")
+    // console.log(data)
+    // console.log(data.value)
+    // console.log("data的值-end")
+
+    console.log("直接请求-111")
+   const res = await parseVideoAPI(content.value)
+   console.log(res.data)
+   
+   console.log("直接请求-222")
   } catch (err) {
     console.error('错误:', err)
   }
