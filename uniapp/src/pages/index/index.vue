@@ -41,9 +41,9 @@ const content = ref('')
 const pasteFromClipboard = async () => {
   try {
     const { loading, error, data, run } = useRequest<any>(() => parseVideoAPI(content.value))
-    console.log(loading)
-    console.log(error)
-    console.log(data)
+    console.log(loading.value)
+    console.log(error.value)
+    console.log(data.value)
     run()
   } catch (err) {
     console.error('错误:', err)
