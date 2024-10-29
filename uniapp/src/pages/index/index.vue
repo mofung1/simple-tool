@@ -35,12 +35,16 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { parseVideoAPI } from '@/service/index/parse'
 
 const content = ref('')
-
-// 从剪切板粘贴
 const pasteFromClipboard = async () => {
   try {
+    const { loading, error, data, run } = useRequest<any>(() => parseVideoAPI(content.value))
+    console.log(loading)
+    console.log(error)
+    console.log(data)
+    run()
   } catch (err) {
     console.error('错误:', err)
   }

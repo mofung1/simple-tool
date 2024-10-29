@@ -134,13 +134,13 @@ export const getEvnBaseUrl = () => {
 
     switch (envVersion) {
       case 'develop':
-        baseUrl = 'https://ukw0y1.laf.run'
+        baseUrl = 'https://parse.mcode.fun'
         break
       case 'trial':
-        baseUrl = 'https://ukw0y1.laf.run'
+        baseUrl = 'https://parse.mcode.fun'
         break
       case 'release':
-        baseUrl = 'https://ukw0y1.laf.run'
+        baseUrl = 'https://parse.mcode.fun'
         break
     }
   }
@@ -163,13 +163,13 @@ export const getEvnBaseUploadUrl = () => {
 
     switch (envVersion) {
       case 'develop':
-        baseUploadUrl = 'https://ukw0y1.laf.run/upload'
+        baseUploadUrl = 'https://parse.mcode.fun/upload'
         break
       case 'trial':
-        baseUploadUrl = 'https://ukw0y1.laf.run/upload'
+        baseUploadUrl = 'https://parse.mcode.fun/upload'
         break
       case 'release':
-        baseUploadUrl = 'https://ukw0y1.laf.run/upload'
+        baseUploadUrl = 'https://parse.mcode.fun/upload'
         break
     }
   }
