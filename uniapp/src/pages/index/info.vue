@@ -14,7 +14,7 @@
     class="bg-white overflow-hidden pt-2 px-4"
     :style="{ marginTop: safeAreaInsets?.top + 'px' }"
   >
-    <view class="text-center text-3xl mt-6 mb-8">
+    <view class="text-center text-3xl mt-2 mb-8">
       <view class="flex flex-col items-center">
         <image 
           :src="data?.author?.avatar" 

@@ -42,20 +42,26 @@ const content = ref('')
 const pasteFromClipboard = async () => {
   try {
     const res = await parseVideoAPI(content.value)
-    console.log(res.data)
-
+    
+    uni.showLoading({
+      title: '解析中...'
+    })
+    
     if (!res.data.video_url) {
+      uni.hideLoading()
       uni.showToast({
           icon: 'none',
           title: '解析失败',
         })
     } else {
+      uni.hideLoading()
       let data = res.data;
       uni.navigateTo({
           url: `/pages/index/info?data=${encodeURIComponent(JSON.stringify(data))}`
       });
     }
   } catch (err) {
+    uni.hideLoading()
     uni.showToast({
       icon: 'none',
       title: err as string,
