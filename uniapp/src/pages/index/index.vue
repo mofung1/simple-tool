@@ -38,23 +38,25 @@ import { ref } from 'vue'
 import { parseVideoAPI } from '@/service/index/parse'
 
 const content = ref('')
+
 const pasteFromClipboard = async () => {
   try {
-    // const { loading, error, data, run } = useRequest<any>(() => parseVideoAPI(content.value))
-    // console.log(loading.value)
-    // console.log(error.value)
-    // console.log("data的值-start")
-    // console.log(data)
-    // console.log(data.value)
-    // console.log("data的值-end")
+    const res = await parseVideoAPI(content.value)
+    console.log(res.data)
 
-    console.log("直接请求-111")
-   const res = await parseVideoAPI(content.value)
-   console.log(res.data)
-   
-   console.log("直接请求-222")
+    if (!res.data.video_url) {
+      uni.showToast({
+          icon: 'none',
+          title: '解析失败',
+        })
+    } else {
+      uni.navigateTo({ url: '/pages/index/info' })
+    }
   } catch (err) {
-    console.error('错误:', err)
+    uni.showToast({
+      icon: 'none',
+      title: err as string,
+    })
   }
 }
 </script>

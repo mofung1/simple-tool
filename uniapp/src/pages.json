@@ -62,6 +62,16 @@
       }
     },
     {
+      "path": "pages/index/info",
+      "type": "page",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "解析成功",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#517CF0"
+      }
+    },
+    {
       "path": "pages/user/user",
       "type": "page",
       "style": {
