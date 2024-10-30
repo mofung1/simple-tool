@@ -50,7 +50,7 @@ const pasteFromClipboard = async () => {
           title: '解析失败',
         })
     } else {
-      let data = JSON.stringify(res.data);
+      let data = res.data;
       uni.navigateTo({
           url: `/pages/index/info?data=${encodeURIComponent(JSON.stringify(data))}`
       });
