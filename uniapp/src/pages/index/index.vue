@@ -52,7 +52,7 @@ const pasteFromClipboard = async () => {
     } else {
       let data = JSON.stringify(res.data);
       uni.navigateTo({
-          url: "/pages/index/info?data=" + data
+          url: `/pages/index/info?data=${encodeURIComponent(JSON.stringify(data))}`
       });
     }
   } catch (err) {

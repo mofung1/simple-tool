@@ -33,7 +33,7 @@ onLoad((options)=>{
   console.log("options--111")
   console.log(options.data)
   console.log("options--222")
-  data.value = JSON.parse(options.data)
+  data.value = JSON.parse(decodeURIComponent(options.data));
   console.log("页面传递信息111")
   console.log(data.value)
   console.log("页面传递信息222")
