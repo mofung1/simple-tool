@@ -22,9 +22,23 @@
 </template>
 
 <script lang="ts" setup>
-
+import { defineProps } from 'vue';
+import { onLoad } from "@dcloudio/uni-app"
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
+
+const data = ref<any>()
+
+onLoad((options)=>{
+  console.log("options--111")
+  console.log(options.data)
+  console.log("options--222")
+  data.value = JSON.parse(options.data)
+  console.log("页面传递信息111")
+  console.log(data.value)
+  console.log("页面传递信息222")
+})
+
 </script>
 
 <style lang="scss" scoped>

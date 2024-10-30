@@ -50,7 +50,10 @@ const pasteFromClipboard = async () => {
           title: '解析失败',
         })
     } else {
-      uni.navigateTo({ url: '/pages/index/info' })
+      let data = JSON.stringify(res.data);
+      uni.navigateTo({
+          url: "/pages/index/info?data=" + data
+      });
     }
   } catch (err) {
     uni.showToast({
