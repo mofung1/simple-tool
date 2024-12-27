@@ -11,34 +11,56 @@
 
 <template>
   <view
-    class="bg-white overflow-hidden pt-2 px-4"
-    :style="{ marginTop: safeAreaInsets?.top + 'px' }"
+    class="min-h-screen bg-gray-100 px-4 py-6"
+    :style="{ paddingTop: safeAreaInsets?.top + 'px' }"
   >
-    <view class="text-center text-3xl mt-2 mb-8">
-      <view class="flex flex-col items-center">
+    <!-- 作者信息卡片 -->
+    <view class="bg-white rounded-xl p-6 shadow-sm mb-6">
+      <view class="flex items-center space-x-4">
         <image 
           :src="data?.author?.avatar" 
-          class="w-20 h-20 rounded-full mb-4"
+          class="w-16 h-16 rounded-full border-4 border-gray-50"
         />
-        <text class="text-lg font-bold mb-2">{{data?.author?.name}}</text>
-        <text class="text-gray-600 mb-6">{{data?.title}}</text>
-        
-        <view class="w-full">
-          <video
-            :src="data?.video_url"
-            :poster="data?.cover_url"
-            class="w-full rounded-lg mb-4"
-            controls
-          />
+        <view>
+          <text class="font-medium text-gray-900 block mb-1">{{data?.author?.name}}</text>
+          <text class="text-sm text-gray-500">创作者</text>
         </view>
-        <view class="w-full">
-          <wd-button 
-          block 
-          @click="downloadVideo"
-        >
-          保存到相册
-        </wd-button></view>  
-        
+      </view>
+    </view>
+
+    <!-- 视频内容卡片 -->
+    <view class="bg-white rounded-xl p-6 shadow-sm mb-6">
+      <!-- 视频标题 -->
+      <view class="mb-4">
+        <text class="text-sm text-gray-500">视频标题</text>
+        <text class="block mt-1 text-gray-900">{{data?.title}}</text>
+      </view>
+
+      <!-- 视频播放器 -->
+      <view class="relative rounded-lg overflow-hidden bg-black aspect-video mb-6">
+        <video
+          :src="data?.video_url"
+          :poster="data?.cover_url"
+          class="w-full h-full object-contain"
+          controls
+        />
+      </view>
+
+      <!-- 下载按钮 -->
+      <wd-button 
+        block 
+        @click="downloadVideo"
+        custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0"
+      >
+        保存到相册
+      </wd-button>
+    </view>
+
+    <!-- 提示卡片 -->
+    <view class="bg-blue-50 rounded-xl p-4">
+      <view class="flex items-center space-x-3">
+        <view class="i-carbon-information text-blue-500"></view>
+        <text class="text-sm text-blue-700">视频将直接保存到您的相册中</text>
       </view>
     </view>
   </view>
