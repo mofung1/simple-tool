@@ -101,23 +101,31 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 // 处理登录
 const handleLogin = async () => {
   try {
+    // 先获取用户信息（这个必须在用户点击时直接调用）
+    const userInfo = await userStore.getUserProfile()
+    
     uni.showLoading({
       title: '登录中...'
     })
 
-    // 微信登录
-    await userStore.wxLogin()
-    
-    // 获取用户信息
-    await userStore.getUserProfile()
+    // 微信登录获取code
+    const loginRes = await userStore.wxLogin()
+    console.log('登录成功:', loginRes)
+    // TODO: 调用后端登录接口
+    // const res = await login(loginRes.code)
+    // userStore.setUserInfo(res.data.userInfo)
 
     uni.hideLoading()
     uni.showToast({
       title: '登录成功',
       icon: 'success'
     })
-  } catch (err) {
+  } catch (err: any) {
     uni.hideLoading()
+    // 如果是用户取消，不显示错误提示
+    if (err.errMsg && err.errMsg.includes('cancel')) {
+      return
+    }
     uni.showToast({
       title: '登录失败',
       icon: 'error'

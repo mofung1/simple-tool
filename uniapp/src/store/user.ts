@@ -33,7 +33,7 @@ export const useUserStore = defineStore(
 
     // 设置用户信息
     const setUserInfo = (val: IUserInfo) => {
-      userInfo.value = val
+      userInfo.value = { ...userInfo.value, ...val }
       if (val.token) {
         token.value = val.token
       }
