@@ -1,7 +1,7 @@
 <route lang="json5">
 {
   style: {
-    navigationBarTitleText: '我的',
+    navigationBarTitleText: '',
     navigationBarTextStyle: 'white',
     navigationBarBackgroundColor: '#3B82F6',
   },
