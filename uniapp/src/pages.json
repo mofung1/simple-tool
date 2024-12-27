@@ -56,13 +56,31 @@
       }
     },
     {
+      "path": "pages/about/index",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "关于我们",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#3B82F6"
+      }
+    },
+    {
+      "path": "pages/help/index",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "帮助与反馈",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#3B82F6"
+      }
+    },
+    {
       "path": "pages/index/info",
       "type": "page",
       "style": {
         "navigationStyle": "default",
         "navigationBarTitleText": "解析成功",
         "navigationBarTextStyle": "white",
-        "navigationBarBackgroundColor": "#517CF0"
+        "navigationBarBackgroundColor": "#3B82F6"
       }
     },
     {

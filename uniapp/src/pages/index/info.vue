@@ -4,7 +4,7 @@
     navigationStyle: 'default',
     navigationBarTitleText: '解析成功',
     navigationBarTextStyle: 'white',
-    navigationBarBackgroundColor: '#517CF0',
+    navigationBarBackgroundColor: '#3B82F6',
   },
 }
 </route>
@@ -17,12 +17,9 @@
     <!-- 作者信息卡片 -->
     <view class="bg-white rounded-xl p-6 shadow-sm mb-6">
       <view class="flex items-center space-x-4">
-        <image 
-          :src="data?.author?.avatar" 
-          class="w-16 h-16 rounded-full border-4 border-gray-50"
-        />
+        <image :src="data?.author?.avatar" class="w-16 h-16 rounded-full border-4 border-gray-50" />
         <view>
-          <text class="font-medium text-gray-900 block mb-1">{{data?.author?.name}}</text>
+          <text class="font-medium text-gray-900 block mb-1">{{ data?.author?.name }}</text>
           <text class="text-sm text-gray-500">创作者</text>
         </view>
       </view>
@@ -33,7 +30,7 @@
       <!-- 视频标题 -->
       <view class="mb-4">
         <text class="text-sm text-gray-500">视频标题</text>
-        <text class="block mt-1 text-gray-900">{{data?.title}}</text>
+        <text class="block mt-1 text-gray-900">{{ data?.title }}</text>
       </view>
 
       <!-- 视频播放器 -->
@@ -47,8 +44,8 @@
       </view>
 
       <!-- 下载按钮 -->
-      <wd-button 
-        block 
+      <wd-button
+        block
         @click="downloadVideo"
         custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0"
       >
@@ -67,13 +64,13 @@
 </template>
 
 <script lang="ts" setup>
-import { onLoad } from "@dcloudio/uni-app"
+import { onLoad } from '@dcloudio/uni-app'
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
 
 const data = ref<any>()
 
-onLoad((options)=>{
+onLoad((options) => {
   data.value = JSON.parse(decodeURIComponent(options.data))
   console.log(data.value)
 })
@@ -81,34 +78,32 @@ const downloadVideo = async () => {
   try {
     // 显示加载提示
     uni.showLoading({
-      title: '正在下载...'
+      title: '正在下载...',
     })
-    
+
     // 下载视频
     const { tempFilePath } = await uni.downloadFile({
-      url: data.value.video_url
+      url: data.value.video_url,
     })
-    
+
     // 保存到相册
     await uni.saveVideoToPhotosAlbum({
-      filePath: tempFilePath
+      filePath: tempFilePath,
     })
 
     uni.hideLoading()
     uni.showToast({
       title: '保存成功',
-      icon: 'success'
+      icon: 'success',
     })
   } catch (err) {
     uni.hideLoading()
     uni.showToast({
       title: '保存失败',
-      icon: 'error'
+      icon: 'error',
     })
   }
 }
-
-
 </script>
 
 <style lang="scss" scoped>

@@ -59,21 +59,14 @@
       <!-- 其他功能列表 -->
       <view class="bg-white rounded-xl shadow-sm overflow-hidden">
         <view class="divide-y divide-gray-100">
-          <view class="flex items-center justify-between p-4">
-            <view class="flex items-center space-x-3">
-              <view class="i-carbon-settings text-gray-400"></view>
-              <text class="text-gray-700">设置</text>
-            </view>
-            <view class="i-carbon-chevron-right text-gray-400"></view>
-          </view>
-          <view class="flex items-center justify-between p-4">
+          <view class="flex items-center justify-between p-4" @click="handleNavigation('help')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-help text-gray-400"></view>
               <text class="text-gray-700">帮助与反馈</text>
             </view>
             <view class="i-carbon-chevron-right text-gray-400"></view>
           </view>
-          <view class="flex items-center justify-between p-4">
+          <view class="flex items-center justify-between p-4" @click="handleNavigation('about')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-information text-gray-400"></view>
               <text class="text-gray-700">关于我们</text>
@@ -113,7 +106,25 @@ const handleItemClick = (type: string) => {
         },
         fail: function () {
           console.log('fail')
-        }
+        },
+      })
+      break
+    default:
+      break
+  }
+}
+
+// 处理页面导航
+const handleNavigation = (type: string) => {
+  switch (type) {
+    case 'help':
+      uni.navigateTo({
+        url: '/pages/help/index'
+      })
+      break
+    case 'about':
+      uni.navigateTo({
+        url: '/pages/about/index'
       })
       break
     default:

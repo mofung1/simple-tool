@@ -19,7 +19,7 @@
         custom-class="text-amber-700"
       />
     </view>
-    
+
     <!-- 主要内容区域 -->
     <view class="px-4 space-y-6 pb-8">
       <!-- 功能介绍卡片 -->
@@ -30,7 +30,9 @@
           </view>
           <text class="text-lg font-medium">视频去水印</text>
         </view>
-        <text class="text-gray-600 text-sm mb-4 block">支持抖音、快手、小红书等平台的视频无水印下载</text>
+        <text class="text-gray-600 text-sm mb-4 block">
+          支持抖音、快手、小红书等平台的视频无水印下载
+        </text>
       </view>
 
       <!-- 输入框卡片 -->
@@ -46,9 +48,9 @@
             custom-class="mt-2 bg-gray-50 rounded-lg"
           />
         </view>
-        
-        <wd-button 
-          block 
+
+        <wd-button
+          block
           @click="pasteFromClipboard()"
           custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0"
         >
@@ -94,13 +96,13 @@ const checkClipboard = () => {
             if (modalRes.confirm) {
               content.value = res.data
             }
-          }
+          },
         })
       }
     },
     fail: (err) => {
       console.error('获取剪贴板内容失败:', err)
-    }
+    },
   })
 }
 
