@@ -1,78 +1,62 @@
-<p align="center">
-  <a href="https://github.com/codercup2/unibest">
-    <img width="160" src="./src/static/logo.svg">
-  </a>
-</p>
+## 视频去水印工具使用说明
 
-<h1 align="center">
-  <a href="https://github.com/codercup2/unibest" target="_blank">unibest - 最好的 uniapp 开发框架</a>
-</h1>
+### 功能介绍
 
-<div align="center">
+视频去水印工具是一款便捷的在线视频处理工具，支持多个主流短视频平台的视频无水印下载，包括但不限于：
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/codercup/unibest?style=flat&logo=github)](https://github.com/codercup/unibest)
-[![GitHub forks](https://img.shields.io/github/forks/codercup/unibest?style=flat&logo=github)](https://github.com/codercup/unibest)
-[![star](https://gitee.com/codercup/unibest/badge/star.svg?theme=dark)](https://gitee.com/codercup/unibest/stargazers)
-[![fork](https://gitee.com/codercup/unibest/badge/fork.svg?theme=dark)](https://gitee.com/codercup/unibest/members)
-![node version](https://img.shields.io/badge/node-%3E%3D18-green)
-![pnpm version](https://img.shields.io/badge/pnpm-%3E%3D7.30-green)
-![GitHub package.json version (subfolder of monorepo)](https://img.shields.io/github/package-json/v/codercup/unibest)
-![GitHub License](https://img.shields.io/github/license/codercup/unibest)
+- 抖音
+- 快手
+- 小红书
+- 微视
+- 西瓜视频
+- B站
+  等平台的视频链接。
 
-</div>
+### 使用步骤
 
-`unibest` —— 最好的 `uniapp` 开发模板，由 `uniapp` + `Vue3` + `Ts` + `Vite5` + `UnoCss` + `wot-ui` + `z-paging` 构成，使用了最新的前端技术栈，无需依靠 `HBuilderX`，通过命令行方式运行 `web`、`小程序` 和 `App`（编辑器推荐 `VSCode`，可选 `webstorm`）。
+1. **复制视频链接**
 
-`unibest` 内置了 `约定式路由`、`layout布局`、`请求封装`、`请求拦截`、`登录拦截`、`UnoCSS`、`i18n多语言` 等基础功能，提供了 `代码提示`、`自动格式化`、`统一配置`、`代码片段` 等辅助功能，让你编写 `uniapp` 拥有 `best` 体验 （ `unibest 的由来`）。
+   - 打开短视频平台APP
+   - 点击要下载的视频右下角"分享"按钮
+   - 选择"复制链接"选项
 
-![](https://raw.githubusercontent.com/andreasbm/readme/master/screenshots/lines/rainbow.png)
+2. **粘贴并解析**
 
-<p align="center">
-  <a href="https://codercup2.github.io/unibest-docs/" target="_blank">📖 文档地址</a>
-  <span style="margin:0 10px;">|</span>
-  <a href="https://codercup2.github.io/hello-unibest/" target="_blank">📱 DEMO 地址</a>
-</p>
+   - 打开本工具
+   - 将复制的链接粘贴到输入框
+   - 点击"解析"按钮
 
----
+3. **下载视频**
+   - 等待解析完成后，系统会自动显示无水印视频
+   - 点击"下载"按钮即可保存视频到本地
 
-注意旧的地址 [codercup](https://github.com/codercup/unibest) 我进不去了，使用新的 [codercup2](https://github.com/codercup2/unibest)。PR和 issue 也请使用新地址，否则无法合并。
+### 注意事项
 
-## ⚙️ 环境
+- 请确保网络连接稳定
+- 仅支持主流短视频平台的公开视频
+- 下载视频仅供个人使用，请勿用于商业用途
+- 部分视频可能因平台限制无法解析
+- 建议在WiFi环境下使用，以节省流量
 
-- node>=18
-- pnpm>=7.30
-- Vue Official<=2.1.6
-- TypeScript<=5.5.4
+### 常见问题
 
-## &#x1F4C2; 快速开始
+1. **链接无法解析？**
 
-执行 `pnpm create unibest` 创建项目
+   - 检查链接是否完整
+   - 确认视频是否为公开状态
+   - 尝试重新复制链接
 
-执行 `pnpm i` 安装依赖
+2. **下载速度慢？**
 
-执行 `pnpm dev` 运行 `H5`
+   - 检查网络连接
+   - 尝试切换到WiFi网络
+   - 可能是视频文件较大，请耐心等待
 
-## 📦 运行（支持热更新）
+3. **视频无法播放？**
+   - 检查设备存储空间是否充足
+   - 确认设备是否支持该视频格式
+   - 尝试使用其他播放器打开
 
-- web平台： `pnpm dev:h5`, 然后打开 [http://localhost:9000/](http://localhost:9000/)。
-- weixin平台：`pnpm dev:mp-weixin` 然后打开微信开发者工具，导入本地文件夹，选择本项目的`dist/dev/mp-weixin` 文件。
-- APP平台：`pnpm dev:app`, 然后打开 `HBuilderX`，导入刚刚生成的`dist/dev/app` 文件夹，选择运行到模拟器(开发时优先使用)，或者运行的安卓/ios基座。
+### 免责声明
 
-## 🔗 发布
-
-- web平台： `pnpm build:h5`，打包后的文件在 `dist/build/h5`，可以放到web服务器，如nginx运行。如果最终不是放在根目录，可以在 `manifest.config.ts` 文件的 `h5.router.base` 属性进行修改。
-- weixin平台：`pnpm build:mp-weixin`, 打包后的文件在 `dist/build/mp-weixin`，然后通过微信开发者工具导入，并点击右上角的“上传”按钮进行上传。
-- APP平台：`pnpm build:app`, 然后打开 `HBuilderX`，导入刚刚生成的`dist/build/app` 文件夹，选择发行 - APP云打包。
-
-## 📄 License
-
-[MIT](https://opensource.org/license/mit/)
-
-Copyright (c) 2024 菲鸽
-
-## 捐赠
-
-<p align='center'>
-<img alt="special sponsor appwrite" src="./screenshots/pay-1.png" height="330" style="display:inline-block; height:330px;">
-<img alt="special sponsor appwrite" src="./screenshots/pay-2.png" height="330" style="display:inline-block; height:330px; margin-left:10px;">
-</p>
+本工具仅供学习交流使用，请勿用于任何商业用途。用户在使用过程中因违反相关法律法规或侵犯第三方权益所造成的损失，由用户自行承担。
