@@ -12,7 +12,18 @@
   <view class="min-h-screen bg-gray-100">
     <!-- 用户信息卡片 -->
     <view class="bg-gradient-to-b from-blue-500 to-blue-600 p-6">
-      <view class="flex items-center space-x-4">
+      <view v-if="userStore.isLogined" class="flex items-center space-x-4">
+        <image 
+          :src="userStore.userInfo.avatar" 
+          class="w-16 h-16 bg-white rounded-full border-4 border-blue-400/30"
+        />
+        <view class="flex-1">
+          <text class="text-white text-lg font-medium block mb-1">{{ userStore.userInfo.nickname }}</text>
+          <text class="text-blue-100 text-sm">{{ userStore.userInfo.mobile || '未绑定手机' }}</text>
+        </view>
+        <view class="i-carbon-chevron-right text-white"></view>
+      </view>
+      <view v-else class="flex items-center space-x-4" @click="handleLogin">
         <view class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
           <view class="i-carbon-user-avatar text-blue-500 text-2xl"></view>
         </view>
@@ -80,8 +91,40 @@
 </template>
 
 <script lang="ts" setup>
+import { useUserStore } from '@/store/user'
+
+const userStore = useUserStore()
+
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
+
+// 处理登录
+const handleLogin = async () => {
+  try {
+    uni.showLoading({
+      title: '登录中...'
+    })
+
+    // 微信登录
+    await userStore.wxLogin()
+    
+    // 获取用户信息
+    await userStore.getUserProfile()
+
+    uni.hideLoading()
+    uni.showToast({
+      title: '登录成功',
+      icon: 'success'
+    })
+  } catch (err) {
+    uni.hideLoading()
+    uni.showToast({
+      title: '登录失败',
+      icon: 'error'
+    })
+    console.error('登录失败:', err)
+  }
+}
 
 // 处理用户点击事件
 const handleItemClick = (type: string) => {

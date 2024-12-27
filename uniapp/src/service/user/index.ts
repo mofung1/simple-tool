@@ -1,0 +1,16 @@
+import { http } from '@/utils/request'
+
+// 微信登录
+export const wxLogin = (code: string) => {
+  return http.post<ILoginResult>('/api/user/wx-login', { code })
+}
+
+// 更新用户信息
+export const updateUserInfo = (data: Partial<IUserInfo>) => {
+  return http.post('/api/user/update', data)
+}
+
+// 获取用户信息
+export const getUserInfo = () => {
+  return http.get<ILoginResult>('/api/user/info')
+}
