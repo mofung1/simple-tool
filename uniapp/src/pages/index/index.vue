@@ -75,10 +75,42 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { parseVideoAPI } from '@/service/index/parse'
 
 const content = ref('')
+
+// 检查剪贴板内容
+const checkClipboard = () => {
+  uni.getClipboardData({
+    success: (res) => {
+      if (res.data && res.data.includes('http')) {
+        uni.showModal({
+          title: '发现链接',
+          content: '检测到剪贴板中包含链接，是否使用该链接？',
+          confirmText: '使用',
+          cancelText: '取消',
+          success: (modalRes) => {
+            if (modalRes.confirm) {
+              content.value = res.data
+            }
+          }
+        })
+      }
+    },
+    fail: (err) => {
+      console.error('获取剪贴板内容失败:', err)
+    }
+  })
+}
+
+// 页面加载时检查剪贴板
+onMounted(() => {
+  // 延迟一下执行，确保页面完全加载
+  setTimeout(() => {
+    checkClipboard()
+  }, 500)
+})
 
 // 处理粘贴并去水印的函数
 const pasteFromClipboard = async () => {
