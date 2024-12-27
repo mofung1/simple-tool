@@ -15,7 +15,7 @@
   },
   "tabBar": {
     "color": "#999999",
-    "selectedColor": "#018d71",
+    "selectedColor": "#3B82F6",
     "backgroundColor": "#FFFFFF",
     "borderStyle": "white",
     "height": "50px",
@@ -28,12 +28,6 @@
         "selectedIconPath": "static/tabbar/homeHL.png",
         "pagePath": "pages/index/index",
         "text": "首页"
-      },
-      {
-        "iconPath": "static/tabbar/example.png",
-        "selectedIconPath": "static/tabbar/exampleHL.png",
-        "pagePath": "pages/about/about",
-        "text": "关于"
       },
       {
         "iconPath": "static/tabbar/personal.png",
@@ -51,7 +45,7 @@
         "navigationStyle": "default",
         "navigationBarTitleText": "免费去水印",
         "navigationBarTextStyle": "white",
-        "navigationBarBackgroundColor": "#517CF0"
+        "navigationBarBackgroundColor": "#3B82F6"
       }
     },
     {
@@ -76,7 +70,8 @@
       "type": "page",
       "style": {
         "navigationBarTitleText": "我的",
-        "backgroundColor": "#666666"
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#3B82F6"
       }
     }
   ],

@@ -4,7 +4,7 @@
     navigationStyle: 'default',
     navigationBarTitleText: '免费去水印',
     navigationBarTextStyle: 'white',
-    navigationBarBackgroundColor: '#517CF0',
+    navigationBarBackgroundColor: '#3B82F6',
   },
 }
 </route>
