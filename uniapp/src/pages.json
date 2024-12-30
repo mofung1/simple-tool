@@ -49,14 +49,8 @@
       }
     },
     {
-      "path": "pages/about/about",
-      "type": "page",
-      "style": {
-        "navigationBarTitleText": "关于"
-      }
-    },
-    {
       "path": "pages/about/index",
+      "type": "page",
       "style": {
         "navigationStyle": "default",
         "navigationBarTitleText": "关于我们",
@@ -66,6 +60,7 @@
     },
     {
       "path": "pages/help/index",
+      "type": "page",
       "style": {
         "navigationStyle": "default",
         "navigationBarTitleText": "帮助与反馈",

@@ -13,12 +13,14 @@
     <!-- 用户信息卡片 -->
     <view class="bg-gradient-to-b from-blue-500 to-blue-600 p-6">
       <view v-if="userStore.isLogined" class="flex items-center space-x-4">
-        <image 
-          :src="userStore.userInfo.avatar" 
+        <image
+          :src="userStore.userInfo.avatar"
           class="w-16 h-16 bg-white rounded-full border-4 border-blue-400/30"
         />
         <view class="flex-1">
-          <text class="text-white text-lg font-medium block mb-1">{{ userStore.userInfo.nickname }}</text>
+          <text class="text-white text-lg font-medium block mb-1">
+            {{ userStore.userInfo.nickname }}
+          </text>
           <text class="text-blue-100 text-sm">{{ userStore.userInfo.mobile || '未绑定手机' }}</text>
         </view>
         <view class="i-carbon-chevron-right text-white"></view>
@@ -38,7 +40,7 @@
     <!-- 功能区域 -->
     <view class="p-4 space-y-4">
       <!-- 常用功能 -->
-      <view class="bg-white rounded-xl p-4 shadow-sm">
+      <!-- <view class="bg-white rounded-xl p-4 shadow-sm">
         <view class="grid grid-cols-4 gap-4">
           <view class="flex flex-col items-center">
             <view class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-2">
@@ -65,7 +67,7 @@
             <text class="text-sm text-gray-700">分享应用</text>
           </view>
         </view>
-      </view>
+      </view> -->
 
       <!-- 其他功能列表 -->
       <view class="bg-white rounded-xl shadow-sm overflow-hidden">
@@ -103,9 +105,9 @@ const handleLogin = async () => {
   try {
     // 先获取用户信息（这个必须在用户点击时直接调用）
     const userInfo = await userStore.getUserProfile()
-    
+
     uni.showLoading({
-      title: '登录中...'
+      title: '登录中...',
     })
 
     // 微信登录获取code
@@ -118,7 +120,7 @@ const handleLogin = async () => {
     uni.hideLoading()
     uni.showToast({
       title: '登录成功',
-      icon: 'success'
+      icon: 'success',
     })
   } catch (err: any) {
     uni.hideLoading()
@@ -128,7 +130,7 @@ const handleLogin = async () => {
     }
     uni.showToast({
       title: '登录失败',
-      icon: 'error'
+      icon: 'error',
     })
     console.error('登录失败:', err)
   }
@@ -170,12 +172,12 @@ const handleNavigation = (type: string) => {
   switch (type) {
     case 'help':
       uni.navigateTo({
-        url: '/pages/help/index'
+        url: '/pages/help/index',
       })
       break
     case 'about':
       uni.navigateTo({
-        url: '/pages/about/index'
+        url: '/pages/about/index',
       })
       break
     default:

@@ -67,7 +67,7 @@
           <text class="font-medium">使用说明</text>
         </view>
         <view class="space-y-2 text-sm text-gray-600">
-          <view>1. 打开视频平台，点击分享按钮</view>
+          <view>1. 视频平台点击分享</view>
           <view>2. 复制分享链接</view>
           <view>3. 粘贴到输入框，点击去水印</view>
         </view>
