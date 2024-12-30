@@ -30,15 +30,37 @@
           </view>
           <text class="text-lg font-medium">视频去水印</text>
         </view>
+
         <text class="text-gray-600 text-sm mb-4 block">
           支持抖音、快手、小红书等平台的视频无水印下载
         </text>
+
+        <view class="space-y-2 text-sm text-gray-600">
+          <view class="flex items-center space-x-2">
+            <view class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center">
+              <text class="text-blue-500 font-medium">1</text>
+            </view>
+            <text>打开视频平台，点击分享按钮</text>
+          </view>
+          <view class="flex items-center space-x-2">
+            <view class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center">
+              <text class="text-blue-500 font-medium">2</text>
+            </view>
+            <text>复制分享链接到剪切板</text>
+          </view>
+          <view class="flex items-center space-x-2">
+            <view class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center">
+              <text class="text-blue-500 font-medium">3</text>
+            </view>
+            <text>点击上方粘贴按钮，开始解析</text>
+          </view>
+        </view>
       </view>
 
       <!-- 输入框卡片 -->
       <view class="bg-white rounded-xl p-6 shadow-sm">
         <view class="mb-4">
-          <view 
+          <view
             class="flex items-center justify-between bg-blue-50 rounded-lg p-3 mb-2"
             hover-class="bg-blue-100"
             @click="pasteFromClipboardDirect"
@@ -74,21 +96,6 @@
           >
             一键去水印
           </wd-button>
-        </view>
-      </view>
-
-      <!-- 使用说明卡片 -->
-      <view class="bg-white rounded-xl p-6 shadow-sm">
-        <view class="flex items-center space-x-3 mb-4">
-          <view class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
-            <view class="i-carbon-information text-green-500"></view>
-          </view>
-          <text class="font-medium">使用说明</text>
-        </view>
-        <view class="space-y-2 text-sm text-gray-600">
-          <view>1. 视频平台点击分享</view>
-          <view>2. 复制分享链接</view>
-          <view>3. 粘贴到输入框，点击去水印</view>
         </view>
       </view>
     </view>
