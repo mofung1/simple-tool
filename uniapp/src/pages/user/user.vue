@@ -40,7 +40,7 @@
     <!-- 功能区域 -->
     <view class="p-4 space-y-4">
       <!-- 常用功能 -->
-      <!-- <view class="bg-white rounded-xl p-4 shadow-sm">
+      <view class="bg-white rounded-xl p-4 shadow-sm">
         <view class="grid grid-cols-4 gap-4">
           <view class="flex flex-col items-center">
             <view class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-2">
@@ -67,7 +67,7 @@
             <text class="text-sm text-gray-700">分享应用</text>
           </view>
         </view>
-      </view> -->
+      </view>
 
       <!-- 其他功能列表 -->
       <view class="bg-white rounded-xl shadow-sm overflow-hidden">
