@@ -52,14 +52,6 @@
         保存到相册
       </wd-button>
     </view>
-
-    <!-- 提示卡片 -->
-    <view class="bg-blue-50 rounded-xl p-4">
-      <view class="flex items-center space-x-3">
-        <view class="i-carbon-information text-blue-500"></view>
-        <text class="text-sm text-blue-700">视频将直接保存到您的相册中</text>
-      </view>
-    </view>
   </view>
 </template>
 
