@@ -38,24 +38,43 @@
       <!-- 输入框卡片 -->
       <view class="bg-white rounded-xl p-6 shadow-sm">
         <view class="mb-4">
-          <text class="text-sm font-medium text-gray-700">分享链接</text>
+          <view 
+            class="flex items-center justify-between bg-blue-50 rounded-lg p-3 mb-2"
+            hover-class="bg-blue-100"
+            @click="pasteFromClipboardDirect"
+          >
+            <view class="flex items-center space-x-2">
+              <text class="i-carbon-paste text-blue-500"></text>
+              <text class="text-blue-600 text-sm">点击从剪切板粘贴</text>
+            </view>
+            <text class="i-carbon-chevron-right text-blue-400"></text>
+          </view>
           <wd-textarea
             type="textarea"
             v-model="content"
-            placeholder="直接粘贴短视频分享链接"
+            placeholder="在此输入或粘贴分享链接"
             clearable
             prop="content"
-            custom-class="mt-2 bg-gray-50 rounded-lg"
+            custom-class="bg-gray-50 rounded-lg"
           />
         </view>
 
-        <wd-button
-          block
-          @click="pasteFromClipboard()"
-          custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0"
-        >
-          一键去水印
-        </wd-button>
+        <view class="flex space-x-4">
+          <wd-button
+            block
+            @click="clearContent"
+            custom-class="!bg-gray-100 !text-gray-700 !border-0 flex-1"
+          >
+            清空内容
+          </wd-button>
+          <wd-button
+            block
+            @click="pasteFromClipboard()"
+            custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0 flex-1"
+          >
+            一键去水印
+          </wd-button>
+        </view>
       </view>
 
       <!-- 使用说明卡片 -->
@@ -81,6 +100,41 @@ import { ref, onMounted } from 'vue'
 import { parseVideoAPI } from '@/service/index/parse'
 
 const content = ref('')
+
+// 直接从剪切板粘贴
+const pasteFromClipboardDirect = () => {
+  uni.getClipboardData({
+    success: (res) => {
+      if (res.data) {
+        content.value = res.data
+        uni.showToast({
+          title: '已粘贴',
+          icon: 'success',
+        })
+      } else {
+        uni.showToast({
+          title: '剪切板为空',
+          icon: 'error',
+        })
+      }
+    },
+    fail: () => {
+      uni.showToast({
+        title: '粘贴失败',
+        icon: 'error',
+      })
+    },
+  })
+}
+
+// 清空内容
+const clearContent = () => {
+  content.value = ''
+  uni.showToast({
+    title: '已清空',
+    icon: 'success',
+  })
+}
 
 // 检查剪贴板内容
 const checkClipboard = () => {
