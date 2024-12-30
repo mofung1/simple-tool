@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import { wxLogin as wxLoginApi } from '@/service/user'
 
 interface IUserInfo {
   nickname: string
@@ -22,7 +23,7 @@ const initState: IUserInfo = {
   gender: 0,
   country: '',
   province: '',
-  city: ''
+  city: '',
 }
 
 export const useUserStore = defineStore(
@@ -43,7 +44,9 @@ export const useUserStore = defineStore(
     const clearUserInfo = () => {
       userInfo.value = { ...initState }
       token.value = ''
+      // 清除本地存储
       uni.removeStorageSync('token')
+      uni.removeStorageSync('user-store')
     }
 
     // 检查是否登录
@@ -57,15 +60,17 @@ export const useUserStore = defineStore(
           desc: '用于完善用户资料',
           success: (res) => {
             const { userInfo } = res
+            console.log('获取用户信息成功：', userInfo)
             setUserInfo({
               ...userInfo,
-              token: token.value
+              token: token.value,
             })
             resolve(userInfo)
           },
           fail: (err) => {
-            reject(err)
-          }
+            console.error('获取用户信息失败：', err)
+            reject(new Error('获取用户信息失败：' + (err.errMsg || '未知错误')))
+          },
         })
         // #endif
 
@@ -84,17 +89,27 @@ export const useUserStore = defineStore(
           provider: 'weixin',
           success: async (loginRes) => {
             try {
-              // TODO: 调用后端登录接口
-              // const res = await login(loginRes.code)
-              // setUserInfo(res.data.userInfo)
-              resolve(loginRes)
+              console.log('微信登录成功，登录信息：', loginRes)
+              // 调用后端登录接口
+              const res = await wxLoginApi(loginRes.code)
+              if (res.code === 200) {
+                const { token, userInfo } = res.data
+                setUserInfo({ ...userInfo, token })
+                // 存储token
+                uni.setStorageSync('token', token)
+                resolve(userInfo)
+              } else {
+                throw new Error(res.message || '登录失败')
+              }
             } catch (err) {
+              console.error('登录失败：', err)
               reject(err)
             }
           },
           fail: (err) => {
-            reject(err)
-          }
+            console.error('微信登录失败：', err)
+            reject(new Error('微信登录失败：' + (err.errMsg || '未知错误')))
+          },
         })
         // #endif
 
@@ -111,13 +126,13 @@ export const useUserStore = defineStore(
       clearUserInfo,
       isLogined,
       getUserProfile,
-      wxLogin
+      wxLogin,
     }
   },
   {
     persist: {
       key: 'user-store',
-      paths: ['userInfo', 'token']
-    }
-  }
+      paths: ['userInfo', 'token'],
+    },
+  },
 )
