@@ -1,0 +1,1 @@
+{"level":"ERROR","time":"2024-12-31T17:10:38.728+0800","caller":"db/mysql.go:42","msg":"connect DB failed","error":"Error 1049 (42000): Unknown database 'go_parse_video'"}
