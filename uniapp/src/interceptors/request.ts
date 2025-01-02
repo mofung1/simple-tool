@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import qs from 'qs'
-import { useUserStore } from '@/store'
+import { useUserStore } from '@/stores/user'
 import { platform } from '@/utils/platform'
 import { getEvnBaseUrl } from '@/utils'
 
@@ -29,7 +29,6 @@ const httpInterceptor = {
     // 非 http 开头需拼接地址
     if (!options.url.startsWith('http')) {
       // #ifdef H5
-      // console.log(__VITE_APP_PROXY__)
       if (JSON.parse(__VITE_APP_PROXY__)) {
         // 啥都不需要做
       } else {
@@ -40,22 +39,27 @@ const httpInterceptor = {
       // #ifndef H5
       options.url = baseUrl + options.url
       // #endif
-      // TIPS: 如果需要对接多个后端服务，也可以在这里处理，拼接成所需要的地址
     }
+
     // 1. 请求超时
     options.timeout = 10000 // 10s
-    // 2. （可选）添加小程序端请求头标识
-    options.header = {
-      platform, // 可选，与 uniapp 定义的平台一致，告诉后台来源
-      ...options.header,
-    }
-    // 3. 添加 token 请求头标识
+
+    // 2. 添加token
     const userStore = useUserStore()
-    const { token } = userStore.userInfo as unknown as IUserInfo
+    const token = userStore.token
     if (token) {
-      options.header.Authorization = `Bearer ${token}`
+      options.header = {
+        ...options.header,
+        token
+      }
     }
-  },
+
+    // 3. 添加小程序端请求头标识
+    options.header = {
+      platform,
+      ...options.header
+    }
+  }
 }
 
 export const requestInterceptor = {
@@ -64,5 +68,7 @@ export const requestInterceptor = {
     uni.addInterceptor('request', httpInterceptor)
     // 拦截 uploadFile 文件上传
     uni.addInterceptor('uploadFile', httpInterceptor)
-  },
+  }
 }
+
+requestInterceptor.install()
