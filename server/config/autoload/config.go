@@ -6,4 +6,5 @@ type AppConfig struct {
 	*DBConfig    `mapstructure:"db"`
 	*RedisConfig `mapstructure:"redis"`
 	*JwtConfig   `mapstructure:"jwt"`
+	*Wechat      `mapstructure:"wechat"`
 }

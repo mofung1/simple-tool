@@ -6,17 +6,21 @@ import (
 	"simple-tool/server/internal/global/response"
 )
 
-// setupFrontendRoutes 前台api
+// setupFrontendRoutes 前台路由
 func setupFrontendRoutes(r *gin.Engine) {
 	apiGroup := r.Group("/api")
 	apiGroup.GET("/ping", func(c *gin.Context) {
 		response.Ok(c)
 	})
 
-	parseGroup := apiGroup.Group("/parse")
+	frontend := apiGroup.Group("/v1")
 	{
 		parseHandler := new(handler.Parse)
-		parseGroup.GET("/url", parseHandler.Url)
+		loginHandler := new(handler.Login)
+		// 解析视频
+		frontend.POST("/parse/url", parseHandler.Url)
+		// 小程序登录
+		frontend.POST("/login/mnp", loginHandler.MnpLogin)
 	}
 
 }
