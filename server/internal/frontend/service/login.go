@@ -50,6 +50,8 @@ func (s *LoginService) MnpLogin(code string, clientIp string) (*response.LoginRe
 		} else {
 			// 创建新用户
 			user = models.User{
+				Nickname:  wxResp.Nickname,
+				Avatar:    wxResp.HeadImgUrl,
 				LoginTime: time.Now(),
 				LoginIp:   clientIp,
 			}

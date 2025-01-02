@@ -18,6 +18,8 @@ type Code2SessionResponse struct {
 	OpenID     string `json:"openid"`
 	SessionKey string `json:"session_key"`
 	UnionID    string `json:"unionid"`
+	Nickname   string `json:"nickname"`
+	HeadImgUrl string `json:"headimgurl"`
 	ErrCode    int    `json:"errcode"`
 	ErrMsg     string `json:"errmsg"`
 }
