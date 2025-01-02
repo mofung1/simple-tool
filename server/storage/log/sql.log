@@ -1,3 +1,0 @@
-
-2024/12/31 17:10:38 /Users/mofung/Documents/project/golang/src/simple-tool/server/pkg/db/mysql.go:39
-[error] failed to initialize database, got error Error 1049 (42000): Unknown database 'go_parse_video'
