@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	_ "server/bootstrap"
 	"simple-tool/server/internal/global"
 	"simple-tool/server/internal/models"
 )
