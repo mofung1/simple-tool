@@ -1,4 +1,4 @@
 /.idea
 /.vscode
 .prettierrc
-/.serevr/config/config.yaml
+/server/config/config.yaml
