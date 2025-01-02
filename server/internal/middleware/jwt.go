@@ -29,7 +29,7 @@ func JWTAuth() func(c *gin.Context) {
 		// 校验当前token是否在黑名单中
 		key := cache.KeyLoginBlack + token
 		if redis.GetString(key) != "" {
-			response.FailWithMsg(c, "令牌已失效，请重新登录")
+			response.FailWithMsg(c, "已被禁用")
 			c.Abort()
 			return
 		}
