@@ -15,9 +15,7 @@ type Login struct {
 }
 
 type MnpLoginRequest struct {
-	Code     string `json:"code" binding:"required"`
-	Nickname string `json:"nickname"`
-	Avatar   string `json:"avatar"`
+	Code string `json:"code" binding:"required"`
 }
 
 // MnpLogin 小程序登录
@@ -29,12 +27,12 @@ func (l *Login) MnpLogin(c *gin.Context) {
 	}
 
 	// 调用微信接口获取openid
-	config := wechat.MnpConfig{
+	mp := &wechat.MnpConfig{
 		AppID:     global.Conf.Wechat.AppID,
 		AppSecret: global.Conf.Wechat.AppSecret,
 	}
 
-	wxResp, err := wechat.Code2Session(config, req.Code)
+	wxResp, err := mp.Code2Session(req.Code)
 	if err != nil {
 		response.FailWithMsg(c, err.Error())
 		return
@@ -45,16 +43,14 @@ func (l *Login) MnpLogin(c *gin.Context) {
 
 	err = global.DB.Transaction(func(tx *gorm.DB) error {
 		// 查找用户授权信息
-		result := tx.Where("auth_type = ? AND auth_id = ?", "miniapp", wxResp.OpenID).First(&userAuth)
+		result := tx.Where("auth_type = ? AND auth_id = ?", "mnp", wxResp.OpenID).First(&userAuth)
 		if result.Error == nil {
-			// 用户已存在，更新授权信息
+			// 用户已存在，更新登录信息
 			if err := tx.First(&user, userAuth.UserId).Error; err != nil {
 				return err
 			}
-			// 更新用户信息
+			// 更新用户登录信息
 			if err := tx.Model(&user).Updates(map[string]interface{}{
-				"nickname":        req.Nickname,
-				"avatar":          req.Avatar,
 				"is_login":        1,
 				"login_time":      time.Now(),
 				"heart_beat_time": time.Now(),
@@ -64,8 +60,6 @@ func (l *Login) MnpLogin(c *gin.Context) {
 		} else {
 			// 创建新用户
 			user = models.User{
-				Nickname:      req.Nickname,
-				Avatar:        req.Avatar,
 				IsLogin:       1,
 				LoginTime:     time.Now(),
 				HeartBeatTime: time.Now(),
