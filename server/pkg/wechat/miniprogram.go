@@ -7,8 +7,8 @@ import (
 	"net/http"
 )
 
-// MnpConfig 小程序配置
-type MnpConfig struct {
+// MnpProgram 小程序配置
+type MnpProgram struct {
 	AppID     string
 	AppSecret string
 }
@@ -23,7 +23,7 @@ type Code2SessionResponse struct {
 }
 
 // Code2Session 登录凭证校验
-func (mp *MnpConfig) Code2Session(code string) (*Code2SessionResponse, error) {
+func (mp *MnpProgram) Code2Session(code string) (*Code2SessionResponse, error) {
 	url := fmt.Sprintf(
 		"https://api.weixin.qq.com/sns/jscode2session?appid=%s&secret=%s&js_code=%s&grant_type=authorization_code",
 		mp.AppID,

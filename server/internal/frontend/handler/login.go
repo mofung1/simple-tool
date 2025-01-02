@@ -27,7 +27,7 @@ func (l *Login) MnpLogin(c *gin.Context) {
 	}
 
 	// 调用微信接口获取openid
-	mp := &wechat.MnpConfig{
+	mp := &wechat.MnpProgram{
 		AppID:     global.Conf.Wechat.AppID,
 		AppSecret: global.Conf.Wechat.AppSecret,
 	}
