@@ -1,5 +1,5 @@
 app:
-  name: "server"
+  name: "parse-video"
   mode: "dev"
   port: 9997
   start_time: "2024-06-14"
@@ -19,7 +19,7 @@ db:
   prefix: ""
   user: "root"
   password: "root"
-  dbname: "go_test"
+  dbname: "local_parse_video"
   set_max_open_conns: "20"
   set_max_idle_conns: "10"
   log_mode: "info"

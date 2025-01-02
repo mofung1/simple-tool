@@ -7,7 +7,7 @@ app:
 log:
   level: "debug"
   log_dir: "/storage/log"
-  filename: "parse-video.log"
+  filename: "server.log"
   max_size: 200
   max_age: 30
   max_backups: 7
@@ -19,7 +19,7 @@ db:
   prefix: ""
   user: "root"
   password: "root"
-  dbname: "go_parse_video"
+  dbname: "local_parse_video"
   set_max_open_conns: "20"
   set_max_idle_conns: "10"
   log_mode: "info"
