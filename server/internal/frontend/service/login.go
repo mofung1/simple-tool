@@ -2,6 +2,7 @@ package service
 
 import (
 	"gorm.io/gorm"
+	"simple-tool/server/internal/frontend/response"
 	"simple-tool/server/internal/global"
 	"simple-tool/server/internal/models"
 	"simple-tool/server/pkg/jwt"
@@ -12,13 +13,8 @@ import (
 type LoginService struct {
 }
 
-type LoginResult struct {
-	Token string      `json:"token"`
-	User  models.User `json:"user"`
-}
-
 // MnpLogin 小程序登录
-func (s *LoginService) MnpLogin(code string) (*LoginResult, error) {
+func (s *LoginService) MnpLogin(code string, clientIp string) (*response.LoginResult, error) {
 	// 调用微信接口获取openid
 	mp := &wechat.MnpProgram{
 		AppID:     global.Conf.Wechat.AppID,
@@ -45,10 +41,8 @@ func (s *LoginService) MnpLogin(code string) (*LoginResult, error) {
 			}
 			// 更新用户登录信息
 			if err := tx.Model(&user).Updates(map[string]interface{}{
-				"is_login":        1,
-				"login_time":      time.Now(),
-				"heart_beat_time": time.Now(),
-				"login_ip":        global.GetRequestIP(),
+				"login_time": time.Now(),
+				"login_ip":   clientIp,
 			}).Error; err != nil {
 				global.ZapLog.Error("更新用户登录信息失败")
 				return err
@@ -56,10 +50,8 @@ func (s *LoginService) MnpLogin(code string) (*LoginResult, error) {
 		} else {
 			// 创建新用户
 			user = models.User{
-				IsLogin:       1,
-				LoginTime:     time.Now(),
-				HeartBeatTime: time.Now(),
-				LoginIP:       global.GetRequestIP(),
+				LoginTime: time.Now(),
+				LoginIp:   clientIp,
 			}
 			if err := tx.Create(&user).Error; err != nil {
 				global.ZapLog.Error("创建用户失败")
@@ -92,7 +84,7 @@ func (s *LoginService) MnpLogin(code string) (*LoginResult, error) {
 		return nil, err
 	}
 
-	return &LoginResult{
+	return &response.LoginResult{
 		Token: token,
 		User:  user,
 	}, nil
