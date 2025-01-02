@@ -2,3 +2,4 @@
 /.vscode
 .prettierrc
 /server/config/config.yaml
+/server/storage/log/*.log
