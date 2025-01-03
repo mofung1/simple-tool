@@ -102,64 +102,16 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 // 处理登录
 const handleLogin = async () => {
   try {
-    // 先获取用户信息（这个必须在用户点击时直接调用）
-    const userInfo = await userStore.getUserProfile()
-
-    uni.showLoading({
-      title: '登录中...',
-    })
-
-    // 微信登录获取code
-    const loginRes = await userStore.wxLogin()
-    console.log('登录成功:', loginRes)
-
-    uni.hideLoading()
+    await userStore.wxLogin()
     uni.showToast({
       title: '登录成功',
-      icon: 'success',
+      icon: 'success'
     })
-  } catch (err: any) {
-    uni.hideLoading()
-    // 如果是用户取消，不显示错误提示
-    if (err.errMsg && err.errMsg.includes('cancel')) {
-      return
-    }
+  } catch (error: any) {
     uni.showToast({
-      title: '登录失败',
-      icon: 'error',
+      title: error.message || '登录失败',
+      icon: 'error'
     })
-    console.error('登录失败:', err)
-  }
-}
-
-// 处理用户点击事件
-const handleItemClick = (type: string) => {
-  switch (type) {
-    case 'history':
-      uni.showToast({ title: '历史记录', icon: 'none' })
-      break
-    case 'favorite':
-      uni.showToast({ title: '我的收藏', icon: 'none' })
-      break
-    case 'download':
-      uni.showToast({ title: '下载记录', icon: 'none' })
-      break
-    case 'share':
-      uni.share({
-        provider: 'weixin',
-        scene: 'WXSceneSession',
-        type: 0,
-        title: '视频去水印工具',
-        success: function () {
-          console.log('success')
-        },
-        fail: function () {
-          console.log('fail')
-        },
-      })
-      break
-    default:
-      break
   }
 }
 
@@ -168,15 +120,13 @@ const handleNavigation = (type: string) => {
   switch (type) {
     case 'help':
       uni.navigateTo({
-        url: '/pages/help/index',
+        url: '/pages/help/help'
       })
       break
     case 'about':
       uni.navigateTo({
-        url: '/pages/about/index',
+        url: '/pages/about/about'
       })
-      break
-    default:
       break
   }
 }

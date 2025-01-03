@@ -1,20 +1,21 @@
 interface IUserInfo {
   id?: number
-  sn?: number
-  nickname?: string
-  avatar?: string
-  username?: string
-  gender?: number
-  is_disable?: number
-  login_ip?: string
-  login_time?: string
+  nickname: string
+  avatar: string
+  token: string
+  openid: string
+  mobile: string
+  gender: number
+  country: string
+  province: string
+  city: string
 }
 
 interface ILoginResult {
   code: number
   data: {
     token: string
-    user: IUserInfo
+    userInfo: IUserInfo
   }
   message: string
 }
