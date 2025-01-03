@@ -32,7 +32,7 @@ func (s *LoginService) MnpLogin(code string, clientIp string) (*response.LoginRe
 
 	err = global.DB.Transaction(func(tx *gorm.DB) error {
 		// 查找用户授权信息
-		result := tx.Where("auth_type = ? AND auth_id = ?", "mnp", wxResp.OpenID).First(&userAuth)
+		result := tx.Where("auth_type = ? AND openid = ?", "mnp", wxResp.OpenID).First(&userAuth)
 		if result.RowsAffected > 0 {
 			// 用户已存在，更新登录信息
 			if err := tx.First(&user, userAuth.UserId).Error; err != nil {

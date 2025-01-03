@@ -19,12 +19,9 @@ export const useUserStore = defineStore(
       uni.setStorageSync('userInfo', info)
     }
 
-    // 获取存储的信息
-    const loadStorageInfo = () => {
-      const storageToken = uni.getStorageSync('token')
-      const storageUserInfo = uni.getStorageSync('userInfo')
-      if (storageToken) token.value = storageToken
-      if (storageUserInfo) userInfo.value = storageUserInfo
+    // 检查是否登录
+    const isLoggedIn = (): boolean => {
+      return !!token.value && !!userInfo.value.id
     }
 
     // 清除用户信息
@@ -35,9 +32,12 @@ export const useUserStore = defineStore(
       uni.removeStorageSync('userInfo')
     }
 
-    // 检查是否登录
-    const isLoggedIn = (): boolean => {
-      return !!token.value && !!userInfo.value.id
+    // 获取存储的信息
+    const loadStorageInfo = () => {
+      const storageToken = uni.getStorageSync('token')
+      const storageUserInfo = uni.getStorageSync('userInfo')
+      if (storageToken) token.value = storageToken
+      if (storageUserInfo) userInfo.value = storageUserInfo
     }
 
     return {

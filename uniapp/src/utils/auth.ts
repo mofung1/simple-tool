@@ -28,17 +28,34 @@ export const login = (options: LoginOptions = {}) => {
         if (res.code === 200 && res.data) {
           // 保存token和用户信息
           userStore.setToken(res.data.token)
-          userStore.setUserInfo(res.data.userInfo)
+          userStore.setUserInfo(res.data.user)
+          
+          // 登录成功提示
+          uni.showToast({
+            title: '登录成功',
+            icon: 'success'
+          })
+          
           options.success?.()
         } else {
-          options.fail?.('登录失败，请重试')
+          throw new Error(res.message || '登录失败')
         }
       } catch (error) {
-        options.fail?.(error.message || '登录失败，请重试')
+        const errorMsg = error.message || '登录失败，请重试'
+        uni.showToast({
+          title: errorMsg,
+          icon: 'none'
+        })
+        options.fail?.(errorMsg)
       }
     },
     fail: (error) => {
-      options.fail?.(error.errMsg || '微信登录失败，请重试')
+      const errorMsg = error.errMsg || '微信登录失败，请重试'
+      uni.showToast({
+        title: errorMsg,
+        icon: 'none'
+      })
+      options.fail?.(errorMsg)
     },
     complete: () => {
       options.complete?.()
@@ -49,7 +66,16 @@ export const login = (options: LoginOptions = {}) => {
 // 检查登录状态
 export const checkLogin = () => {
   const userStore = useUserStore()
-  return userStore.isLoggedIn()
+  return new Promise<void>((resolve, reject) => {
+    if (userStore.isLoggedIn()) {
+      resolve()
+    } else {
+      login({
+        success: () => resolve(),
+        fail: (error) => reject(error)
+      })
+    }
+  })
 }
 
 // 获取用户信息
