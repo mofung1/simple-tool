@@ -21,35 +21,24 @@ export const login = (options: LoginOptions = {}) => {
   // 获取登录code
   uni.login({
     provider: 'weixin',
-    success: async (loginRes) => {
+    success: async ({ code }) => {
       try {
-        // 调用登录接口
-        const { data } = await wxLogin(loginRes.code)
-        if (!data?.token || !data?.userInfo?.avatar) {
-          throw new Error('登录失败，请重试')
+        // 调用后端登录接口
+        const res = await wxLogin(code)
+        if (res.code === 200 && res.data) {
+          // 保存token和用户信息
+          userStore.setToken(res.data.token)
+          userStore.setUserInfo(res.data.userInfo)
+          options.success?.()
+        } else {
+          options.fail?.('登录失败，请重试')
         }
-
-        // 保存用户信息
-        userStore.setToken(data.token)
-        userStore.setUserInfo(data.userInfo)
-        
-        options.success?.()
-      } catch (error: any) {
-        const errorMsg = error?.data?.message || '登录失败，请重试'
-        options.fail?.(errorMsg)
-        uni.showToast({
-          title: errorMsg,
-          icon: 'none'
-        })
+      } catch (error) {
+        options.fail?.(error.message || '登录失败，请重试')
       }
     },
-    fail: () => {
-      const errorMsg = '微信登录失败，请重试'
-      options.fail?.(errorMsg)
-      uni.showToast({
-        title: errorMsg,
-        icon: 'none'
-      })
+    fail: (error) => {
+      options.fail?.(error.errMsg || '微信登录失败，请重试')
     },
     complete: () => {
       options.complete?.()

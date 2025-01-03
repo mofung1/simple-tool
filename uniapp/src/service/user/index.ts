@@ -2,9 +2,7 @@ import { http } from '@/utils/http'
 
 // 微信登录
 export const wxLogin = (code: string) => {
-  return http.post<ILoginResult>('/api/user/wx-login', { code }, {
-    hideErrorToast: true // 错误由调用方处理
-  })
+  return http.post<ILoginResult>('/api/v1/login/mnp', { code })
 }
 
 // 获取用户信息

@@ -33,7 +33,7 @@ func (s *LoginService) MnpLogin(code string, clientIp string) (*response.LoginRe
 	err = global.DB.Transaction(func(tx *gorm.DB) error {
 		// 查找用户授权信息
 		result := tx.Where("auth_type = ? AND auth_id = ?", "mnp", wxResp.OpenID).First(&userAuth)
-		if result.Error == nil {
+		if result.RowsAffected > 0 {
 			// 用户已存在，更新登录信息
 			if err := tx.First(&user, userAuth.UserId).Error; err != nil {
 				global.ZapLog.Error("查询用户信息失败")
@@ -41,6 +41,7 @@ func (s *LoginService) MnpLogin(code string, clientIp string) (*response.LoginRe
 			}
 			// 更新用户登录信息
 			if err := tx.Model(&user).Updates(map[string]interface{}{
+				"avatar":     wxResp.HeadImgUrl,
 				"login_time": time.Now(),
 				"login_ip":   clientIp,
 			}).Error; err != nil {
@@ -64,7 +65,7 @@ func (s *LoginService) MnpLogin(code string, clientIp string) (*response.LoginRe
 			userAuth = models.UserAuth{
 				UserId:   user.ID,
 				AuthType: "mnp",
-				AuthId:   wxResp.OpenID,
+				Openid:   wxResp.OpenID,
 				UnionId:  wxResp.UnionID,
 			}
 			if err := tx.Create(&userAuth).Error; err != nil {

@@ -37,7 +37,7 @@ export const useUserStore = defineStore(
 
     // 检查是否登录
     const isLoggedIn = (): boolean => {
-      return !!token.value && !!userInfo.value.avatar
+      return !!token.value && !!userInfo.value.id
     }
 
     return {

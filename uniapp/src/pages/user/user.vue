@@ -114,8 +114,8 @@ const handleLogin = async () => {
     const loginRes = await userStore.wxLogin()
     console.log('登录成功:', loginRes)
     // TODO: 调用后端登录接口
-    // const res = await login(loginRes.code)
-    // userStore.setUserInfo(res.data.userInfo)
+    const res = await login(loginRes.code)
+    userStore.setUserInfo(res.data.userInfo)
 
     uni.hideLoading()
     uni.showToast({
