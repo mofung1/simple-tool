@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { wxLogin as wxLoginApi } from '@/service/user'
+import { wxLogin } from '@/service/user'
 import type { IUserInfo } from '@/types/user'
 
 const initState: IUserInfo = {
@@ -24,6 +24,9 @@ export const useUserStore = defineStore(
     // 设置用户信息
     const setUserInfo = (val: Partial<IUserInfo>) => {
       userInfo.value = { ...userInfo.value, ...val }
+      if (val.token) {
+        uni.setStorageSync('token', val.token)
+      }
     }
 
     // 清除用户信息
@@ -37,36 +40,23 @@ export const useUserStore = defineStore(
     const isLogined = computed(() => !!userInfo.value.token)
 
     // 微信登录
-    const wxLogin = () => {
-      return new Promise((resolve, reject) => {
-        // #ifdef MP-WEIXIN
-        uni.login({
-          provider: 'weixin',
-          success: async (loginRes) => {
-            try {
-              const res = await wxLoginApi(loginRes.code)
-              if (res.code === 200) {
-                const { token, userInfo: user } = res.data
-                setUserInfo({ ...user, token })
-                uni.setStorageSync('token', token)
-                resolve(user)
-              } else {
-                reject(new Error(res.message))
-              }
-            } catch (error) {
-              reject(error)
-            }
-          },
-          fail: (err) => {
-            reject(new Error('微信登录失败：' + (err.errMsg || '未知错误')))
-          }
-        })
-        // #endif
-
-        // #ifdef H5
-        reject(new Error('请在微信小程序中使用'))
-        // #endif
+    const wxLoginApi = async (params: { code: string; userInfo: WechatMiniprogram.UserInfo }) => {
+      const res = await wxLogin({
+        code: params.code,
+        nickname: params.userInfo.nickName,
+        avatar: params.userInfo.avatarUrl,
+        gender: params.userInfo.gender,
+        country: params.userInfo.country,
+        province: params.userInfo.province,
+        city: params.userInfo.city
       })
+
+      if (res.code === 200) {
+        const { token, userInfo: user } = res.data
+        setUserInfo({ ...user, token })
+        return user
+      }
+      throw new Error(res.message || '登录失败')
     }
 
     return {
@@ -74,7 +64,7 @@ export const useUserStore = defineStore(
       isLogined,
       setUserInfo,
       clearUserInfo,
-      wxLogin
+      wxLogin: wxLoginApi
     }
   },
   {

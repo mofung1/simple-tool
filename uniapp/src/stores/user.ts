@@ -1,110 +1,75 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
-import { wxLogin, updateUserInfo } from '@/service/user'
+import { ref, computed } from 'vue'
+import { wxLogin as wxLoginApi } from '@/service/user'
+import type { IUserInfo } from '@/types/user'
+
+const initState: IUserInfo = {
+  id: 0,
+  nickname: '',
+  avatar: '',
+  token: '',
+  openid: '',
+  mobile: '',
+  gender: 0,
+  country: '',
+  province: '',
+  city: ''
+}
 
 export const useUserStore = defineStore(
   'user',
   () => {
-    const token = ref<string>('')
-    const userInfo = ref<IUserInfo>({})
-
-    // 设置token
-    const setToken = (value: string) => {
-      token.value = value
-      uni.setStorageSync('token', value)
-    }
+    const userInfo = ref<IUserInfo>({ ...initState })
 
     // 设置用户信息
-    const setUserInfo = (info: IUserInfo) => {
-      userInfo.value = info
-      uni.setStorageSync('userInfo', info)
-    }
-
-    // 检查是否登录
-    const isLoggedIn = (): boolean => {
-      return !!token.value && !!userInfo.value.id
+    const setUserInfo = (val: Partial<IUserInfo>) => {
+      userInfo.value = { ...userInfo.value, ...val }
+      if (val.token) {
+        uni.setStorageSync('token', val.token)
+      }
     }
 
     // 清除用户信息
     const clearUserInfo = () => {
-      token.value = ''
-      userInfo.value = {}
+      userInfo.value = { ...initState }
       uni.removeStorageSync('token')
-      uni.removeStorageSync('userInfo')
+      uni.removeStorageSync('user-store')
     }
 
-    // 获取存储的信息
-    const loadStorageInfo = () => {
-      const storageToken = uni.getStorageSync('token')
-      const storageUserInfo = uni.getStorageSync('userInfo')
-      if (storageToken) token.value = storageToken
-      if (storageUserInfo) userInfo.value = storageUserInfo
-    }
+    // 检查是否登录
+    const isLogined = computed(() => !!userInfo.value.token)
 
     // 微信登录
-    const login = async () => {
-      try {
-        // 获取微信登录code
-        const loginRes = await uni.login({ provider: 'weixin' })
-        
-        // 调用后端登录接口
-        const res = await wxLogin(loginRes.code)
-        if (res.code === 200 && res.data) {
-          setToken(res.data.token)
-          setUserInfo(res.data.user)
-          return res.data
-        } else {
-          clearUserInfo()
-          throw new Error(res.message || '登录失败')
-        }
-      } catch (error: any) {
-        clearUserInfo()
-        throw new Error(error.errMsg || error.message || '登录失败')
-      }
-    }
+    const wxLogin = async (params: { code: string; userInfo: WechatMiniprogram.UserInfo }) => {
+      const res = await wxLoginApi({
+        code: params.code,
+        nickname: params.userInfo.nickName,
+        avatar: params.userInfo.avatarUrl,
+        gender: params.userInfo.gender,
+        country: params.userInfo.country,
+        province: params.userInfo.province,
+        city: params.userInfo.city
+      })
 
-    // 获取用户信息并更新
-    const getUserProfile = async () => {
-      try {
-        const profileRes = await uni.getUserProfile({ desc: '用于完善用户资料' })
-        const { nickName: nickname, avatarUrl: avatar } = profileRes.userInfo
-        
-        // 更新到后端
-        const res = await updateUserInfo({ nickname, avatar })
-        if (res.code === 200 && res.data) {
-          setUserInfo(res.data.user)
-          return res.data.user
-        } else {
-          throw new Error(res.message || '更新用户信息失败')
-        }
-      } catch (error: any) {
-        // 用户取消不清空状态
-        if (!error.errMsg?.includes('cancel')) {
-          clearUserInfo()
-        }
-        throw error
+      if (res.code === 200) {
+        const { token, userInfo: user } = res.data
+        setUserInfo({ ...user, token })
+        return user
       }
-    }
-
-    // 退出登录
-    const logout = () => {
-      clearUserInfo()
+      throw new Error(res.message || '登录失败')
     }
 
     return {
-      token,
       userInfo,
-      setToken,
+      isLogined,
       setUserInfo,
-      loadStorageInfo,
       clearUserInfo,
-      isLoggedIn,
-      login,
-      getUserProfile,
-      logout
+      wxLogin
     }
   },
   {
-    persist: true
+    persist: {
+      key: 'user-store'
+    }
   }
 )
