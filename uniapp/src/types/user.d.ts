@@ -4,7 +4,6 @@ interface IUserInfo {
   nickname?: string
   avatar?: string
   username?: string
-  phone?: string
   gender?: number
   is_disable?: number
   login_ip?: string

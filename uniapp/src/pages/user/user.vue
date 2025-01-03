@@ -21,7 +21,6 @@
           <text class="text-white text-lg font-medium block mb-1">
             {{ userStore.userInfo.nickname }}
           </text>
-          <text class="text-blue-100 text-sm">{{ userStore.userInfo.mobile || '未绑定手机' }}</text>
         </view>
         <view class="i-carbon-chevron-right text-white"></view>
       </view>
@@ -113,9 +112,6 @@ const handleLogin = async () => {
     // 微信登录获取code
     const loginRes = await userStore.wxLogin()
     console.log('登录成功:', loginRes)
-    // TODO: 调用后端登录接口
-    const res = await login(loginRes.code)
-    userStore.setUserInfo(res.data.userInfo)
 
     uni.hideLoading()
     uni.showToast({

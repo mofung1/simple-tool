@@ -61,10 +61,10 @@ export const useUserStore = defineStore(
           success: (res) => {
             const { userInfo } = res
             console.log('获取用户信息成功：', userInfo)
-            setUserInfo({
-              ...userInfo,
-              token: token.value,
-            })
+            // setUserInfo({
+            //   ...userInfo,
+            //   token: token.value,
+            // })
             resolve(userInfo)
           },
           fail: (err) => {

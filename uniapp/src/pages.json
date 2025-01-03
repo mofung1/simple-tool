@@ -79,6 +79,15 @@
       }
     },
     {
+      "path": "pages/user/index",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#3B82F6"
+      }
+    },
+    {
       "path": "pages/user/user",
       "type": "page",
       "style": {

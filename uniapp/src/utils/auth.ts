@@ -1,4 +1,4 @@
-import { wxLogin } from '@/service/user'
+import { wxLogin, updateUserInfo } from '@/service/user'
 import { useUserStore } from '@/stores/user'
 
 interface LoginOptions {
@@ -29,13 +29,11 @@ export const login = (options: LoginOptions = {}) => {
           // 保存token和用户信息
           userStore.setToken(res.data.token)
           userStore.setUserInfo(res.data.user)
-          
           // 登录成功提示
           uni.showToast({
             title: '登录成功',
             icon: 'success'
           })
-          
           options.success?.()
         } else {
           throw new Error(res.message || '登录失败')
@@ -78,10 +76,33 @@ export const checkLogin = () => {
   })
 }
 
-// 获取用户信息
-export const getUserInfo = () => {
-  const userStore = useUserStore()
-  return userStore.userInfo
+// 获取用户头像
+export const getUserProfile = () => {
+  return new Promise<IUserInfo>((resolve, reject) => {
+    uni.getUserProfile({
+      desc: '用于完善用户资料',
+      success: async (res) => {
+        try {
+          const { nickName: nickname, avatarUrl: avatar } = res.userInfo
+          const userStore = useUserStore()
+          // 更新到后端
+          const updateRes = await updateUserInfo({ nickname, avatar })
+          if (updateRes.code === 200 && updateRes.data) {
+            // 更新本地存储
+            userStore.setUserInfo(updateRes.data.user)
+            resolve(updateRes.data.user)
+          } else {
+            reject(new Error(updateRes.message || '更新用户信息失败'))
+          }
+        } catch (error) {
+          reject(error)
+        }
+      },
+      fail: (error) => {
+        reject(new Error(error.errMsg || '获取用户信息失败'))
+      }
+    })
+  })
 }
 
 // 退出登录
