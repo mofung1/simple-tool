@@ -89,7 +89,7 @@ export const useUserStore = defineStore(
           provider: 'weixin',
           success: async (loginRes) => {
             try {
-              console.log('微信登录成功，登录信息：', loginRes)
+              console.log('微信登录信息：', loginRes)
               // 调用后端登录接口
               const res = await wxLoginApi(loginRes.code)
               if (res.code === 200) {
