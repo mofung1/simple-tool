@@ -2,8 +2,8 @@
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 
 onLaunch(() => {
- // uni.hideTabBar()
-console.log('App Launch')
+  // uni.hideTabBar()
+  console.log('App Launch')
 })
 onShow(() => {
   console.log('App Show')

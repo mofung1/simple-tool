@@ -24,11 +24,7 @@
         </view>
         <view class="i-carbon-chevron-right text-white"></view>
       </view>
-      <view
-        v-else
-        class="flex items-center space-x-4"
-        @click="handleLogin"
-      >
+      <view v-else class="flex items-center space-x-4" @click="handleLogin">
         <view class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
           <view class="i-carbon-user-avatar text-blue-500 text-2xl"></view>
         </view>
@@ -108,16 +104,16 @@ const handleLogin = async () => {
   try {
     // 1. 获取用户信息
     const [profileErr, profileRes] = await uni.getUserProfile({
-      desc: '用于完善会员资料'
+      desc: '用于完善会员资料',
     })
-    
+
     if (profileErr) {
       throw profileErr
     }
 
     // 2. 获取登录凭证
     const [loginErr, loginRes] = await uni.login({
-      provider: 'weixin'
+      provider: 'weixin',
     })
 
     if (loginErr) {
@@ -128,13 +124,13 @@ const handleLogin = async () => {
     uni.showLoading({ title: '登录中...' })
     await userStore.wxLogin({
       code: loginRes.code,
-      userInfo: profileRes.userInfo
+      userInfo: profileRes.userInfo,
     })
     uni.hideLoading()
-    
+
     uni.showToast({
       title: '登录成功',
-      icon: 'success'
+      icon: 'success',
     })
   } catch (error: any) {
     uni.hideLoading()
@@ -144,7 +140,7 @@ const handleLogin = async () => {
     }
     uni.showToast({
       title: error.message || '登录失败',
-      icon: 'error'
+      icon: 'error',
     })
   }
 }
@@ -154,12 +150,12 @@ const handleNavigation = (type: string) => {
   switch (type) {
     case 'help':
       uni.navigateTo({
-        url: '/pages/help/help'
+        url: '/pages/help/help',
       })
       break
     case 'about':
       uni.navigateTo({
-        url: '/pages/about/about'
+        url: '/pages/about/about',
       })
       break
   }

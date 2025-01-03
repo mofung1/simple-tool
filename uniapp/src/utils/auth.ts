@@ -21,7 +21,7 @@ export function checkLogin(): boolean {
   if (!userStore.isLogined) {
     uni.showToast({
       title: '请先登录',
-      icon: 'none'
+      icon: 'none',
     })
     return false
   }

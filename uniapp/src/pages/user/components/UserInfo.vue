@@ -40,19 +40,19 @@ const handleLogin = async () => {
   try {
     uni.showLoading({
       title: '登录中...',
-      mask: true
+      mask: true,
     })
 
     // 先获取用户信息
     await userStore.getUserProfile()
-    
+
     // 再执行登录
     await userStore.login()
 
     uni.hideLoading()
     uni.showToast({
       title: '登录成功',
-      icon: 'success'
+      icon: 'success',
     })
   } catch (error: any) {
     uni.hideLoading()
@@ -62,7 +62,7 @@ const handleLogin = async () => {
     }
     uni.showToast({
       title: error.message || '登录失败',
-      icon: 'error'
+      icon: 'error',
     })
     console.error('登录失败:', error)
   }

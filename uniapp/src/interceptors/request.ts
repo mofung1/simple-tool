@@ -50,16 +50,16 @@ const httpInterceptor = {
     if (token) {
       options.header = {
         ...options.header,
-        token
+        token,
       }
     }
 
     // 3. 添加小程序端请求头标识
     options.header = {
       platform,
-      ...options.header
+      ...options.header,
     }
-  }
+  },
 }
 
 export const requestInterceptor = {
@@ -68,7 +68,7 @@ export const requestInterceptor = {
     uni.addInterceptor('request', httpInterceptor)
     // 拦截 uploadFile 文件上传
     uni.addInterceptor('uploadFile', httpInterceptor)
-  }
+  },
 }
 
 requestInterceptor.install()

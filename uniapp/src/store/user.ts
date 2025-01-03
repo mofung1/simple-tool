@@ -13,7 +13,7 @@ const initState: IUserInfo = {
   gender: 0,
   country: '',
   province: '',
-  city: ''
+  city: '',
 }
 
 export const useUserStore = defineStore(
@@ -48,7 +48,7 @@ export const useUserStore = defineStore(
         gender: params.userInfo.gender,
         country: params.userInfo.country,
         province: params.userInfo.province,
-        city: params.userInfo.city
+        city: params.userInfo.city,
       })
 
       if (res.code === 200) {
@@ -64,12 +64,12 @@ export const useUserStore = defineStore(
       isLogined,
       setUserInfo,
       clearUserInfo,
-      wxLogin: wxLoginApi
+      wxLogin: wxLoginApi,
     }
   },
   {
     persist: {
-      key: 'user-store'
-    }
-  }
+      key: 'user-store',
+    },
+  },
 )

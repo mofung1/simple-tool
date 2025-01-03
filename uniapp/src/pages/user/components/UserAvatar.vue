@@ -21,12 +21,12 @@ const handleGetUserProfile = async () => {
     await getUserProfile()
     uni.showToast({
       title: '获取成功',
-      icon: 'success'
+      icon: 'success',
     })
   } catch (error) {
     uni.showToast({
       title: error.message || '获取失败',
-      icon: 'none'
+      icon: 'none',
     })
   }
 }
