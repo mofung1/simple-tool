@@ -59,12 +59,24 @@ export const useUserStore = defineStore(
       throw new Error(res.message || '登录失败')
     }
 
+    // 处理登录态失效
+    const handleTokenExpired = () => {
+      clearUserInfo()
+      // 跳转到登录页或刷新当前页面
+      const pages = getCurrentPages()
+      const currentPage = pages[pages.length - 1]
+      if (currentPage?.route !== 'pages/user/user') {
+        uni.reLaunch({ url: '/pages/user/user' })
+      }
+    }
+
     return {
       userInfo,
       isLogined,
       setUserInfo,
       clearUserInfo,
       wxLogin,
+      handleTokenExpired,
     }
   },
   {

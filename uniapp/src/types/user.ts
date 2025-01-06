@@ -1,5 +1,5 @@
-interface IUserInfo {
-  id?: number
+export interface IUserInfo {
+  id: number
   nickname: string
   avatar: string
   token: string
@@ -9,13 +9,4 @@ interface IUserInfo {
   country: string
   province: string
   city: string
-}
-
-interface ILoginResult {
-  code: number
-  data: {
-    token: string
-    userInfo: IUserInfo
-  }
-  message: string
 }

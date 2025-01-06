@@ -1,5 +1,4 @@
 import { http } from '@/utils/http'
-import type { ILoginResult } from '@/types/user'
 
 interface UserInfo {
   nickname?: string
@@ -20,10 +19,10 @@ export const wxLogin = (data: {
   province: string
   city: string
 }) => {
-  return http.post<ILoginResult>('/api/v1/login/mnp', data)
+  return http.post<any>('/api/v1/login/mnp', data)
 }
 
 // 更新用户信息
 export const updateUserInfo = (data: UserInfo) => {
-  return http.post<ILoginResult>('/api/v1/user/update', data)
+  return http.post<any>('/api/v1/user/update', data)
 }

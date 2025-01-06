@@ -102,11 +102,12 @@ const { safeAreaInsets } = uni.getSystemInfoSync()
 // 处理登录
 const handleLogin = async () => {
   try {
+    console.log("进来了")
     // 1. 获取用户信息
     const [profileErr, profileRes] = await uni.getUserProfile({
       desc: '用于完善会员资料',
     })
-
+    console.log(profileErr, profileRes)
     if (profileErr) {
       throw profileErr
     }
