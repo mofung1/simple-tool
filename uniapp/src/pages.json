@@ -63,7 +63,7 @@
       "type": "page",
       "style": {
         "navigationStyle": "default",
-        "navigationBarTitleText": "帮助与反馈",
+        "navigationBarTitleText": "常见问题",
         "navigationBarTextStyle": "white",
         "navigationBarBackgroundColor": "#3B82F6"
       }
@@ -74,15 +74,6 @@
       "style": {
         "navigationStyle": "default",
         "navigationBarTitleText": "解析成功",
-        "navigationBarTextStyle": "white",
-        "navigationBarBackgroundColor": "#3B82F6"
-      }
-    },
-    {
-      "path": "pages/user/index",
-      "type": "page",
-      "style": {
-        "navigationBarTitleText": "",
         "navigationBarTextStyle": "white",
         "navigationBarBackgroundColor": "#3B82F6"
       }

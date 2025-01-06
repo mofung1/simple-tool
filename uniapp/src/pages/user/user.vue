@@ -74,7 +74,7 @@
           <view class="flex items-center justify-between p-4" @click="handleNavigation('help')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-help text-gray-400"></view>
-              <text class="text-gray-700">帮助与反馈</text>
+              <text class="text-gray-700">常见问题</text>
             </view>
             <view class="i-carbon-chevron-right text-gray-400"></view>
           </view>
@@ -150,12 +150,12 @@ const handleNavigation = (type: string) => {
   switch (type) {
     case 'help':
       uni.navigateTo({
-        url: '/pages/help/help',
+        url: '/pages/help/index',
       })
       break
     case 'about':
       uni.navigateTo({
-        url: '/pages/about/about',
+        url: '/pages/about/index',
       })
       break
   }

@@ -2,7 +2,7 @@
 {
   style: {
     navigationStyle: 'default',
-    navigationBarTitleText: '帮助与反馈',
+    navigationBarTitleText: '常见问题',
     navigationBarTextStyle: 'white',
     navigationBarBackgroundColor: '#3B82F6',
   },
@@ -43,25 +43,6 @@
         </view>
       </view>
 
-      <!-- 联系我们 -->
-      <view class="bg-white rounded-xl p-6 shadow-sm">
-        <view class="flex items-center space-x-3 mb-4">
-          <view class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
-            <view class="i-carbon-email text-blue-500"></view>
-          </view>
-          <text class="font-medium text-gray-900">联系我</text>
-        </view>
-        <view class="space-y-3">
-          <view class="flex items-center space-x-3">
-            <view class="i-carbon-email text-gray-400"></view>
-            <text class="text-gray-600 text-sm">邮箱：2279254178@qq.com</text>
-          </view>
-          <view class="flex items-center space-x-3">
-            <view class="i-carbon:logo-wechat text-gray-400"></view>
-            <text class="text-gray-600 text-sm">微信号：mofung1</text>
-          </view>
-        </view>
-      </view>
     </view>
   </view>
 </template>
