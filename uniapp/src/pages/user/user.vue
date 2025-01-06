@@ -24,7 +24,13 @@
         </view>
         <view class="i-carbon-chevron-right text-white"></view>
       </view>
-      <view v-else class="flex items-center space-x-4" @click="handleLogin">
+      <button
+        v-else
+        open-type="getUserInfo"
+        type="primary"
+        class="flex items-center space-x-4 w-full bg-transparent border-none p-0"
+        @getuserinfo="handleGetUserInfo"
+      >
         <view class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
           <view class="i-carbon-user-avatar text-blue-500 text-2xl"></view>
         </view>
@@ -33,7 +39,7 @@
           <text class="text-blue-100 text-sm">点击登录账号</text>
         </view>
         <view class="i-carbon-chevron-right text-white"></view>
-      </view>
+      </button>
     </view>
 
     <!-- 功能区域 -->
@@ -71,14 +77,14 @@
       <!-- 其他功能列表 -->
       <view class="bg-white rounded-xl shadow-sm overflow-hidden">
         <view class="divide-y divide-gray-100">
-          <view class="flex items-center justify-between p-4" @click="handleNavigation('help')">
+          <view class="flex items-center justify-between p-4" @tap="handleNavigation('help')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-help text-gray-400"></view>
               <text class="text-gray-700">常见问题</text>
             </view>
             <view class="i-carbon-chevron-right text-gray-400"></view>
           </view>
-          <view class="flex items-center justify-between p-4" @click="handleNavigation('about')">
+          <view class="flex items-center justify-between p-4" @tap="handleNavigation('about')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-information text-gray-400"></view>
               <text class="text-gray-700">关于我们</text>
@@ -99,48 +105,56 @@ const userStore = useUserStore()
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
 
-// 处理登录
-const handleLogin = async () => {
+// 处理获取用户信息
+const handleGetUserInfo = async (e: any) => {
   try {
-    console.log("进来了")
-    // 1. 获取用户信息
-    const [profileErr, profileRes] = await uni.getUserProfile({
-      desc: '用于完善会员资料',
-    })
-    console.log(profileErr, profileRes)
-    if (profileErr) {
-      throw profileErr
-    }
+    console.log('获取用户信息事件：', e)
+    const userInfo = e.detail?.userInfo
 
-    // 2. 获取登录凭证
-    const [loginErr, loginRes] = await uni.login({
-      provider: 'weixin',
-    })
-
-    if (loginErr) {
-      throw loginErr
-    }
-
-    // 3. 调用后端登录接口
-    uni.showLoading({ title: '登录中...' })
-    await userStore.wxLogin({
-      code: loginRes.code,
-      userInfo: profileRes.userInfo,
-    })
-    uni.hideLoading()
-
-    uni.showToast({
-      title: '登录成功',
-      icon: 'success',
-    })
-  } catch (error: any) {
-    uni.hideLoading()
-    // 如果是用户取消，不显示错误提示
-    if (error.errMsg?.includes('cancel')) {
+    // 用户拒绝授权
+    if (!userInfo) {
+      uni.showToast({
+        title: '需要您的授权才能继续',
+        icon: 'none'
+      })
       return
     }
+
+    // 获取登录凭证
+    const { code } = await uni.login({
+      provider: 'weixin'
+    })
+
+    console.log('登录凭证：', code)
+    console.log('用户信息：', userInfo)
+
+    // 调用后端登录接口
+    try {
+      uni.showLoading({ title: '登录中...' })
+      await userStore.wxLogin({
+        code,
+        userInfo
+      })
+      uni.hideLoading()
+
+      uni.showToast({
+        title: '登录成功',
+        icon: 'success',
+      })
+    } catch (error: any) {
+      uni.hideLoading()
+      console.error('登录失败：', error)
+      console.error('错误堆栈：', error.stack)
+      uni.showToast({
+        title: error.message || '登录失败',
+        icon: 'error',
+      })
+    }
+  } catch (error: any) {
+    console.error('获取用户信息失败：', error)
+    console.error('错误堆栈：', error.stack)
     uni.showToast({
-      title: error.message || '登录失败',
+      title: '登录失败',
       icon: 'error',
     })
   }
