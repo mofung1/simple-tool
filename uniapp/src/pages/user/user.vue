@@ -32,7 +32,7 @@
           </text>
           <text class="text-blue-100 text-sm opacity-80">ID: {{ userStore.userInfo.sn }}</text>
         </view>
-        <view class="i-carbon-chevron-right text-white/70 text-xl"></view>
+        <!-- <view class="i-carbon-chevron-right text-white/70 text-xl"></view> -->
       </view>
 
       <view
@@ -114,6 +114,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
+import { ref } from 'vue'
 
 const userStore = useUserStore()
 
@@ -131,10 +132,10 @@ const handleGetUserProfile = () => {
       try {
         // 获取登录凭证
         const { code } = await uni.login({
-          provider: 'weixin'
+          provider: 'weixin',
         })
 
-        console.log('登录凭证：',code)
+        console.log('登录凭证：', code)
         console.log('用户信息：', profileRes.userInfo)
 
         // 调用后端登录接口
@@ -169,6 +170,7 @@ const handleGetUserProfile = () => {
       }
     },
     fail: (error) => {
+      loading.value = false
       console.error('获取用户信息失败：', error)
       if (error.errMsg?.includes('getUserProfile:fail auth deny')) {
         uni.showToast({
@@ -181,69 +183,8 @@ const handleGetUserProfile = () => {
           icon: 'error',
         })
       }
-      loading.value = false
-    }
+    },
   })
-}
-
-// 处理获取用户信息
-const handleGetUserInfo = async (e: any) => {
-  try {
-    console.log('获取用户信息事件：', e)
-    const userInfo = e.detail?.userInfo
-
-    // 用户拒绝授权
-    if (!userInfo) {
-      uni.showToast({
-        title: '需要您的授权才能继续',
-        icon: 'none'
-      })
-      return
-    }
-
-    // 获取登录凭证
-    const { code } = await uni.login({
-      provider: 'weixin'
-    })
-
-    console.log('登录凭证：', code)
-    console.log('用户信息：', userInfo)
-
-    // 调用后端登录接口
-    try {
-      uni.showLoading({ title: '登录中...' })
-      const user = await userStore.wxLogin({
-        code,
-        userInfo
-      })
-      uni.hideLoading()
-
-      // 添加调试日志
-      console.log('登录成功，用户信息：', user)
-      console.log('store中的用户信息：', userStore.userInfo)
-      console.log('是否登录：', userStore.isLogined)
-
-      uni.showToast({
-        title: '登录成功',
-        icon: 'success',
-      })
-    } catch (error: any) {
-      uni.hideLoading()
-      console.error('登录失败：', error)
-      console.error('错误堆栈：', error.stack)
-      uni.showToast({
-        title: error.message || '登录失败',
-        icon: 'error',
-      })
-    }
-  } catch (error: any) {
-    console.error('获取用户信息失败：', error)
-    console.error('错误堆栈：', error.stack)
-    uni.showToast({
-      title: '登录失败',
-      icon: 'error',
-    })
-  }
 }
 
 // 处理页面导航
