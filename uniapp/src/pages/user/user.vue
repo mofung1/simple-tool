@@ -47,13 +47,15 @@
           </view>
         </view>
         <view class="flex-1">
-          <view class="flex flex-col">
+          <view class="flex flex-col items-start">
             <button
-              class="bg-white/20 hover:bg-white/30 backdrop-blur-sm px-6 py-2 rounded-full text-white text-sm font-medium transition-colors flex items-center space-x-2"
+              class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg text-white text-sm transition-colors"
+              :class="{'opacity-60': loading}"
+              :disabled="loading"
               @tap="handleGetUserProfile"
             >
-              <text>点击登录账号</text>
-              <view class="i-carbon-login text-white text-sm"></view>
+              <text>{{ loading ? '登录中...' : '点击登录' }}</text>
+              <view class="i-carbon-login text-white"></view>
             </button>
           </view>
         </view>
@@ -123,8 +125,10 @@ const userStore = useUserStore()
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
 
+const loading = ref(false)
 
 const handleGetUserProfile = () => {
+  loading.value = true
   uni.getUserProfile({
     desc: '用于完善用户资料',
     lang: 'zh_CN',
@@ -165,6 +169,8 @@ const handleGetUserProfile = () => {
           title: '登录失败',
           icon: 'error',
         })
+      } finally {
+        loading.value = false
       }
     },
     fail: (error) => {
@@ -180,6 +186,7 @@ const handleGetUserProfile = () => {
           icon: 'error',
         })
       }
+      loading.value = false
     }
   })
 }
@@ -264,12 +271,8 @@ const handleNavigation = (type: string) => {
 <style lang="scss" scoped>
 :deep(.uni-button) {
   &::after {
-    border: none !important;
+    border: none;
   }
-  margin: 0 !important;
-  padding: 0 !important;
-  background-color: transparent !important;
-  line-height: inherit !important;
 }
 :deep(.wd-button) {
   border-radius: 0.5rem;
