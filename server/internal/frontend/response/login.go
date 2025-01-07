@@ -6,6 +6,7 @@ type LoginResult struct {
 }
 
 type UserInfo struct {
+	Id       int64  `json:"id"`
 	Sn       int64  `json:"sn"`
 	Nickname string `json:"nickname"`
 	Avatar   string `json:"avatar"`

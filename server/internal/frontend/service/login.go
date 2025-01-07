@@ -1,12 +1,14 @@
 package service
 
 import (
+	"fmt"
 	"gorm.io/gorm"
 	"simple-tool/server/internal/frontend/request"
 	"simple-tool/server/internal/frontend/response"
 	"simple-tool/server/internal/global"
 	"simple-tool/server/internal/models"
 	"simple-tool/server/pkg/jwt"
+	"simple-tool/server/pkg/utils"
 	"simple-tool/server/pkg/wechat"
 	"time"
 )
@@ -43,7 +45,6 @@ func (s *LoginService) MnpLogin(req request.MnpLoginRequest, clientIp string) (*
 			// 更新用户登录信息
 			if err := tx.Model(&user).Updates(map[string]interface{}{
 				"avatar":     req.Avatar,
-				"nickname":   req.Nickname,
 				"gender":     req.Gender,
 				"login_time": time.Now(),
 				"login_ip":   clientIp,
@@ -52,9 +53,17 @@ func (s *LoginService) MnpLogin(req request.MnpLoginRequest, clientIp string) (*
 				return err
 			}
 		} else {
+			sn := getUniqueUserSn()
+			nickname := req.Nickname
+
+			if req.Nickname == "微信用户" {
+				nickname = nickname + fmt.Sprintf("%d", sn)
+			}
+
 			// 创建新用户
 			user = models.User{
-				Nickname:  req.Nickname,
+				Nickname:  nickname,
+				Sn:        sn,
 				Avatar:    req.Avatar,
 				Gender:    req.Gender,
 				LoginTime: time.Now(),
@@ -94,10 +103,23 @@ func (s *LoginService) MnpLogin(req request.MnpLoginRequest, clientIp string) (*
 	return &response.LoginResult{
 		Token: token,
 		User: response.UserInfo{
+			Id:       user.ID,
 			Sn:       user.Sn,
 			Avatar:   user.Avatar,
 			Nickname: user.Nickname,
 			Gender:   user.Gender,
 		},
 	}, nil
+}
+
+func getUniqueUserSn() int64 {
+	var user = models.User{}
+	sn := utils.GenRandSn()
+	for {
+		// 查询数据库中是否已存在该用户编号
+		if tx := global.DB.Where("sn = ?", sn).First(&user); tx.RowsAffected == 0 {
+			return sn
+		}
+		sn = utils.GenRandSn()
+	}
 }
