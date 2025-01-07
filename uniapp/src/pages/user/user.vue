@@ -44,13 +44,13 @@
         <view class="flex-1">
           <view class="flex flex-col items-start">
             <button
-              class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg text-white text-sm transition-colors"
+              class="flex items-center space-x-2 mt-10 bg-white hover:bg-white/30 px-6 py-2 rounded-lg text-white text-sm transition-colors"
               :class="{ 'opacity-60': loading }"
               :disabled="loading"
               @tap="handleGetUserProfile"
             >
-              <text>{{ loading ? '登录中...' : '点击登录' }}</text>
-              <view class="i-carbon-login text-white"></view>
+              <text class="text-blue">{{ loading ? '登录中...' : '点击登录' }}</text>
+              <view class="i-carbon-login text-blue"></view>
             </button>
           </view>
         </view>
@@ -273,6 +273,6 @@ const handleNavigation = (type: string) => {
   border-radius: 0.5rem;
 }
 .login-card {
-  height: 80px;
+  height: 100px;
 }
 </style>
