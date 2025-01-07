@@ -20,7 +20,7 @@ func setupFrontendRoutes(r *gin.Engine) {
 		// 解析视频
 		frontend.POST("/parse/url", parseHandler.Url)
 		// 小程序登录
-		frontend.POST("/login/mnp", loginHandler.MnpLogin)
+		frontend.POST("/user/login", loginHandler.MnpLogin)
 	}
 
 }

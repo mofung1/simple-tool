@@ -19,7 +19,7 @@ func (l *Login) MnpLogin(c *gin.Context) {
 	}
 
 	loginService := new(service.LoginService)
-	result, err := loginService.MnpLogin(req.Code, c.ClientIP())
+	result, err := loginService.MnpLogin(req, c.ClientIP())
 	if err != nil {
 		response.FailWithMsg(c, err.Error())
 		return

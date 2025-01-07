@@ -6,9 +6,6 @@ interface LoginParams {
   nickname: string
   avatar: string
   gender: number
-  country: string
-  province: string
-  city: string
 }
 
 interface LoginResult {
@@ -22,7 +19,7 @@ interface LoginResult {
 
 // 微信登录
 export const wxLogin = (data: LoginParams) => {
-  return http.post<LoginResult>('/api/user/login', data)
+  return http.post<LoginResult>('/api/v1/user/login', data)
 }
 
 // 获取用户信息
@@ -36,7 +33,7 @@ export const getUserInfo = () => {
 
 // 更新用户信息
 export const updateUserInfo = (data: Partial<IUserInfo>) => {
-  return http.put<{
+  return http.post<{
     code: number
     message: string
     data: IUserInfo
