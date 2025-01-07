@@ -11,7 +11,9 @@
 <template>
   <view class="min-h-screen bg-gray-100">
     <!-- 用户信息卡片 -->
-    <view class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 relative overflow-hidden">
+    <view
+      class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 relative overflow-hidden login-card"
+    >
       <!-- 背景装饰 -->
       <view class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-blue-400/20"></view>
       <view class="absolute -left-12 -bottom-12 w-36 h-36 rounded-full bg-blue-400/10"></view>
@@ -39,18 +41,11 @@
         class="flex items-center space-x-4 w-full border-none p-0 relative !m-0 !after:border-none"
         style="background-color: transparent !important"
       >
-        <view class="relative">
-          <view
-            class="w-20 h-20 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg border-4 border-white/30"
-          >
-            <view class="i-carbon-user-avatar-filled text-blue-500 text-4xl"></view>
-          </view>
-        </view>
         <view class="flex-1">
           <view class="flex flex-col items-start">
             <button
               class="flex items-center space-x-2 bg-white/20 hover:bg-white/30 px-6 py-2 rounded-lg text-white text-sm transition-colors"
-              :class="{'opacity-60': loading}"
+              :class="{ 'opacity-60': loading }"
               :disabled="loading"
               @tap="handleGetUserProfile"
             >
@@ -147,7 +142,7 @@ const handleGetUserProfile = () => {
           uni.showLoading({ title: '登录中...' })
           await userStore.wxLogin({
             code,
-            userInfo:profileRes.userInfo
+            userInfo: profileRes.userInfo,
           })
           uni.hideLoading()
 
@@ -276,5 +271,8 @@ const handleNavigation = (type: string) => {
 }
 :deep(.wd-button) {
   border-radius: 0.5rem;
+}
+.login-card {
+  height: 80px;
 }
 </style>
