@@ -28,7 +28,7 @@
           <view class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
             <view class="i-carbon-video text-blue-500 text-xl"></view>
           </view>
-          <text class="text-lg font-medium">视频去水印</text>
+          <text class="text-lg font-medium">短视频去水印</text>
         </view>
 
         <text class="text-gray-600 text-sm mb-4 block">
@@ -114,10 +114,6 @@ const pasteFromClipboardDirect = () => {
     success: (res) => {
       if (res.data) {
         content.value = res.data
-        uni.showToast({
-          title: '已粘贴',
-          icon: 'success',
-        })
       } else {
         uni.showToast({
           title: '剪切板为空',
@@ -137,10 +133,6 @@ const pasteFromClipboardDirect = () => {
 // 清空内容
 const clearContent = () => {
   content.value = ''
-  uni.showToast({
-    title: '已清空',
-    icon: 'success',
-  })
 }
 
 // 检查剪贴板内容

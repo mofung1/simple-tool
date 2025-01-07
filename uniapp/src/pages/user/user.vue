@@ -68,18 +68,18 @@
             </view>
             <text class="text-sm text-gray-700">历史记录</text>
           </view>
-          <view class="flex flex-col items-center">
+          <!-- <view class="flex flex-col items-center">
             <view class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-2">
               <view class="i-carbon-favorite text-purple-500 text-xl"></view>
             </view>
             <text class="text-sm text-gray-700">我的收藏</text>
-          </view>
-          <view class="flex flex-col items-center">
+          </view> -->
+          <!-- <view class="flex flex-col items-center">
             <view class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-2">
               <view class="i-carbon-download text-green-500 text-xl"></view>
             </view>
             <text class="text-sm text-gray-700">下载记录</text>
-          </view>
+          </view> -->
           <view class="flex flex-col items-center">
             <view class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-2">
               <view class="i-carbon-share text-orange-500 text-xl"></view>

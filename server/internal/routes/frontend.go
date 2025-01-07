@@ -18,7 +18,7 @@ func setupFrontendRoutes(r *gin.Engine) {
 		parseHandler := new(handler.Parse)
 		loginHandler := new(handler.Login)
 		// 解析视频
-		frontend.POST("/parse/url", parseHandler.Url)
+		frontend.GET("/parse/url", parseHandler.Url)
 		// 小程序登录
 		frontend.POST("/user/login", loginHandler.MnpLogin)
 	}
