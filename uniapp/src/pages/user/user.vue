@@ -33,13 +33,11 @@
         <view class="i-carbon-chevron-right text-white/70 text-xl"></view>
       </view>
 
-      <button
+      <view
         v-else
-        open-type="getUserInfo"
         :plain="true"
         class="flex items-center space-x-4 w-full border-none p-0 relative !m-0 !after:border-none"
         style="background-color: transparent !important"
-        @getuserinfo="handleGetUserInfo"
       >
         <view class="relative">
           <view
@@ -49,16 +47,17 @@
           </view>
         </view>
         <view class="flex-1">
-          <view class="flex items-center space-x-1">
-            <text class="text-white text-xl font-semibold block mb-1">未登录</text>
-          </view>
-          <view class="flex items-center space-x-1">
-            <text class="text-blue-100 text-sm opacity-80">点击登录账号</text>
-            <view class="i-carbon-login text-blue-100 text-sm"></view>
+          <view class="flex flex-col">
+            <button
+              class="bg-white/20 hover:bg-white/30 backdrop-blur-sm px-6 py-2 rounded-full text-white text-sm font-medium transition-colors flex items-center space-x-2"
+              @tap="handleGetUserProfile"
+            >
+              <text>点击登录账号</text>
+              <view class="i-carbon-login text-white text-sm"></view>
+            </button>
           </view>
         </view>
-        <!-- <view class="i-carbon-chevron-right text-white/70 text-xl"></view> -->
-      </button>
+      </view>
     </view>
 
     <!-- 功能区域 -->
@@ -123,6 +122,67 @@ const userStore = useUserStore()
 
 // 获取屏幕边界到安全区域距离
 const { safeAreaInsets } = uni.getSystemInfoSync()
+
+
+const handleGetUserProfile = () => {
+  uni.getUserProfile({
+    desc: '用于完善用户资料',
+    lang: 'zh_CN',
+    success: async (profileRes) => {
+      try {
+        // 获取登录凭证
+        const { code } = await uni.login({
+          provider: 'weixin'
+        })
+
+        console.log('登录凭证：',code)
+        console.log('用户信息：', profileRes.userInfo)
+
+        // 调用后端登录接口
+        try {
+          uni.showLoading({ title: '登录中...' })
+          await userStore.wxLogin({
+            code,
+            userInfo:profileRes.userInfo
+          })
+          uni.hideLoading()
+
+          uni.showToast({
+            title: '登录成功',
+            icon: 'success',
+          })
+        } catch (error: any) {
+          uni.hideLoading()
+          console.error('登录失败：', error)
+          uni.showToast({
+            title: error.message || '登录失败',
+            icon: 'error',
+          })
+        }
+      } catch (error: any) {
+        console.error('获取登录凭证失败：', error)
+        uni.showToast({
+          title: '登录失败',
+          icon: 'error',
+        })
+      }
+    },
+    fail: (error) => {
+      console.error('获取用户信息失败：', error)
+      if (error.errMsg?.includes('getUserProfile:fail auth deny')) {
+        uni.showToast({
+          title: '需要您的授权才能继续',
+          icon: 'none',
+        })
+      } else {
+        uni.showToast({
+          title: '登录失败',
+          icon: 'error',
+        })
+      }
+    }
+  })
+}
 
 // 处理获取用户信息
 const handleGetUserInfo = async (e: any) => {
