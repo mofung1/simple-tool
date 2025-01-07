@@ -93,6 +93,11 @@ func (s *LoginService) MnpLogin(req request.MnpLoginRequest, clientIp string) (*
 
 	return &response.LoginResult{
 		Token: token,
-		User:  user,
+		User: response.UserInfo{
+			Sn:       user.Sn,
+			Avatar:   user.Avatar,
+			Nickname: user.Nickname,
+			Gender:   user.Gender,
+		},
 	}, nil
 }
