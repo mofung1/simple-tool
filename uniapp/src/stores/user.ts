@@ -5,15 +5,12 @@ import type { IUserInfo } from '@/types/user'
 
 const initState: IUserInfo = {
   id: 0,
+  sn: 0,
   nickname: '',
   avatar: '',
   token: '',
-  openid: '',
   mobile: '',
   gender: 0,
-  country: '',
-  province: '',
-  city: '',
 }
 
 export const useUserStore = defineStore(
