@@ -10,10 +10,10 @@ interface LoginParams {
 
 interface LoginResult {
   code: number
-  message: string
+  msg: string
   data: {
     token: string
-    userInfo: IUserInfo
+    user: IUserInfo
   }
 }
 

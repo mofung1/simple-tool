@@ -46,17 +46,14 @@ export const useUserStore = defineStore(
         nickname: params.userInfo.nickName,
         avatar: params.userInfo.avatarUrl,
         gender: params.userInfo.gender,
-        country: params.userInfo.country,
-        province: params.userInfo.province,
-        city: params.userInfo.city,
       })
 
       if (res.code === 200) {
-        const { token, userInfo: user } = res.data
+        const { token, user } = res.data
         setUserInfo({ ...user, token })
         return user
       }
-      throw new Error(res.message || '登录失败')
+      throw new Error(res.msg || '登录失败')
     }
 
     // 处理登录态失效

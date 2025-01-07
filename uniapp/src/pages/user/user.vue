@@ -131,11 +131,16 @@ const handleGetUserInfo = async (e: any) => {
     // 调用后端登录接口
     try {
       uni.showLoading({ title: '登录中...' })
-      await userStore.wxLogin({
+      const user = await userStore.wxLogin({
         code,
         userInfo
       })
       uni.hideLoading()
+
+      // 添加调试日志
+      console.log('登录成功，用户信息：', user)
+      console.log('store中的用户信息：', userStore.userInfo)
+      console.log('是否登录：', userStore.isLogined)
 
       uni.showToast({
         title: '登录成功',
