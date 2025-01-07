@@ -11,34 +11,53 @@
 <template>
   <view class="min-h-screen bg-gray-100">
     <!-- 用户信息卡片 -->
-    <view class="bg-gradient-to-b from-blue-500 to-blue-600 p-6">
-      <view v-if="userStore.isLogined" class="flex items-center space-x-4">
-        <image
-          :src="userStore.userInfo.avatar"
-          class="w-16 h-16 bg-white rounded-full border-4 border-blue-400/30"
-        />
+    <view class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 relative overflow-hidden">
+      <!-- 背景装饰 -->
+      <view class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-blue-400/20"></view>
+      <view class="absolute -left-12 -bottom-12 w-36 h-36 rounded-full bg-blue-400/10"></view>
+
+      <view v-if="userStore.isLogined" class="flex items-center space-x-4 relative">
+        <view class="relative">
+          <image
+            :src="userStore.userInfo.avatar"
+            class="w-20 h-20 bg-white rounded-full border-4 border-white/30 shadow-lg"
+          />
+          <view class="absolute bottom-0 right-0 w-6 h-6 rounded-full border-2 border-white"></view>
+        </view>
         <view class="flex-1">
-          <text class="text-white text-lg font-medium block mb-1">
+          <text class="text-white text-xl font-semibold block mb-1">
             {{ userStore.userInfo.nickname }}
           </text>
+          <text class="text-blue-100 text-sm opacity-80">ID: {{ userStore.userInfo.sn }}</text>
         </view>
-        <view class="i-carbon-chevron-right text-white"></view>
+        <view class="i-carbon-chevron-right text-white/70 text-xl"></view>
       </view>
+
       <button
         v-else
         open-type="getUserInfo"
-        type="primary"
-        class="flex items-center space-x-4 w-full bg-transparent border-none p-0"
+        :plain="true"
+        class="flex items-center space-x-4 w-full border-none p-0 relative !m-0 !after:border-none"
+        style="background-color: transparent !important"
         @getuserinfo="handleGetUserInfo"
       >
-        <view class="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-          <view class="i-carbon-user-avatar text-blue-500 text-2xl"></view>
+        <view class="relative">
+          <view
+            class="w-20 h-20 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg border-4 border-white/30"
+          >
+            <view class="i-carbon-user-avatar-filled text-blue-500 text-4xl"></view>
+          </view>
         </view>
         <view class="flex-1">
-          <text class="text-white text-lg font-medium block mb-1">未登录</text>
-          <text class="text-blue-100 text-sm">点击登录账号</text>
+          <view class="flex items-center space-x-1">
+            <text class="text-white text-xl font-semibold block mb-1">未登录</text>
+          </view>
+          <view class="flex items-center space-x-1">
+            <text class="text-blue-100 text-sm opacity-80">点击登录账号</text>
+            <view class="i-carbon-login text-blue-100 text-sm"></view>
+          </view>
         </view>
-        <view class="i-carbon-chevron-right text-white"></view>
+        <!-- <view class="i-carbon-chevron-right text-white/70 text-xl"></view> -->
       </button>
     </view>
 
@@ -183,6 +202,15 @@ const handleNavigation = (type: string) => {
 </script>
 
 <style lang="scss" scoped>
+:deep(.uni-button) {
+  &::after {
+    border: none !important;
+  }
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+  line-height: inherit !important;
+}
 :deep(.wd-button) {
   border-radius: 0.5rem;
 }
