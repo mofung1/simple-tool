@@ -177,36 +177,20 @@ const pasteFromClipboard = async () => {
     })
     return
   }
+  const res = await parseVideoAPI(content.value)
 
-  try {
-    uni.showLoading({
-      title: '解析中...',
-    })
-
-    const res = await parseVideoAPI(content.value)
-
-    if (!res.data.video_url) {
-      // 如果没有视频链接，提示解析失败
-      uni.showToast({
-        icon: 'none',
-        title: '解析失败，请检查链接是否有效',
-      })
-    } else {
-      // 解析成功，跳转到结果页面
-      const data = res.data
-      uni.navigateTo({
-        url: `/pages/index/info?data=${encodeURIComponent(JSON.stringify(data))}`,
-      })
-    }
-  } catch (err) {
-    // 捕获错误并显示错误提示
+  if (!res.data.video_url) {
+    // 如果没有视频链接，提示解析失败
     uni.showToast({
       icon: 'none',
-      title: err instanceof Error ? err.message : '发生了未知错误',
+      title: '解析失败，请检查链接是否有效',
     })
-  } finally {
-    // 无论成功或失败都要隐藏加载中动画
-    uni.hideLoading()
+  } else {
+    // 解析成功，跳转到结果页面
+    const data = res.data
+    uni.navigateTo({
+      url: `/pages/index/info?data=${encodeURIComponent(JSON.stringify(data))}`,
+    })
   }
 }
 </script>

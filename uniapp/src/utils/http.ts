@@ -13,7 +13,7 @@ export const http = <T>(options: CustomRequestOptions) => {
       // 响应成功
       success(res) {
         console.log(res)
-        if (res.statusCode >= 200 && res.statusCode < 300) {
+        if (res.statusCode === 200 && (res.data as IResData<T>).code === 200) {
           resolve(res.data as IResData<T>)
         } else {
           if (res.statusCode === 401) {
@@ -22,14 +22,10 @@ export const http = <T>(options: CustomRequestOptions) => {
             uni.navigateTo({ url: '/pages/index/index' })
           } else {
             // 统一的错误处理
-            let errorMsg = '请求错误'
-            if ((res.data as IResData<T>).code !== 200) {
-              errorMsg = (res.data as IResData<T>).msg
-            }
             !options.hideErrorToast &&
               uni.showToast({
                 icon: 'none',
-                title: errorMsg,
+                title: (res.data as IResData<T>).msg || '请求错误',
               })
           }
           reject(res)

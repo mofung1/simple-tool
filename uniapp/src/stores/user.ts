@@ -64,7 +64,7 @@ export const useUserStore = defineStore(
       }
     }
 
-    const getUserToken = ()=>{
+    const getUserToken = () => {
       return uni.getStorageSync('token')
     }
 
@@ -75,7 +75,7 @@ export const useUserStore = defineStore(
       clearUserInfo,
       wxLogin,
       handleTokenExpired,
-      getUserToken
+      getUserToken,
     }
   },
   {
