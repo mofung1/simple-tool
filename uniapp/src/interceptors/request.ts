@@ -46,7 +46,8 @@ const httpInterceptor = {
 
     // 2. 添加token
     const userStore = useUserStore()
-    const token = userStore.token
+    const token = userStore.getUserToken()
+
     if (token) {
       options.header = {
         ...options.header,

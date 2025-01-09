@@ -64,6 +64,10 @@ export const useUserStore = defineStore(
       }
     }
 
+    const getUserToken = ()=>{
+      return uni.getStorageSync('token')
+    }
+
     return {
       userInfo,
       isLogined,
@@ -71,6 +75,7 @@ export const useUserStore = defineStore(
       clearUserInfo,
       wxLogin,
       handleTokenExpired,
+      getUserToken
     }
   },
   {
