@@ -13,7 +13,7 @@ type ParseRecord struct {
 	Title    string `json:"title" gorm:"type:varchar(500);comment:视频标题"`
 	CoverUrl string `json:"cover_url" gorm:"type:varchar(800);comment:视频封面地址"`
 	MusicUrl string `json:"music_url" gorm:"type:varchar(800);comment:音乐播放地址"`
-	VideoURL string `json:"video_url" gorm:"type:varchar(800);comment:视频播放地址"`
+	VideoUrl string `json:"video_url" gorm:"type:varchar(800);comment:视频播放地址"`
 }
 
 // TableName 表名
