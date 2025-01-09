@@ -15,8 +15,8 @@
     <view class="px-4 py-6 space-y-6">
       <!-- Logo和版本信息 -->
       <view class="bg-white rounded-xl p-6 shadow-sm text-center">
-        <image src="/static/logo.svg" class="w-24 h-24 mx-auto mb-4" />
-        <text class="text-xl font-medium text-gray-900 block">视频去水印工具</text>
+        <image src="/static/logo.jpeg" class="w-24 h-24 mx-auto mb-4" />
+        <text class="text-xl font-medium text-gray-900 block">消印乐</text>
         <text class="text-sm text-gray-500 mt-2 block">Version 1.0.0</text>
       </view>
 
