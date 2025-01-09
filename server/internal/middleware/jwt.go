@@ -14,7 +14,7 @@ func JWTAuth() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("token")
 		if token == "" {
-			response.FailWithMsg(c, "请登录")
+			response.FailWithMsg(c, "请先登录")
 			c.Abort()
 			return
 		}

@@ -31,7 +31,7 @@
         <view class="space-y-3">
           <view class="flex items-start space-x-3">
             <view class="i-carbon-checkmark text-green-500 flex-shrink-0 mt-1"></view>
-            <text class="text-gray-600 text-sm">支持多个主流短视频平台无水印下载</text>
+            <text class="text-gray-600 text-sm">完全免费，无付费套路</text>
           </view>
           <view class="flex items-start space-x-3">
             <view class="i-carbon-checkmark text-green-500 flex-shrink-0 mt-1"></view>
@@ -39,7 +39,7 @@
           </view>
           <view class="flex items-start space-x-3">
             <view class="i-carbon-checkmark text-green-500 flex-shrink-0 mt-1"></view>
-            <text class="text-gray-600 text-sm">完全免费，无需注册</text>
+            <text class="text-gray-600 text-sm">支持多个主流短视频平台无水印下载</text>
           </view>
         </view>
       </view>

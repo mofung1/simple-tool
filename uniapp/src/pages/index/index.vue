@@ -52,7 +52,7 @@
             <view class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center">
               <text class="text-blue-500 font-medium">3</text>
             </view>
-            <text>点击上方粘贴按钮，开始解析</text>
+            <text>点击粘贴按钮，开始解析</text>
           </view>
         </view>
       </view>
