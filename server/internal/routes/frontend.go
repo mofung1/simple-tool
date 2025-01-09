@@ -4,6 +4,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"simple-tool/server/internal/frontend/handler"
 	"simple-tool/server/internal/global/response"
+	"simple-tool/server/internal/middleware"
 )
 
 // setupFrontendRoutes 前台路由
@@ -18,7 +19,7 @@ func setupFrontendRoutes(r *gin.Engine) {
 		parseHandler := new(handler.Parse)
 		loginHandler := new(handler.Login)
 		// 解析视频
-		frontend.GET("/parse/url", parseHandler.Url)
+		frontend.GET("/parse/url", middleware.JWTAuth(), parseHandler.Url)
 		// 小程序登录
 		frontend.POST("/user/login", loginHandler.MnpLogin)
 	}

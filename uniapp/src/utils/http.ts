@@ -12,23 +12,26 @@ export const http = <T>(options: CustomRequestOptions) => {
       // #endif
       // 响应成功
       success(res) {
-        // 状态码 2xx，参考 axios 的设计
+        console.log(res)
         if (res.statusCode >= 200 && res.statusCode < 300) {
-          // 2.1 提取核心数据 res.data
           resolve(res.data as IResData<T>)
-        } else if (res.statusCode === 401) {
-          // 401错误 -> 清理用户信息，跳转到登录页
-          const userStore = useUserStore()
-          userStore.clearUserInfo()
-          uni.navigateTo({ url: '/pages/login/index' })
-          reject(res)
         } else {
-          // 其他错误 -> 根据后端错误信息轻提示
-          !options.hideErrorToast &&
-            uni.showToast({
-              icon: 'none',
-              title: (res.data as IResData<T>).msg || '请求错误',
-            })
+          if (res.statusCode === 401) {
+            const userStore = useUserStore()
+            userStore.clearUserInfo()
+            uni.navigateTo({ url: '/pages/index/index' })
+          } else {
+            // 统一的错误处理
+            let errorMsg = '请求错误'
+            if ((res.data as IResData<T>).code !== 200) {
+              errorMsg = (res.data as IResData<T>).msg
+            }
+            !options.hideErrorToast &&
+              uni.showToast({
+                icon: 'none',
+                title: errorMsg,
+              })
+          }
           reject(res)
         }
       },
