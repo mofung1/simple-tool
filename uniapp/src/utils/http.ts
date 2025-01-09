@@ -16,10 +16,17 @@ export const http = <T>(options: CustomRequestOptions) => {
         if (res.statusCode === 200 && (res.data as IResData<T>).code === 200) {
           resolve(res.data as IResData<T>)
         } else {
-          if (res.statusCode === 401) {
+          if (res.statusCode === 401 || (res.data as IResData<T>).code === 401) {
             const userStore = useUserStore()
             userStore.clearUserInfo()
-            uni.navigateTo({ url: '/pages/index/index' })
+
+            uni.showToast({
+              icon: 'none',
+              title: (res.data as IResData<T>).msg || '请求错误',
+            })
+            setTimeout(() => {
+              uni.switchTab({ url: '/pages/user/user' })
+            }, 1500)
           } else {
             // 统一的错误处理
             !options.hideErrorToast &&

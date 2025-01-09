@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"simple-tool/server/internal/global"
 	"simple-tool/server/internal/global/cache"
 	"simple-tool/server/internal/global/response"
 	"simple-tool/server/pkg/jwt"
@@ -14,14 +15,14 @@ func JWTAuth() func(c *gin.Context) {
 	return func(c *gin.Context) {
 		token := c.Request.Header.Get("token")
 		if token == "" {
-			response.FailWithMsg(c, "请先登录")
+			response.FailWithCode(c, global.Unauthorized)
 			c.Abort()
 			return
 		}
 
 		mc, err := jwt.ParseToken(token)
 		if err != nil {
-			response.FailWithMsg(c, "授权已到期，请重新登录"+err.Error())
+			response.FailWithCode(c, global.Unauthorized)
 			c.Abort()
 			return
 		}

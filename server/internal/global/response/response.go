@@ -65,7 +65,7 @@ func FailWithInfo(c *gin.Context, msg string, data interface{}) {
 	Result(c, global.Error, msg, data)
 }
 
-// FailByCode 返回错误 根据code返回
-func FailByCode(c *gin.Context, code int) {
+// FailWithCode 返回错误 根据code返回
+func FailWithCode(c *gin.Context, code int) {
 	Result(c, code, global.Msg(code), ReturnEmptyData)
 }
