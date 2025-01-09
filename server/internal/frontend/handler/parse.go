@@ -33,7 +33,7 @@ func (p *Parse) Handle(c *gin.Context) {
 	}
 
 	// 记录解析日志
-	parseLog := &models.ParseRecord{
+	parseRecord := &models.ParseRecord{
 		UserId:   userId.(int64),
 		Author:   parseRes.Author.Name,
 		Avatar:   parseRes.Author.Avatar,
@@ -44,8 +44,8 @@ func (p *Parse) Handle(c *gin.Context) {
 	}
 
 	// 保存到数据库
-	if err := global.DB.Create(parseLog).Error; err != nil {
-		response.FailWithMsg(c, "记录异常")
+	if err := global.DB.Create(parseRecord).Error; err != nil {
+		response.FailWithMsg(c, "记录异常"+err.Error())
 		return
 	}
 
