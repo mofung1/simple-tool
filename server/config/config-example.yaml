@@ -34,3 +34,6 @@ redis:
 jwt:
   secret: "3Bde3BGEbYqtqyEUzW3ry8jKFcaPH17fRmTmqE7MDr05Lwj95uruRKrrkb44TJ4s"
   expire_time: "7d"
+wechat:
+  appid: "wxdc13e596427787ed"
+  secret: "18901f1b71e6d0edff8e21c9937c192f62"
