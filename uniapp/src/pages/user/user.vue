@@ -161,17 +161,17 @@ const handleNavigation = (type: string) => {
   switch (type) {
     case 'help':
       uni.navigateTo({
-        url: '/pages/help/index',
+        url: '/pages/help/help',
       })
       break
     case 'about':
       uni.navigateTo({
-        url: '/pages/about/index',
+        url: '/pages/about/about',
       })
       break
     case 'history':
       uni.navigateTo({
-        url: '/pages/history/index',
+        url: '/pages/history/history',
       })
       break
   }
