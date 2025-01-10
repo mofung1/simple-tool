@@ -18,10 +18,12 @@ func setupFrontendRoutes(r *gin.Engine) {
 	{
 		parseHandler := new(handler.Parse)
 		loginHandler := new(handler.Login)
-		// 解析视频
-		frontend.GET("/parse/url", middleware.JWTAuth(), parseHandler.Handle)
 		// 小程序登录
 		frontend.POST("/user/login", loginHandler.MnpLogin)
+		// 解析视频
+		frontend.GET("/parse/url", middleware.JWTAuth(), parseHandler.Handle)
+		// 解析记录
+		frontend.GET("/parse/lists", middleware.JWTAuth(), parseHandler.Lists)
 	}
 
 }
