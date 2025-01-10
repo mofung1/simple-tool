@@ -11,7 +11,6 @@ type Parse struct{}
 
 // Handle 处理视频解析请求
 func (p *Parse) Handle(c *gin.Context) {
-	// 获取URL参数
 	paramUrl := c.Query("url")
 	if paramUrl == "" {
 		response.FailWithMsg(c, "URL不能为空")
@@ -31,7 +30,6 @@ func (p *Parse) Handle(c *gin.Context) {
 		return
 	}
 
-	// 返回解析结果
 	response.OkWithData(c, result)
 	return
 }
@@ -57,7 +55,6 @@ func (p *Parse) Lists(c *gin.Context) {
 		return
 	}
 
-	// 返回列表数据
 	response.OkWithData(c, result)
 	return
 }
