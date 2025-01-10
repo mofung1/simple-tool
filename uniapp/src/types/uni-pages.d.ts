@@ -5,9 +5,9 @@
 
 interface NavigateToOptions {
   url: "/pages/index/index" |
-       "/pages/about/index" |
-       "/pages/help/index" |
-       "/pages/history/index" |
+       "/pages/about/about" |
+       "/pages/help/help" |
+       "/pages/history/history" |
        "/pages/index/info" |
        "/pages/user/user";
 }

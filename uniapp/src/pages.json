@@ -49,7 +49,7 @@
       }
     },
     {
-      "path": "pages/about/index",
+      "path": "pages/about/about",
       "type": "page",
       "style": {
         "navigationStyle": "default",
@@ -59,7 +59,7 @@
       }
     },
     {
-      "path": "pages/help/index",
+      "path": "pages/help/help",
       "type": "page",
       "style": {
         "navigationStyle": "default",
@@ -69,7 +69,7 @@
       }
     },
     {
-      "path": "pages/history/index",
+      "path": "pages/history/history",
       "type": "page",
       "style": {
         "navigationBarTitleText": "历史记录",
