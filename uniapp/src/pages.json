@@ -69,6 +69,15 @@
       }
     },
     {
+      "path": "pages/history/index",
+      "type": "page",
+      "style": {
+        "navigationBarTitleText": "历史记录",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#3B82F6"
+      }
+    },
+    {
       "path": "pages/index/info",
       "type": "page",
       "style": {

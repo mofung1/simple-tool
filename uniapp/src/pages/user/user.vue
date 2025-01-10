@@ -62,7 +62,7 @@
       <!-- 其他功能列表 -->
       <view class="bg-white rounded-xl shadow-sm overflow-hidden">
         <view class="divide-y divide-gray-100">
-          <view class="flex items-center justify-between p-4" @tap="handleNavigation('help')">
+          <view class="flex items-center justify-between p-4" @tap="handleNavigation('history')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-document text-blue-500 text-xl"></view>
               <text class="text-gray-700">历史记录</text>
@@ -167,6 +167,11 @@ const handleNavigation = (type: string) => {
     case 'about':
       uni.navigateTo({
         url: '/pages/about/index',
+      })
+      break
+    case 'history':
+      uni.navigateTo({
+        url: '/pages/history/index',
       })
       break
   }
