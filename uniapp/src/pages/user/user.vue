@@ -72,7 +72,7 @@
           <view class="flex items-center justify-between p-4" @tap="handleNavigation('help')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-help text-purple-500 text-xl"></view>
-              <text class="text-gray-700">常见问题</text>
+              <text class="text-gray-700">使用帮助</text>
             </view>
             <view class="i-carbon-chevron-right text-gray-400"></view>
           </view>
@@ -83,7 +83,7 @@
             </view>
             <view class="i-carbon-chevron-right text-gray-400"></view>
           </view>
-          <view class="flex items-center justify-between p-4" @tap="handleNavigation('about')">
+          <view class="flex items-center justify-between p-4" @tap="handleShare">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-share text-orange-500 text-xl"></view>
               <text class="text-gray-700">分享应用</text>
@@ -98,7 +98,7 @@
 
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { checkLogin } from '@/utils/auth'
 
 const userStore = useUserStore()
@@ -179,6 +179,100 @@ const handleNavigation = (type: string) => {
       break
   }
 }
+
+// 分享配置
+const shareConfig = {
+  title: '简单工具',
+  summary: '一个简单好用的视频下载工具',
+  imageUrl: '/static/logo.png',
+  path: '/pages/index/index'
+}
+
+// 处理分享
+const handleShare = () => {
+  // #ifdef APP-PLUS
+  uni.share({
+    provider: 'weixin',
+    scene: 'WXSceneSession',
+    type: 0,
+    ...shareConfig,
+    success: function () {
+      uni.showToast({
+        title: '分享成功',
+        icon: 'success'
+      })
+    },
+    fail: function () {
+      uni.showToast({
+        title: '分享失败',
+        icon: 'error'
+      })
+    }
+  })
+  // #endif
+
+  // #ifdef H5
+  if (navigator.share) {
+    navigator.share({
+      title: shareConfig.title,
+      text: shareConfig.summary,
+      url: window.location.href
+    }).catch(() => {
+      uni.showToast({
+        title: '分享失败',
+        icon: 'error'
+      })
+    })
+  } else {
+    uni.setClipboardData({
+      data: window.location.href,
+      success: () => {
+        uni.showToast({
+          title: '链接已复制',
+          icon: 'success'
+        })
+      }
+    })
+  }
+  // #endif
+
+  // #ifdef MP-WEIXIN
+  uni.showToast({
+    title: '点击右上角分享',
+    icon: 'none'
+  })
+  // #endif
+}
+
+// 小程序分享消息
+const onShareAppMessage = () => {
+  return {
+    title: shareConfig.title,
+    path: shareConfig.path,
+    imageUrl: shareConfig.imageUrl
+  }
+}
+
+// 小程序分享到朋友圈
+const onShareTimeline = () => {
+  return {
+    title: shareConfig.title,
+    path: shareConfig.path,
+    imageUrl: shareConfig.imageUrl
+  }
+}
+
+// 暴露页面事件处理函数
+defineExpose({
+  onShareAppMessage,
+  onShareTimeline
+})
+
+// 页面加载
+onMounted(() => {
+  // #ifdef MP-WEIXIN
+  // #endif
+})
 </script>
 
 <style lang="scss" scoped>
