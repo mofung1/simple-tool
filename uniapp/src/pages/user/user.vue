@@ -185,7 +185,7 @@ const shareConfig = {
   title: '简单工具',
   summary: '一个简单好用的视频下载工具',
   imageUrl: '/static/logo.png',
-  path: '/pages/index/index'
+  path: '/pages/index/index',
 }
 
 // 处理分享
@@ -199,39 +199,41 @@ const handleShare = () => {
     success: function () {
       uni.showToast({
         title: '分享成功',
-        icon: 'success'
+        icon: 'success',
       })
     },
     fail: function () {
       uni.showToast({
         title: '分享失败',
-        icon: 'error'
+        icon: 'error',
       })
-    }
+    },
   })
   // #endif
 
   // #ifdef H5
   if (navigator.share) {
-    navigator.share({
-      title: shareConfig.title,
-      text: shareConfig.summary,
-      url: window.location.href
-    }).catch(() => {
-      uni.showToast({
-        title: '分享失败',
-        icon: 'error'
+    navigator
+      .share({
+        title: shareConfig.title,
+        text: shareConfig.summary,
+        url: window.location.href,
       })
-    })
+      .catch(() => {
+        uni.showToast({
+          title: '分享失败',
+          icon: 'error',
+        })
+      })
   } else {
     uni.setClipboardData({
       data: window.location.href,
       success: () => {
         uni.showToast({
           title: '链接已复制',
-          icon: 'success'
+          icon: 'success',
         })
-      }
+      },
     })
   }
   // #endif
@@ -239,7 +241,7 @@ const handleShare = () => {
   // #ifdef MP-WEIXIN
   uni.showToast({
     title: '点击右上角分享',
-    icon: 'none'
+    icon: 'none',
   })
   // #endif
 }
@@ -249,7 +251,7 @@ const onShareAppMessage = () => {
   return {
     title: shareConfig.title,
     path: shareConfig.path,
-    imageUrl: shareConfig.imageUrl
+    imageUrl: shareConfig.imageUrl,
   }
 }
 
@@ -258,14 +260,14 @@ const onShareTimeline = () => {
   return {
     title: shareConfig.title,
     path: shareConfig.path,
-    imageUrl: shareConfig.imageUrl
+    imageUrl: shareConfig.imageUrl,
   }
 }
 
 // 暴露页面事件处理函数
 defineExpose({
   onShareAppMessage,
-  onShareTimeline
+  onShareTimeline,
 })
 
 // 页面加载
