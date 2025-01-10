@@ -62,13 +62,13 @@
       <!-- 其他功能列表 -->
       <view class="bg-white rounded-xl shadow-sm overflow-hidden">
         <view class="divide-y divide-gray-100">
-          <view class="flex items-center justify-between p-4" @tap="handleNavigation('history')">
+          <!-- <view class="flex items-center justify-between p-4" @tap="handleNavigation('history')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-document text-blue-500 text-xl"></view>
               <text class="text-gray-700">历史记录</text>
             </view>
             <view class="i-carbon-chevron-right text-gray-400"></view>
-          </view>
+          </view> -->
           <view class="flex items-center justify-between p-4" @tap="handleNavigation('help')">
             <view class="flex items-center space-x-3">
               <view class="i-carbon-help text-purple-500 text-xl"></view>

@@ -44,7 +44,7 @@
       <!-- 空状态 -->
       <view v-else class="flex flex-col items-center justify-center py-16">
         <view class="i-carbon-document-blank text-gray-300 text-5xl mb-4"></view>
-        <text class="text-gray-500">暂无历史记录</text>
+        <text class="text-gray-500">暂无记录</text>
       </view>
 
       <!-- 加载更多 -->
