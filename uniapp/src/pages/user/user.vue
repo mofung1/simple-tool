@@ -59,50 +59,34 @@
 
     <!-- 功能区域 -->
     <view class="p-4 space-y-4">
-      <!-- 常用功能 -->
-      <view class="bg-white rounded-xl p-4 shadow-sm">
-        <view class="grid grid-cols-4 gap-4">
-          <view class="flex flex-col items-center">
-            <view class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-2">
-              <view class="i-carbon-document text-blue-500 text-xl"></view>
-            </view>
-            <text class="text-sm text-gray-700">历史记录</text>
-          </view>
-          <view class="flex flex-col items-center">
-            <view class="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center mb-2">
-              <view class="i-carbon-favorite text-purple-500 text-xl"></view>
-            </view>
-            <text class="text-sm text-gray-700">我的收藏</text>
-          </view>
-          <view class="flex flex-col items-center">
-            <view class="w-12 h-12 bg-green-50 rounded-xl flex items-center justify-center mb-2">
-              <view class="i-carbon-download text-green-500 text-xl"></view>
-            </view>
-            <text class="text-sm text-gray-700">下载记录</text>
-          </view>
-          <view class="flex flex-col items-center">
-            <view class="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center mb-2">
-              <view class="i-carbon-share text-orange-500 text-xl"></view>
-            </view>
-            <text class="text-sm text-gray-700">分享应用</text>
-          </view>
-        </view>
-      </view>
-
       <!-- 其他功能列表 -->
       <view class="bg-white rounded-xl shadow-sm overflow-hidden">
         <view class="divide-y divide-gray-100">
           <view class="flex items-center justify-between p-4" @tap="handleNavigation('help')">
             <view class="flex items-center space-x-3">
-              <view class="i-carbon-help text-gray-400"></view>
+              <view class="i-carbon-document text-blue-500 text-xl"></view>
+              <text class="text-gray-700">历史记录</text>
+            </view>
+            <view class="i-carbon-chevron-right text-gray-400"></view>
+          </view>
+          <view class="flex items-center justify-between p-4" @tap="handleNavigation('help')">
+            <view class="flex items-center space-x-3">
+              <view class="i-carbon-help text-purple-500 text-xl"></view>
               <text class="text-gray-700">常见问题</text>
             </view>
             <view class="i-carbon-chevron-right text-gray-400"></view>
           </view>
           <view class="flex items-center justify-between p-4" @tap="handleNavigation('about')">
             <view class="flex items-center space-x-3">
-              <view class="i-carbon-information text-gray-400"></view>
+              <view class="i-carbon-information text-green-500 text-xl"></view>
               <text class="text-gray-700">关于我们</text>
+            </view>
+            <view class="i-carbon-chevron-right text-gray-400"></view>
+          </view>
+          <view class="flex items-center justify-between p-4" @tap="handleNavigation('about')">
+            <view class="flex items-center space-x-3">
+              <view class="i-carbon-share text-orange-500 text-xl"></view>
+              <text class="text-gray-700">分享应用</text>
             </view>
             <view class="i-carbon-chevron-right text-gray-400"></view>
           </view>
