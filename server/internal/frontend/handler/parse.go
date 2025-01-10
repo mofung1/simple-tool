@@ -2,10 +2,8 @@ package handler
 
 import (
 	"github.com/gin-gonic/gin"
-	"simple-tool/server/internal/global"
+	"simple-tool/server/internal/frontend/service"
 	"simple-tool/server/internal/global/response"
-	"simple-tool/server/internal/models"
-	"simple-tool/server/pkg/parser"
 )
 
 type Parse struct{}
@@ -19,38 +17,20 @@ func (p *Parse) Handle(c *gin.Context) {
 		return
 	}
 
-	// 解析视频
-	parseRes, err := parser.ParseVideoShareUrlByRegexp(paramUrl)
-	if err != nil {
-		response.FailWithMsg(c, err.Error())
-		return
-	}
-
 	userId, exists := c.Get("userId")
 	if !exists {
 		response.FailWithMsg(c, "登录信息异常")
 		return
 	}
 
-	// 记录解析日志
-	parseRecord := models.ParseRecord{
-		UserId:   userId.(int64),
-		Author:   parseRes.Author.Name,
-		Avatar:   parseRes.Author.Avatar,
-		Title:    parseRes.Title,
-		CoverUrl: parseRes.CoverUrl,
-		VideoUrl: parseRes.VideoUrl, // 修正字段名
-		MusicUrl: parseRes.MusicUrl,
-	}
-
-	// 保存到数据库
-	if err := global.DB.Create(&parseRecord).Error; err != nil {
-		global.ZapLog.Error("解析记录写入错误: " + err.Error())
-		response.FailWithMsg(c, "解析异常")
+	parseService := new(service.ParseService)
+	result, err := parseService.ParseUrl(paramUrl, userId.(int64))
+	if err != nil {
+		response.FailWithMsg(c, err.Error())
 		return
 	}
 
 	// 返回解析结果
-	response.OkWithData(c, parseRes)
+	response.OkWithData(c, result)
 	return
 }
