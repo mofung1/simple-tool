@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { wxLogin as wxLoginApi } from '@/service/user'
+import { wxLogin as wxLoginApi } from '@/service/user/user'
 import type { IUserInfo } from '@/types/user'
 
 const initState: IUserInfo = {

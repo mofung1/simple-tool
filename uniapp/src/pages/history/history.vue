@@ -61,20 +61,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { formatDate as formatDateUtil } from '@/utils/date'
-
-interface Record {
-  id: number
-  created_at: string
-  updated_at: string
-  deleted_at: string | null
-  user_id: number
-  author: string
-  avatar: string
-  title: string
-  cover_url: string
-  music_url: string
-  video_url: string
-}
+import { getHistoryList, type Record } from '@/service/history'
 
 // 状态管理
 const records = ref<Record[]>([])
@@ -94,22 +81,11 @@ const fetchRecords = async () => {
   if (loading.value) return
   loading.value = true
   try {
-    const response = await uni.request({
-      url: '/api/v1/parse/lists',
-      method: 'GET',
-      data: {
-        page_no: pageNo.value,
-        page_size: pageSize.value,
-      },
-    })
-
-    const { code, data } = response.data as any
-    if (code === 200) {
-      records.value = [...records.value, ...data.list]
-      total.value = data.total
-      hasMore.value = records.value.length < total.value
-      pageNo.value++
-    }
+    const { data } = await getHistoryList(pageNo.value, pageSize.value)
+    records.value = [...records.value, ...data.list]
+    total.value = data.total
+    hasMore.value = records.value.length < total.value
+    pageNo.value++
   } catch (error) {
     uni.showToast({
       title: '获取数据失败',
