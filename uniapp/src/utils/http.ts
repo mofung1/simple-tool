@@ -26,7 +26,7 @@ export const http = <T>(options: CustomRequestOptions) => {
             })
             setTimeout(() => {
               uni.switchTab({ url: '/pages/user/user' })
-            }, 1500)
+            }, 1000)
           } else {
             // 统一的错误处理
             !options.hideErrorToast &&

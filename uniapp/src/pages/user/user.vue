@@ -99,6 +99,7 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
 import { ref } from 'vue'
+import { checkLogin } from '@/utils/auth'
 
 const userStore = useUserStore()
 
@@ -170,9 +171,11 @@ const handleNavigation = (type: string) => {
       })
       break
     case 'history':
-      uni.navigateTo({
-        url: '/pages/history/history',
-      })
+      if (checkLogin()) {
+        uni.navigateTo({
+          url: '/pages/history/history',
+        })
+      }
       break
   }
 }
