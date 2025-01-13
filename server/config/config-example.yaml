@@ -2,7 +2,7 @@ app:
   name: "parse-video"
   mode: "dev"
   port: 9997
-  start_time: "2024-06-14"
+  start_time: "2025-01-13"
   machine_id: 1
 log:
   level: "debug"
