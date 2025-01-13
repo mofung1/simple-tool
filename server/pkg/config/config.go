@@ -1,37 +1,74 @@
 package config
 
 import (
-	"fmt"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"log"
-	"path"
+	"os"
+	"path/filepath"
 	"runtime"
 	"simple-tool/server/internal/global"
 )
 
-// Init 初始化viper
+// Init 初始化配置
+// 配置文件加载优先级：
+// 1. 环境变量 CONFIG_FILE 指定的配置文件
+// 2. 当前目录下的 config.yaml
+// 3. 当前目录下的 config/config.yaml
+// 4. 程序所在目录的 config.yaml
+// 5. 程序所在目录的 config/config.yaml
 func Init() {
-	_, filename, _, _ := runtime.Caller(0)
-	global.BasePath = path.Dir(path.Dir(path.Dir(filename)))
+	var err error
+	v := viper.New()
 
-	viper.SetConfigFile(global.BasePath + "/config/config.yaml") // 指定配置文件路径
-	err := viper.ReadInConfig()                                  // 读取配置信息
-	if err != nil {                                              // 读取配置信息失败
-		log.Fatal("viper.ReadInConfig() failed,err:" + err.Error())
+	// 获取程序基础路径
+	_, filename, _, _ := runtime.Caller(0)
+	global.BasePath = filepath.Dir(filepath.Dir(filepath.Dir(filename)))
+
+	// 设置配置文件类型
+	v.SetConfigType("yaml")
+
+	// 定义搜索路径
+	searchPaths := []string{
+		"./config.yaml",                                      // 当前目录
+		"./config/config.yaml",                               // 当前目录的config子目录
+		filepath.Join(global.BasePath, "config.yaml"),        // 程序所在目录
+		filepath.Join(global.BasePath, "config/config.yaml"), // 程序所在目录的config子目录
 	}
 
-	// 把读取到的配置信息反序列化到Conf 变量中
-	if err := viper.Unmarshal(&global.Conf); err != nil {
-		log.Fatal("viper.Unmarshal failed, err:" + err.Error())
+	// 如果环境变量中指定了配置文件，将其添加为最高优先级
+	if configFile := os.Getenv("CONFIG_FILE"); configFile != "" {
+		searchPaths = append([]string{configFile}, searchPaths...)
+	}
+
+	// 遍历所有可能的配置文件路径
+	configLoaded := false
+	for _, configPath := range searchPaths {
+		v.SetConfigFile(configPath)
+		if err = v.ReadInConfig(); err == nil {
+			log.Printf("使用配置文件: %s\n", configPath)
+			configLoaded = true
+			break
+		}
+	}
+
+	if !configLoaded {
+		log.Printf("警告: 无法找到配置文件，将使用默认配置\n")
+		return
+	}
+
+	// 把读取到的配置信息反序列化到Conf变量中
+	if err := v.Unmarshal(&global.Conf); err != nil {
+		log.Printf("警告: 配置文件解析失败: %v\n", err)
+		return
 	}
 
 	// 监控配置文件变化
-	viper.WatchConfig()
-	viper.OnConfigChange(func(in fsnotify.Event) {
-		fmt.Println("配置文件修改了")
-		if err := viper.Unmarshal(&global.Conf); err != nil {
-			fmt.Printf("viper.Unmarshal failed, err:%v\n", err)
+	v.WatchConfig()
+	v.OnConfigChange(func(in fsnotify.Event) {
+		log.Println("配置文件已更新")
+		if err := v.Unmarshal(&global.Conf); err != nil {
+			log.Printf("警告: 更新配置失败: %v\n", err)
 		}
 	})
 }
