@@ -21,7 +21,7 @@ func setupFrontendRoutes(r *gin.Engine) {
 		// 小程序登录
 		frontend.POST("/user/login", loginHandler.MnpLogin)
 		// 解析视频
-		frontend.GET("/parse/url", middleware.JWTAuth(), parseHandler.Handle)
+		frontend.GET("/parse/url", parseHandler.Handle)
 		// 解析记录
 		frontend.GET("/parse/lists", middleware.JWTAuth(), parseHandler.Lists)
 	}
