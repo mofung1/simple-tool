@@ -68,6 +68,8 @@ func Init() {
 			"1. 环境变量 CONFIG_FILE 指定的路径\n" +
 			"2. server/config/config.yaml（在当前目录或其父级目录中）\n" +
 			"3. ../config/config.yaml（相对于可执行文件目录）")
+	} else {
+		log.Println("使用配置文件-" + configFile)
 	}
 
 	v.SetConfigFile(configFile)
