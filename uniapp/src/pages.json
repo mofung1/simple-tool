@@ -1,10 +1,10 @@
 {
   "globalStyle": {
     "navigationStyle": "default",
-    "navigationBarTitleText": "消印乐",
-    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "unibest",
+    "navigationBarBackgroundColor": "#f8f8f8",
     "navigationBarTextStyle": "black",
-    "backgroundColor": "#F5F7FA"
+    "backgroundColor": "#FFFFFF"
   },
   "easycom": {
     "autoscan": true,
@@ -93,7 +93,8 @@
       "style": {
         "navigationBarTitleText": "",
         "navigationBarTextStyle": "white",
-        "navigationBarBackgroundColor": "#3B82F6"
+        "navigationBarBackgroundColor": "#3B82F6",
+        "navigationStyle": "custom"
       }
     }
   ],

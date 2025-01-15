@@ -4,54 +4,67 @@
     navigationBarTitleText: '',
     navigationBarTextStyle: 'white',
     navigationBarBackgroundColor: '#3B82F6',
+    navigationStyle: 'custom',
   },
 }
 </route>
 
 <template>
-  <view class="min-h-screen bg-gray-100">
+  <view class="min-h-screen bg-gray-50">
     <!-- 用户信息卡片 -->
-    <view
-      class="bg-gradient-to-br from-blue-500 to-blue-600 p-6 relative overflow-hidden login-card"
-    >
-      <!-- 背景装饰 -->
-      <view class="absolute -right-12 -top-12 w-48 h-48 rounded-full bg-blue-400/20"></view>
-      <view class="absolute -left-12 -bottom-12 w-36 h-36 rounded-full bg-blue-400/10"></view>
+    <view class="bg-gradient-to-br from-blue-500 to-blue-600 relative overflow-hidden">
+      <!-- 顶部安全区域 -->
+      <view class="h-12" :style="{ paddingTop: safeAreaInsets?.top + 'px' }"></view>
 
-      <view v-if="userStore.isLogined" class="flex items-center space-x-4 relative">
-        <view class="relative">
-          <image
-            :src="userStore.userInfo.avatar"
-            class="w-20 h-20 bg-white rounded-full border-4 border-white/30 shadow-lg"
-          />
-          <view class="absolute bottom-0 right-0 w-6 h-6 rounded-full border-2 border-white"></view>
-        </view>
-        <view class="flex-1">
-          <text class="text-white text-xl font-semibold block mb-1">
-            {{ userStore.userInfo.nickname }}
-          </text>
-          <text class="text-blue-100 text-sm opacity-80">ID: {{ userStore.userInfo.sn }}</text>
-        </view>
-        <!-- <view class="i-carbon-chevron-right text-white/70 text-xl"></view> -->
-      </view>
+      <!-- 内容区域 -->
+      <view class="px-8 pb-8 pt-4">
+        <!-- 背景装饰 -->
+        <view
+          class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-blue-400/20 animate-pulse"
+        ></view>
+        <view
+          class="absolute -left-16 -bottom-16 w-48 h-48 rounded-full bg-blue-400/10 animate-pulse-slow"
+        ></view>
 
-      <view
-        v-else
-        :plain="true"
-        class="flex items-center space-x-4 w-full border-none p-0 relative !m-0 !after:border-none"
-        style="background-color: transparent !important"
-      >
-        <view class="flex-1">
-          <view class="flex flex-col items-start">
-            <button
-              class="flex items-center space-x-2 mt-10 bg-white hover:bg-white/30 px-6 py-2 rounded-lg text-white text-sm transition-colors"
-              :class="{ 'opacity-60': loading }"
-              :disabled="loading"
-              @tap="handleGetUserProfile"
-            >
-              <text class="text-blue">{{ loading ? '登录中...' : '点击登录' }}</text>
-              <view class="i-carbon-login text-blue"></view>
-            </button>
+        <view v-if="userStore.isLogined" class="flex items-center space-x-5 relative">
+          <view class="relative group">
+            <image
+              :src="userStore.userInfo.avatar"
+              class="w-20 h-20 bg-white rounded-full border-4 border-white/40 shadow-lg transition-transform hover:scale-105"
+            />
+            <view
+              class="absolute bottom-0 right-0 w-5 h-5 rounded-full border-2 border-white bg-green-400"
+            ></view>
+          </view>
+          <view class="flex-1">
+            <text class="text-white text-xl font-bold block mb-2">
+              {{ userStore.userInfo.nickname }}
+            </text>
+            <view class="flex items-center space-x-2">
+              <text class="text-blue-50 text-sm opacity-90">ID: {{ userStore.userInfo.sn }}</text>
+              <view class="w-1.5 h-1.5 rounded-full bg-blue-50 opacity-50"></view>
+              <text class="text-blue-50 text-sm opacity-90">已登录</text>
+            </view>
+          </view>
+        </view>
+
+        <view v-else class="flex items-center space-x-4 w-full relative py-4">
+          <view class="flex-1">
+            <view class="flex flex-col items-start">
+              <button
+                class="group flex items-center space-x-3 mt-4 bg-white/10 backdrop-blur-sm hover:bg-white/20 px-8 py-3 rounded-2xl text-white text-base transition-all duration-300 border border-white/20"
+                :class="{ 'opacity-60': loading }"
+                :disabled="loading"
+                @tap="handleGetUserProfile"
+              >
+                <text class="text-white group-hover:translate-x-1 transition-transform">
+                  {{ loading ? '登录中...' : '立即登录' }}
+                </text>
+                <view
+                  class="i-carbon-login text-white text-lg group-hover:translate-x-1 transition-transform"
+                ></view>
+              </button>
+            </view>
           </view>
         </view>
       </view>
@@ -60,35 +73,23 @@
     <!-- 功能区域 -->
     <view class="p-4 space-y-4">
       <!-- 其他功能列表 -->
-      <view class="bg-white rounded-xl shadow-sm overflow-hidden">
-        <view class="divide-y divide-gray-100">
-          <!-- <view class="flex items-center justify-between p-4" @tap="handleNavigation('history')">
+      <view class="bg-white rounded-2xl shadow-sm overflow-hidden">
+        <view class="divide-y divide-gray-50">
+          <view 
+            v-for="(item, index) in [
+              { icon: 'i-carbon-help', color: 'text-purple-500', text: '使用帮助', type: 'help' },
+              { icon: 'i-carbon-information', color: 'text-green-500', text: '关于我们', type: 'about' },
+              { icon: 'i-carbon-share', color: 'text-orange-500', text: '分享应用', type: 'share' }
+            ]"
+            :key="index"
+            class="group flex items-center justify-between p-4 hover:bg-gray-50 transition-colors cursor-pointer"
+            @tap="item.type === 'share' ? handleShare() : handleNavigation(item.type)"
+          >
             <view class="flex items-center space-x-3">
-              <view class="i-carbon-document text-blue-500 text-xl"></view>
-              <text class="text-gray-700">历史记录</text>
+              <view :class="[item.icon, item.color, 'text-xl']"></view>
+              <text class="text-gray-700">{{ item.text }}</text>
             </view>
-            <view class="i-carbon-chevron-right text-gray-400"></view>
-          </view> -->
-          <view class="flex items-center justify-between p-4" @tap="handleNavigation('help')">
-            <view class="flex items-center space-x-3">
-              <view class="i-carbon-help text-purple-500 text-xl"></view>
-              <text class="text-gray-700">使用帮助</text>
-            </view>
-            <view class="i-carbon-chevron-right text-gray-400"></view>
-          </view>
-          <view class="flex items-center justify-between p-4" @tap="handleNavigation('about')">
-            <view class="flex items-center space-x-3">
-              <view class="i-carbon-information text-green-500 text-xl"></view>
-              <text class="text-gray-700">关于我们</text>
-            </view>
-            <view class="i-carbon-chevron-right text-gray-400"></view>
-          </view>
-          <view class="flex items-center justify-between p-4" @tap="handleShare">
-            <view class="flex items-center space-x-3">
-              <view class="i-carbon-share text-orange-500 text-xl"></view>
-              <text class="text-gray-700">分享应用</text>
-            </view>
-            <view class="i-carbon-chevron-right text-gray-400"></view>
+            <view class="i-carbon-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></view>
           </view>
         </view>
       </view>
@@ -288,8 +289,5 @@ onMounted(() => {
 }
 :deep(.wd-button) {
   border-radius: 0.5rem;
-}
-.login-card {
-  height: 100px;
 }
 </style>
