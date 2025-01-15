@@ -247,20 +247,23 @@ const handleShare = () => {
 }
 
 // 小程序分享消息
-const onShareAppMessage = () => {
+const onShareAppMessage = (options: Page.ShareAppMessageOption): Page.CustomShareContent => {
+  console.log('分享给好友触发:', options)
   return {
     title: shareConfig.title,
-    path: shareConfig.path,
-    imageUrl: shareConfig.imageUrl,
+    desc: shareConfig.summary,
+    path: '/pages/index/index',
+    imageUrl: shareConfig.imageUrl, // 可选：分享图片
   }
 }
 
 // 小程序分享到朋友圈
-const onShareTimeline = () => {
+const onShareTimeline = (): Page.ShareTimelineContent => {
+  console.log('分享到朋友圈触发')
   return {
     title: shareConfig.title,
-    path: shareConfig.path,
-    imageUrl: shareConfig.imageUrl,
+    query: 'source=timeline',
+    imageUrl: shareConfig.imageUrl, // 可选：分享图片
   }
 }
 
