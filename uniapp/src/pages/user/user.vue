@@ -52,16 +52,16 @@
           <view class="flex-1">
             <view class="flex flex-col items-start">
               <button
-                class="group flex items-center space-x-3 mt-4 bg-white/10 backdrop-blur-sm hover:bg-white/20 px-8 py-3 rounded-2xl text-white text-base transition-all duration-300 border border-white/20"
+                class="group flex items-center space-x-3 mt-4 bg-white hover:bg-white/90 px-8 py-3 rounded-2xl text-base transition-all duration-300 shadow-lg"
                 :class="{ 'opacity-60': loading }"
                 :disabled="loading"
                 @tap="handleGetUserProfile"
               >
-                <text class="text-white group-hover:translate-x-1 transition-transform">
+                <text class="text-blue-500 font-medium group-hover:translate-x-1 transition-transform">
                   {{ loading ? '登录中...' : '立即登录' }}
                 </text>
                 <view
-                  class="i-carbon-login text-white text-lg group-hover:translate-x-1 transition-transform"
+                  class="i-carbon-login text-blue-500 text-lg group-hover:translate-x-1 transition-transform"
                 ></view>
               </button>
             </view>
