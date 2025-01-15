@@ -10,64 +10,66 @@
 </route>
 
 <template>
-  <view class="min-h-screen bg-gray-100">
+  <view class="min-h-screen bg-gray-50">
     <!-- 顶部通知栏 -->
-    <view class="bg-amber-50 border-l-4 border-amber-400 p-4 mb-6">
+    <view class="bg-amber-50/80 backdrop-blur-sm p-4 mb-4 sticky top-0 z-50">
       <wd-notice-bar
         text="本工具仅供学习交流使用，请勿用于商业用途。"
         prefix="warn-bold"
-        custom-class="text-amber-700"
+        custom-class="text-amber-700 !bg-transparent"
       />
     </view>
 
     <!-- 主要内容区域 -->
-    <view class="px-4 space-y-6 pb-8">
+    <view class="px-4 space-y-4 pb-8">
       <!-- 功能介绍卡片 -->
-      <view class="bg-white rounded-xl p-6 shadow-sm">
+      <view class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
         <view class="flex items-center space-x-3 mb-4">
-          <view class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
-            <view class="i-carbon-video text-blue-500 text-xl"></view>
+          <view
+            class="w-12 h-12 bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-xl flex items-center justify-center"
+          >
+            <view class="i-carbon-video text-blue-500 text-2xl"></view>
           </view>
-          <text class="text-lg font-medium">短视频去水印</text>
+          <text class="text-lg font-semibold text-gray-900">短视频去水印</text>
         </view>
 
-        <text class="text-gray-600 text-sm mb-4 block">
-          支持抖音、快手、小红书等平台的视频无水印下载
+        <text class="text-gray-600 text-sm mb-6 block leading-relaxed">
+          支持抖音、快手、小红书等平台的视频无水印下载，一键解析快速便捷。
         </text>
 
-        <view class="space-y-2 text-sm text-gray-600">
-          <view class="flex items-center space-x-2">
-            <view class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center">
+        <!-- <view class="space-y-3 text-sm text-gray-600">
+          <view class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+            <view class="w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
               <text class="text-blue-500 font-medium">1</text>
             </view>
             <text>打开视频平台，点击分享按钮</text>
           </view>
-          <view class="flex items-center space-x-2">
-            <view class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center">
+          <view class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+            <view class="w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
               <text class="text-blue-500 font-medium">2</text>
             </view>
             <text>复制分享链接到剪切板</text>
           </view>
-          <view class="flex items-center space-x-2">
-            <view class="w-5 h-5 bg-blue-50 rounded-full flex items-center justify-center">
+          <view class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
+            <view class="w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
               <text class="text-blue-500 font-medium">3</text>
             </view>
             <text>点击粘贴按钮，开始解析</text>
           </view>
-        </view>
+        </view> -->
       </view>
 
       <!-- 输入框卡片 -->
-      <view class="bg-white rounded-xl p-6 shadow-sm">
+      <view class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
         <view class="mb-4">
           <view
-            class="flex items-center justify-between bg-blue-50 rounded-lg p-3 mb-2"
-            hover-class="bg-blue-100"
+            class="flex items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-xl p-4 mb-3"
+            hover-class="opacity-90"
             @click="pasteFromClipboardDirect"
           >
-            <view class="flex items-center space-x-2">
-              <text class="i-carbon-paste text-blue-500"></text>
-              <text class="text-blue-600 text-sm">点击从剪切板粘贴</text>
+            <view class="flex items-center space-x-3">
+              <text class="i-carbon-paste text-blue-500 text-xl"></text>
+              <text class="text-blue-600 font-medium">点击从剪切板粘贴</text>
             </view>
             <text class="i-carbon-chevron-right text-blue-400"></text>
           </view>
@@ -77,7 +79,7 @@
             placeholder="在此输入或粘贴分享链接"
             clearable
             prop="content"
-            custom-class="bg-gray-50 rounded-lg"
+            custom-class="bg-gray-50/50 rounded-xl border-gray-200"
           />
         </view>
 
@@ -85,14 +87,14 @@
           <wd-button
             block
             @click="clearContent"
-            custom-class="!bg-gray-100 !text-gray-700 !border-0 flex-1"
+            custom-class="!bg-gray-100 !text-gray-700 !border-0 flex-1 !rounded-xl !h-11"
           >
             清空内容
           </wd-button>
           <wd-button
             block
             @click="pasteFromClipboard()"
-            custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0 flex-1"
+            custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0 flex-1 !rounded-xl !h-11 !font-medium"
           >
             一键去水印
           </wd-button>
