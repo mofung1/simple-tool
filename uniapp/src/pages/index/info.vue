@@ -34,12 +34,17 @@
       </view>
 
       <!-- 视频播放器 -->
-      <view class="relative rounded-lg overflow-hidden bg-black aspect-video mb-6">
+      <view class="relative rounded-lg overflow-hidden bg-black mb-6" style="height: 420rpx">
         <video
           :src="data?.video_url"
           :poster="data?.cover_url"
-          class="w-full h-full object-contain"
+          class="w-full h-full"
+          style="width: 100%; height: 100%"
           controls
+          show-center-play-btn
+          enable-play-gesture
+          show-progress
+          object-fit="contain"
         />
       </view>
 
@@ -66,6 +71,7 @@ onLoad((options) => {
   data.value = JSON.parse(decodeURIComponent(options.data))
   console.log(data.value)
 })
+
 const downloadVideo = async () => {
   try {
     // 显示加载提示
