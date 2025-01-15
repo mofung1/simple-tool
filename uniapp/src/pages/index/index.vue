@@ -193,6 +193,41 @@ const pasteFromClipboard = async () => {
     })
   }
 }
+
+// 分享配置
+const shareConfig = {
+  title: '消印乐-去水印',
+  summary: '一个简单好用的去水印工具',
+  imageUrl: '/static/logo.png',
+  path: '/pages/index/index',
+}
+
+// 小程序分享消息
+const onShareAppMessage = (options: Page.ShareAppMessageOption): Page.CustomShareContent => {
+  console.log('分享给好友触发:', options)
+  return {
+    title: shareConfig.title,
+    desc: shareConfig.summary,
+    path: '/pages/index/index',
+    imageUrl: shareConfig.imageUrl, // 可选：分享图片
+  }
+}
+
+// 小程序分享到朋友圈
+const onShareTimeline = (): Page.ShareTimelineContent => {
+  console.log('分享到朋友圈触发')
+  return {
+    title: shareConfig.title,
+    query: 'source=timeline',
+    imageUrl: shareConfig.imageUrl, // 可选：分享图片
+  }
+}
+
+// 暴露页面事件处理函数
+defineExpose({
+  onShareAppMessage,
+  onShareTimeline,
+})
 </script>
 
 <style lang="scss" scoped>

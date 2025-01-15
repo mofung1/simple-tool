@@ -182,8 +182,8 @@ const handleNavigation = (type: string) => {
 
 // 分享配置
 const shareConfig = {
-  title: '简单工具',
-  summary: '一个简单好用的视频下载工具',
+  title: '消印乐-去水印',
+  summary: '一个简单好用的去水印工具',
   imageUrl: '/static/logo.png',
   path: '/pages/index/index',
 }
