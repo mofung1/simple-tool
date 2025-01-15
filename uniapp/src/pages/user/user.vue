@@ -17,7 +17,7 @@
       <view class="h-12" :style="{ paddingTop: safeAreaInsets?.top + 'px' }"></view>
 
       <!-- 内容区域 -->
-      <view class="px-8 pb-8 pt-4">
+      <view class="px-8 pb-12 pt-4">
         <!-- 背景装饰 -->
         <view
           class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-blue-400/20 animate-pulse"
@@ -57,7 +57,9 @@
                 :disabled="loading"
                 @tap="handleGetUserProfile"
               >
-                <text class="text-blue-500 font-medium group-hover:translate-x-1 transition-transform">
+                <text
+                  class="text-blue-500 font-medium group-hover:translate-x-1 transition-transform"
+                >
                   {{ loading ? '登录中...' : '立即登录' }}
                 </text>
                 <view
@@ -75,11 +77,16 @@
       <!-- 其他功能列表 -->
       <view class="bg-white rounded-2xl shadow-sm overflow-hidden">
         <view class="divide-y divide-gray-50">
-          <view 
+          <view
             v-for="(item, index) in [
               { icon: 'i-carbon-help', color: 'text-purple-500', text: '使用帮助', type: 'help' },
-              { icon: 'i-carbon-information', color: 'text-green-500', text: '关于我们', type: 'about' },
-              { icon: 'i-carbon-share', color: 'text-orange-500', text: '分享应用', type: 'share' }
+              {
+                icon: 'i-carbon-information',
+                color: 'text-green-500',
+                text: '关于我们',
+                type: 'about',
+              },
+              { icon: 'i-carbon-share', color: 'text-orange-500', text: '分享应用', type: 'share' },
             ]"
             :key="index"
             class="group flex items-center justify-between p-4 hover:bg-gray-50 transition-colors cursor-pointer"
@@ -89,7 +96,9 @@
               <view :class="[item.icon, item.color, 'text-xl']"></view>
               <text class="text-gray-700">{{ item.text }}</text>
             </view>
-            <view class="i-carbon-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"></view>
+            <view
+              class="i-carbon-chevron-right text-gray-400 group-hover:translate-x-1 transition-transform"
+            ></view>
           </view>
         </view>
       </view>
