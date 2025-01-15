@@ -23,7 +23,7 @@
     <!-- 主要内容区域 -->
     <view class="px-4 space-y-4 pb-8">
       <!-- 功能介绍卡片 -->
-      <view class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+      <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
         <view class="flex items-center space-x-3 mb-4">
           <view
             class="w-12 h-12 bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-xl flex items-center justify-center"
@@ -33,8 +33,8 @@
           <text class="text-lg font-semibold text-gray-900">短视频去水印</text>
         </view>
 
-        <text class="text-gray-600 text-sm mb-6 block leading-relaxed">
-          支持抖音、快手、小红书等平台的视频无水印下载，一键解析快速便捷。
+        <text class="text-gray-600 text-sm mb-2 block leading-relaxed">
+          抖音、快手、小红书等平台的视频无水印下载，一键解析快速便捷。
         </text>
 
         <!-- <view class="space-y-3 text-sm text-gray-600">
