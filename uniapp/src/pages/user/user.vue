@@ -43,7 +43,6 @@
             <view class="flex items-center space-x-2">
               <text class="text-blue-50 text-sm opacity-90">ID: {{ userStore.userInfo.sn }}</text>
               <view class="w-1.5 h-1.5 rounded-full bg-blue-50 opacity-50"></view>
-              <text class="text-blue-50 text-sm opacity-90">已登录</text>
             </view>
           </view>
         </view>

@@ -12,11 +12,11 @@
 <template>
   <view class="min-h-screen bg-gray-50">
     <!-- 顶部通知栏 -->
-    <view class="bg-amber-50/80 backdrop-blur-sm p-4 mb-4 sticky top-0 z-50">
+    <view class="bg-amber-50/80 backdrop-blur-sm p-2 mb-2 sticky top-0 z-50">
       <wd-notice-bar
         text="本工具仅供学习交流使用，请勿用于商业用途。"
         prefix="warn-bold"
-        custom-class="text-amber-700 !bg-transparent"
+        custom-class="text-amber-700 !bg-transparent text-lg"
       />
     </view>
 
