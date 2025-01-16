@@ -10,9 +10,14 @@
 </route>
 
 <template>
-  <view class="min-h-screen bg-gray-50">
-    <!-- 工具列表 -->
-    <view class="px-4 py-4">
+  <view class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
+    <view class="p-4 pb-safe">
+      <!-- 页面标题 -->
+      <view class="mb-6">
+        <text class="text-2xl font-bold text-gray-800">生活优惠</text>
+        <text class="mt-1 text-sm text-gray-500 block">精选优质服务，助您生活更便捷</text>
+      </view>
+
       <!-- 工具卡片网格 -->
       <view class="grid grid-cols-2 gap-4">
         <!-- 美团外卖 -->
@@ -20,16 +25,25 @@
           url="plugin://cps/shop?pub_id=204936&type=meituan&sid=plugin"
           hover-class="opacity-90"
         >
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-yellow-500/10 to-yellow-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-restaurant text-yellow-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-restaurant text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-yellow-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-yellow-600 font-medium">立减优惠</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">美团外卖</text>
-                <text class="text-xs text-gray-500 block">外卖红包天天领</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">美团外卖</text>
+                <text class="text-xs text-gray-500">外卖红包天天领</text>
               </view>
             </view>
           </view>
@@ -40,16 +54,25 @@
           url="plugin://cps/shop?pub_id=204936&type=ele&sid=plugin"
           hover-class="opacity-90"
         >
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-delivery text-blue-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-delivery text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-blue-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-blue-600 font-medium">省30元</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">饿了么外卖</text>
-                <text class="text-xs text-gray-500 block">最高省30元</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">饿了么外卖</text>
+                <text class="text-xs text-gray-500">最高省30元</text>
               </view>
             </view>
           </view>
@@ -60,16 +83,25 @@
           url="plugin://cps/shop?pub_id=204936&type=didi&sid=plugin"
           hover-class="opacity-90"
         >
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-orange-500/10 to-orange-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-car text-orange-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-car text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-orange-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-orange-600 font-medium">特惠券</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">打车出行</text>
-                <text class="text-xs text-gray-500 block">出行特惠券</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">打车出行</text>
+                <text class="text-xs text-gray-500">出行特惠券</text>
               </view>
             </view>
           </view>
@@ -80,16 +112,25 @@
           url="plugin://cps/shop?pub_id=204936&type=hotel&sid=plugin"
           hover-class="opacity-90"
         >
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-purple-500/10 to-purple-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-hotel text-purple-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-hotel text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-purple-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-purple-600 font-medium">特惠住宿</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">酒店住宿</text>
-                <text class="text-xs text-gray-500 block">特惠酒店优选</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">酒店住宿</text>
+                <text class="text-xs text-gray-500">特惠酒店优选</text>
               </view>
             </view>
           </view>
@@ -100,16 +141,25 @@
           url="plugin://cps/dianshang?pub_id=204936&source=jd,taobao,douyin,pdd,vip&coupon=0&shareRate=0.9"
           hover-class="opacity-90"
         >
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-pink-500/10 to-pink-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-shopping-bag text-pink-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-shopping-cart text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-pink-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-pink-600 font-medium">多平台</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">电商优惠</text>
-                <text class="text-xs text-gray-500 block">多平台好价汇总</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">电商优惠</text>
+                <text class="text-xs text-gray-500">多平台好价汇总</text>
               </view>
             </view>
           </view>
@@ -117,16 +167,25 @@
 
         <!-- 京东精选 -->
         <navigator url="plugin://cps/jingdong?pub_id=204936&eliteId=10" hover-class="opacity-90">
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-red-500/10 to-red-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-shopping-cart text-red-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-shopping-cart text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-red-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-red-600 font-medium">品质精选</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">京东精选</text>
-                <text class="text-xs text-gray-500 block">品质好物推荐</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">京东精选</text>
+                <text class="text-xs text-gray-500">品质好物推荐</text>
               </view>
             </view>
           </view>
@@ -134,16 +193,25 @@
 
         <!-- 抖音团购 -->
         <navigator url="plugin://cps/douyin?pub_id=204936" hover-class="opacity-90">
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-teal-500/10 to-teal-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-store text-teal-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-store text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-teal-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-teal-600 font-medium">本地好价</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">抖音团购</text>
-                <text class="text-xs text-gray-500 block">本地生活好价</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">抖音团购</text>
+                <text class="text-xs text-gray-500">本地生活好价</text>
               </view>
             </view>
           </view>
@@ -151,16 +219,25 @@
 
         <!-- 抖音商城 -->
         <navigator url="plugin://cps/tiktok?pub_id=204936" hover-class="opacity-90">
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-indigo-500/10 to-indigo-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-shopping-bag text-indigo-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-shopping-bag text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-indigo-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-indigo-600 font-medium">好物精选</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">抖音商城</text>
-                <text class="text-xs text-gray-500 block">抖音好物精选</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">抖音商城</text>
+                <text class="text-xs text-gray-500">抖音好物精选</text>
               </view>
             </view>
           </view>
@@ -168,16 +245,25 @@
 
         <!-- 美团券包 -->
         <navigator url="plugin://cps/coupon?pub_id=204936" hover-class="opacity-90">
-          <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-            <view class="flex flex-col items-center space-y-2">
-              <view
-                class="w-12 h-12 bg-gradient-to-br from-amber-500/10 to-amber-600/10 rounded-xl flex items-center justify-center"
-              >
-                <view class="i-carbon-ticket text-amber-500 text-2xl"></view>
+          <view
+            class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+          >
+            <view class="flex flex-col space-y-3">
+              <view class="flex items-start justify-between">
+                <view
+                  class="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                >
+                  <view class="i-carbon-ticket text-white text-2xl"></view>
+                </view>
+                <view
+                  class="px-2.5 py-1 bg-amber-50 rounded-full transform transition-transform group-hover:scale-105"
+                >
+                  <text class="text-xs text-amber-600 font-medium">超值券包</text>
+                </view>
               </view>
-              <view class="text-center">
-                <text class="text-base font-medium text-gray-900">美团券包</text>
-                <text class="text-xs text-gray-500 block">超值券包领取</text>
+              <view class="transform transition-all group-hover:translate-x-1">
+                <text class="text-base font-medium text-gray-900 block mb-1">美团券包</text>
+                <text class="text-xs text-gray-500">超值券包领取</text>
               </view>
             </view>
           </view>
@@ -185,11 +271,46 @@
       </view>
 
       <!-- 底部提示 -->
-      <view class="mt-8 text-center text-sm text-gray-500">更多优惠持续添加中...</view>
+      <view class="mt-8 text-center">
+        <text class="text-sm text-gray-400">更多优质服务持续上线中</text>
+      </view>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
-// 这里可以添加需要的逻辑代码
+// 分享配置
+const shareConfig = {
+  title: '消印乐-去水印',
+  summary: '一个简单好用的去水印工具',
+  imageUrl: '/static/logo.png',
+  path: '/pages/tools/tools',
+}
+
+// 小程序分享消息
+const onShareAppMessage = (options: Page.ShareAppMessageOption): Page.CustomShareContent => {
+  console.log('分享给好友触发:', options)
+  return {
+    title: shareConfig.title,
+    desc: shareConfig.summary,
+    path: '/pages/tools/tools',
+    imageUrl: shareConfig.imageUrl, // 可选：分享图片
+  }
+}
+
+// 小程序分享到朋友圈
+const onShareTimeline = (): Page.ShareTimelineContent => {
+  console.log('分享到朋友圈触发')
+  return {
+    title: shareConfig.title,
+    query: 'source=timeline',
+    imageUrl: shareConfig.imageUrl, // 可选：分享图片
+  }
+}
+
+// 暴露页面事件处理函数
+defineExpose({
+  onShareAppMessage,
+  onShareTimeline,
+})
 </script>
