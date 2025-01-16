@@ -121,6 +121,11 @@ export default defineManifestConfig({
         provider: 'wx5c787b48e6a02a51',
       },
     },
+    permission: {
+      'scope.userLocation': {
+        desc: '你的位置信息将用于小程序位置接口的效果展示',
+      },
+    },
     // __usePrivacyCheck__: true,
   },
   'mp-alipay': {
