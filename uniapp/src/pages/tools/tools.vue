@@ -10,8 +10,10 @@
 </route>
 
 <template>
-  <view class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50">
-    <view class="p-4 pb-safe">
+  <view class="page-container">
+    <view
+      class="p-4 pb-safe"
+    >
       <!-- 页面标题 -->
       <view class="mb-6">
         <text class="text-2xl font-bold text-gray-800">生活优惠</text>
@@ -31,7 +33,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-restaurant text-white text-2xl"></view>
                 </view>
@@ -60,7 +62,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-delivery text-white text-2xl"></view>
                 </view>
@@ -89,7 +91,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-car text-white text-2xl"></view>
                 </view>
@@ -118,7 +120,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-purple-400 to-fuchsia-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-hotel text-white text-2xl"></view>
                 </view>
@@ -147,7 +149,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-pink-400 to-rose-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-shopping-cart text-white text-2xl"></view>
                 </view>
@@ -173,7 +175,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-red-400 to-pink-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-shopping-cart text-white text-2xl"></view>
                 </view>
@@ -199,7 +201,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-teal-400 to-emerald-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-store text-white text-2xl"></view>
                 </view>
@@ -225,7 +227,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-indigo-400 to-violet-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-shopping-bag text-white text-2xl"></view>
                 </view>
@@ -251,7 +253,7 @@
             <view class="flex flex-col space-y-3">
               <view class="flex items-start justify-between">
                 <view
-                  class="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-600 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                  class="w-14 h-14 bg-gradient-to-br from-amber-400 to-yellow-500 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
                 >
                   <view class="i-carbon-ticket text-white text-2xl"></view>
                 </view>
@@ -277,6 +279,17 @@
     </view>
   </view>
 </template>
+
+<style>
+.page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, 
+    rgba(239, 246, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.95) 45%,
+    rgba(254, 242, 242, 0.8) 100%
+  );
+}
+</style>
 
 <script lang="ts" setup>
 // 分享配置
