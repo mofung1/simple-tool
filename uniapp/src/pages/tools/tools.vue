@@ -11,9 +11,7 @@
 
 <template>
   <view class="page-container">
-    <view
-      class="p-4 pb-safe"
-    >
+    <view class="p-4 pb-safe">
       <!-- 页面标题 -->
       <view class="mb-6">
         <text class="text-2xl font-bold text-gray-800">生活优惠</text>
@@ -283,7 +281,8 @@
 <style>
 .page-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, 
+  background: linear-gradient(
+    135deg,
     rgba(239, 246, 255, 0.9) 0%,
     rgba(255, 255, 255, 0.95) 45%,
     rgba(254, 242, 242, 0.8) 100%
