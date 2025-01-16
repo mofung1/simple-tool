@@ -87,7 +87,13 @@
     "setting": {
       "urlCheck": false
     },
-    "usingComponents": true
+    "usingComponents": true,
+    "plugins": {
+      "cps": {
+        "version": "1.2.3",
+        "provider": "wx5c787b48e6a02a51"
+      }
+    }
   },
   "mp-alipay": {
     "usingComponents": true,

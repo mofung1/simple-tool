@@ -115,6 +115,12 @@ export default defineManifestConfig({
       urlCheck: false,
     },
     usingComponents: true,
+    plugins: {
+      cps: {
+        version: '1.2.3',
+        provider: 'wx5c787b48e6a02a51',
+      },
+    },
     // __usePrivacyCheck__: true,
   },
   'mp-alipay': {
