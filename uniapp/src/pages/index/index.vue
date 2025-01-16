@@ -36,27 +36,6 @@
         <text class="text-gray-600 text-sm mb-2 block leading-relaxed">
           抖音、快手、小红书等平台的视频无水印下载，一键解析快速便捷。
         </text>
-
-        <!-- <view class="space-y-3 text-sm text-gray-600">
-          <view class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
-            <view class="w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
-              <text class="text-blue-500 font-medium">1</text>
-            </view>
-            <text>打开视频平台，点击分享按钮</text>
-          </view>
-          <view class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
-            <view class="w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
-              <text class="text-blue-500 font-medium">2</text>
-            </view>
-            <text>复制分享链接到剪切板</text>
-          </view>
-          <view class="flex items-center space-x-3 p-2 rounded-lg hover:bg-gray-50 transition-colors">
-            <view class="w-6 h-6 bg-blue-50 rounded-full flex items-center justify-center shrink-0">
-              <text class="text-blue-500 font-medium">3</text>
-            </view>
-            <text>点击粘贴按钮，开始解析</text>
-          </view>
-        </view> -->
       </view>
 
       <!-- 输入框卡片 -->

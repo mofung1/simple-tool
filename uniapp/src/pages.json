@@ -30,6 +30,12 @@
         "text": "首页"
       },
       {
+        "iconPath": "static/tabbar/tools.png",
+        "selectedIconPath": "static/tabbar/toolsHL.png",
+        "pagePath": "pages/tools/tools",
+        "text": "更多"
+      },
+      {
         "iconPath": "static/tabbar/personal.png",
         "selectedIconPath": "static/tabbar/personalHL.png",
         "pagePath": "pages/user/user",
@@ -83,6 +89,16 @@
       "style": {
         "navigationStyle": "default",
         "navigationBarTitleText": "解析成功",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#3B82F6"
+      }
+    },
+    {
+      "path": "pages/tools/tools",
+      "type": "page",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "更多",
         "navigationBarTextStyle": "white",
         "navigationBarBackgroundColor": "#3B82F6"
       }

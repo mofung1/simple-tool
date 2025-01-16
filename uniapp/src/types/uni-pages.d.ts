@@ -9,12 +9,13 @@ interface NavigateToOptions {
        "/pages/help/help" |
        "/pages/history/history" |
        "/pages/index/info" |
+       "/pages/tools/tools" |
        "/pages/user/user";
 }
 interface RedirectToOptions extends NavigateToOptions {}
 
 interface SwitchTabOptions {
-  url: "/pages/index/index" | "/pages/user/user"
+  url: "/pages/index/index" | "/pages/tools/tools" | "/pages/user/user"
 }
 
 type ReLaunchOptions = NavigateToOptions | SwitchTabOptions;

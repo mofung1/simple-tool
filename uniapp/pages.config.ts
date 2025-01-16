@@ -33,6 +33,12 @@ export default defineUniPages({
         text: '首页',
       },
       {
+        iconPath: 'static/tabbar/tools.png',
+        selectedIconPath: 'static/tabbar/toolsHL.png',
+        pagePath: 'pages/tools/tools',
+        text: '更多',
+      },
+      {
         iconPath: 'static/tabbar/personal.png',
         selectedIconPath: 'static/tabbar/personalHL.png',
         pagePath: 'pages/user/user',
