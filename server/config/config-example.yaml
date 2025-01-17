@@ -37,3 +37,6 @@ jwt:
 wechat:
   appid: "wxdc13e596427787ed"
   secret: "18901f1b71e6d0edff8e21c9937c192f62"
+openai:
+  api_key: "sk-222222"
+  base_url: "https://api.openai-hub.com/v1"
