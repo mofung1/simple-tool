@@ -10,7 +10,7 @@
 </route>
 
 <template>
-  <view class="page-container">
+  <view class="page-container pb-8">
     <view class="p-4 pb-safe">
       <!-- 页面标题 -->
       <view class="mb-6">
@@ -268,11 +268,6 @@
             </view>
           </view>
         </navigator>
-      </view>
-
-      <!-- 底部提示 -->
-      <view class="mt-8 text-center">
-        <text class="text-sm text-gray-400">更多优质服务持续上线中</text>
       </view>
     </view>
   </view>
