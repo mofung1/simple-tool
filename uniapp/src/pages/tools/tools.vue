@@ -10,17 +10,19 @@
 </route>
 
 <template>
-  <view class="page-container pb-8">
-    <view class="p-4 pb-safe">
+  <view class="page-container bg-gray-50 min-h-screen">
+    <view class="p-4 pb-10">
       <!-- 搜索框 -->
       <view class="mb-6">
-        <view class="flex items-center bg-gray-100 rounded-full px-4 py-2">
-          <view class="i-carbon-search text-gray-400 mr-2"></view>
+        <view
+          class="flex items-center bg-gray-100/80 backdrop-blur-sm rounded-xl px-4 py-3 border border-gray-100 transition-all duration-300 hover:border-blue-200"
+        >
+          <view class="i-carbon-search text-gray-400 mr-3 text-lg"></view>
           <input
             v-model="searchQuery"
             type="text"
             placeholder="搜索优惠服务"
-            class="flex-1 bg-transparent text-sm text-gray-800 placeholder-gray-400 outline-none"
+            class="flex-1 bg-transparent text-base text-gray-800 placeholder-gray-400 outline-none"
             @input="handleSearch"
           />
         </view>
@@ -31,26 +33,30 @@
         <template v-for="item in filteredTools" :key="item.id">
           <navigator :url="item.url" hover-class="opacity-90">
             <view
-              class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-lg hover:border-blue-100 hover:-translate-y-1"
+              class="group bg-white rounded-2xl p-4 border border-gray-100 shadow-sm transition-all duration-300 hover:shadow-md hover:border-blue-100 hover:-translate-y-1"
             >
-              <view class="flex flex-col space-y-3">
+              <view class="flex flex-col space-y-4">
                 <view class="flex items-start justify-between">
                   <view
                     :class="item.iconBg"
-                    class="w-14 h-14 rounded-xl flex items-center justify-center transform transition-transform group-hover:scale-110 group-hover:rotate-3"
+                    class="w-14 h-14 rounded-xl flex items-center justify-center transform transition-transform duration-300 group-hover:scale-105"
                   >
                     <view :class="item.icon" class="text-white text-2xl"></view>
                   </view>
                   <view
                     :class="item.tagBg"
-                    class="px-2.5 py-1 rounded-full transform transition-transform group-hover:scale-105"
+                    class="px-3 py-1.5 rounded-full transform transition-transform duration-300 group-hover:scale-105"
                   >
-                    <text :class="item.tagTextColor" class="text-xs font-medium">{{ item.tag }}</text>
+                    <text :class="item.tagTextColor" class="text-xs font-medium">
+                      {{ item.tag }}
+                    </text>
                   </view>
                 </view>
-                <view class="transform transition-all group-hover:translate-x-1">
-                  <text class="text-base font-medium text-gray-900 block mb-1">{{ item.title }}</text>
-                  <text class="text-xs text-gray-500">{{ item.description }}</text>
+                <view class="transform transition-all duration-300 group-hover:translate-x-1">
+                  <text class="text-base font-medium text-gray-800 block mb-1.5">
+                    {{ item.title }}
+                  </text>
+                  <text class="text-sm text-gray-500">{{ item.description }}</text>
                 </view>
               </view>
             </view>

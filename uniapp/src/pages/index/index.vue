@@ -12,37 +12,43 @@
 <template>
   <view class="min-h-screen bg-gray-50">
     <!-- 顶部通知栏 -->
-    <view class="bg-amber-50/80 backdrop-blur-sm p-2 mb-2 sticky top-0 z-50">
+    <view
+      class="bg-amber-50/80 backdrop-blur-sm px-4 py-2 mb-4 sticky top-0 z-50 border-b border-amber-100/50"
+    >
       <wd-notice-bar
         text="本工具仅供学习交流使用，请勿用于商业用途。"
         prefix="warn-bold"
-        custom-class="text-amber-700 !bg-transparent text-lg"
+        custom-class="text-amber-700 !bg-transparent text-base"
       />
     </view>
 
     <!-- 主要内容区域 -->
     <view class="px-4 space-y-4 pb-8">
       <!-- 功能介绍卡片 -->
-      <view class="bg-white rounded-2xl p-4 shadow-sm border border-gray-100">
-        <view class="flex items-center space-x-3 mb-4">
+      <view
+        class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-blue-100"
+      >
+        <view class="flex items-center space-x-4 mb-4">
           <view
-            class="w-12 h-12 bg-gradient-to-br from-blue-500/10 to-blue-600/10 rounded-xl flex items-center justify-center"
+            class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center transform transition-transform duration-300 hover:scale-105"
           >
-            <view class="i-carbon-video text-blue-500 text-2xl"></view>
+            <view class="i-carbon-video text-white text-2xl"></view>
           </view>
-          <text class="text-lg font-semibold text-gray-900">短视频去水印</text>
+          <text class="text-lg font-semibold text-gray-800">短视频去水印</text>
         </view>
 
-        <text class="text-gray-600 text-sm mb-2 block leading-relaxed">
+        <text class="text-gray-600 text-base leading-relaxed">
           抖音、快手、小红书等平台的视频无水印下载，一键解析快速便捷。
         </text>
       </view>
 
       <!-- 输入框卡片 -->
-      <view class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
-        <view class="mb-4">
+      <view
+        class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-blue-100"
+      >
+        <view class="mb-5">
           <view
-            class="flex items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-xl p-4 mb-3"
+            class="flex items-center justify-between bg-gradient-to-r from-blue-50 to-blue-100/50 rounded-xl p-4 mb-4 transition-all duration-300 hover:shadow-sm"
             hover-class="opacity-90"
             @click="pasteFromClipboardDirect"
           >
@@ -58,7 +64,7 @@
             placeholder="在此输入或粘贴分享链接"
             clearable
             prop="content"
-            custom-class="bg-gray-50/50 rounded-xl border-gray-200"
+            custom-class="bg-gray-50/80 rounded-xl border-gray-200 transition-all duration-300 hover:border-blue-200"
           />
         </view>
 
@@ -66,14 +72,14 @@
           <wd-button
             block
             @click="clearContent"
-            custom-class="!bg-gray-100 !text-gray-700 !border-0 flex-1 !rounded-xl !h-11"
+            custom-class="!bg-gray-100 !text-gray-700 !border-0 flex-1 !rounded-xl !h-12 !font-medium transition-all duration-300 hover:!bg-gray-200"
           >
             清空内容
           </wd-button>
           <wd-button
             block
             @click="pasteFromClipboard()"
-            custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0 flex-1 !rounded-xl !h-11 !font-medium"
+            custom-class="!bg-gradient-to-r from-blue-500 to-blue-600 !border-0 flex-1 !rounded-xl !h-12 !font-medium transition-all duration-300 hover:opacity-90"
           >
             一键去水印
           </wd-button>
