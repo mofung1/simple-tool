@@ -1,36 +1,44 @@
 // 主题颜色
-$primary-color: #3B82F6;
-$primary-gradient: linear-gradient(to right, #3B82F6, #2563EB);
-$secondary-gradient: linear-gradient(to bottom right, var(--tw-gradient-from), var(--tw-gradient-to));
+$primary-color: #3b82f6;
+$primary-gradient: linear-gradient(to right, #3b82f6, #2563eb);
+$secondary-gradient: linear-gradient(
+  to bottom right,
+  var(--tw-gradient-from),
+  var(--tw-gradient-to)
+);
 
 // 文字颜色
-$text-primary: #1F2937;
-$text-secondary: #4B5563;
-$text-tertiary: #6B7280;
+$text-primary: #1f2937;
+$text-secondary: #4b5563;
+$text-tertiary: #6b7280;
 
 // 背景颜色
-$bg-primary: #FFFFFF;
-$bg-secondary: #F3F4F6;
-$bg-tertiary: #F9FAFB;
+$bg-primary: #ffffff;
+$bg-secondary: #f3f4f6;
+$bg-tertiary: #f9fafb;
 
 // 间距
-$spacing-base: 1rem;  // 16px
-$spacing-xs: $spacing-base * 0.25;  // 4px
-$spacing-sm: $spacing-base * 0.5;   // 8px
-$spacing-md: $spacing-base;         // 16px
-$spacing-lg: $spacing-base * 1.5;   // 24px
-$spacing-xl: $spacing-base * 2;     // 32px
+$spacing-base: 1rem; // 16px
+$spacing-xs: $spacing-base * 0.25; // 4px
+$spacing-sm: $spacing-base * 0.5; // 8px
+$spacing-md: $spacing-base; // 16px
+$spacing-lg: $spacing-base * 1.5; // 24px
+$spacing-xl: $spacing-base * 2; // 32px
 
 // 圆角
-$radius-base: 0.5rem;    // 8px
-$radius-lg: 1rem;        // 16px
-$radius-xl: 1.25rem;     // 20px
-$radius-2xl: 1.5rem;     // 24px
+$radius-base: 0.5rem; // 8px
+$radius-lg: 1rem; // 16px
+$radius-xl: 1.25rem; // 20px
+$radius-2xl: 1.5rem; // 24px
 
 // 阴影
 $shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-$shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-$shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+$shadow-md:
+  0 4px 6px -1px rgba(0, 0, 0, 0.1),
+  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+$shadow-lg:
+  0 10px 15px -3px rgba(0, 0, 0, 0.1),
+  0 4px 6px -2px rgba(0, 0, 0, 0.05);
 
 // 过渡动画
 $transition-base: all 0.3s ease;
@@ -38,24 +46,24 @@ $transition-base: all 0.3s ease;
 // 卡片基础样式
 %card-base {
   background-color: $bg-primary;
-  border-radius: $radius-xl;
   border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: $radius-xl;
   box-shadow: $shadow-sm;
   transition: $transition-base;
-  
+
   &:hover {
-    transform: translateY(-2px);
     box-shadow: $shadow-md;
+    transform: translateY(-2px);
   }
 }
 
 // 按钮基础样式
 %button-base {
-  border-radius: $radius-lg;
   padding: $spacing-sm $spacing-md;
-  transition: $transition-base;
   font-weight: 500;
-  
+  border-radius: $radius-lg;
+  transition: $transition-base;
+
   &:hover {
     opacity: 0.9;
   }
@@ -63,11 +71,11 @@ $transition-base: all 0.3s ease;
 
 // 输入框基础样式
 %input-base {
-  background-color: $bg-secondary;
-  border-radius: $radius-lg;
-  border: 1px solid rgba(0, 0, 0, 0.05);
   padding: $spacing-sm;
-  
+  background-color: $bg-secondary;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: $radius-lg;
+
   &:focus {
     border-color: $primary-color;
     outline: none;
