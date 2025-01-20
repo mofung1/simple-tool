@@ -30,6 +30,12 @@
         "text": "首页"
       },
       {
+        "iconPath": "static/tabbar/chat.png",
+        "selectedIconPath": "static/tabbar/chatHL.png",
+        "pagePath": "pages/chat/chat",
+        "text": "AI聊天"
+      },
+      {
         "iconPath": "static/tabbar/tools.png",
         "selectedIconPath": "static/tabbar/toolsHL.png",
         "pagePath": "pages/tools/tools",
@@ -60,6 +66,16 @@
       "style": {
         "navigationStyle": "default",
         "navigationBarTitleText": "关于我们",
+        "navigationBarTextStyle": "white",
+        "navigationBarBackgroundColor": "#3B82F6"
+      }
+    },
+    {
+      "path": "pages/chat/chat",
+      "type": "page",
+      "style": {
+        "navigationStyle": "default",
+        "navigationBarTitleText": "AI助手",
         "navigationBarTextStyle": "white",
         "navigationBarBackgroundColor": "#3B82F6"
       }

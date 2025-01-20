@@ -149,9 +149,9 @@ const checkClipboard = () => {
 // 页面加载时检查剪贴板
 onMounted(() => {
   // 延迟一下执行，确保页面完全加载
-  setTimeout(() => {
-    checkClipboard()
-  }, 500)
+  // setTimeout(() => {
+  //   checkClipboard()
+  // }, 500)
 })
 
 // 处理粘贴并去水印的函数
