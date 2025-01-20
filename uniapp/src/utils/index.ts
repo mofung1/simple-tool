@@ -120,60 +120,34 @@ export const getNeedLoginPages = (): string[] => getAllPages('needLogin').map((p
 export const needLoginPages: string[] = getAllPages('needLogin').map((page) => page.path)
 
 /**
- * 根据微信小程序当前环境，判断应该获取的BaseUrl
+ * 根据当前环境获取基础请求地址
+ * @returns {string} 基础请求地址
  */
 export const getEvnBaseUrl = () => {
-  // 请求基准地址
-  let baseUrl = import.meta.env.VITE_SERVER_BASEURL
-
-  // 小程序端环境区分
-  if (isMp) {
-    const {
-      miniProgram: { envVersion },
-    } = uni.getAccountInfoSync()
-
-    switch (envVersion) {
-      case 'develop':
-        baseUrl = 'https://tools.mcode.fun'
-        break
-      case 'trial':
-        baseUrl = 'https://tools.mcode.fun'
-        break
-      case 'release':
-        baseUrl = 'https://tools.mcode.fun'
-        break
-    }
+  // 从环境变量获取基准地址
+  const baseUrl = import.meta.env.VITE_SERVER_BASEURL
+  
+  if (!baseUrl) {
+    console.warn('环境变量 VITE_SERVER_BASEURL 未配置')
+    return ''
   }
-
+  
   return baseUrl
 }
 
 /**
- * 根据微信小程序当前环境，判断应该获取的UPLOAD_BASEURL
+ * 根据当前环境获取上传服务基础地址
+ * @returns {string} 上传服务基础地址
  */
 export const getEvnBaseUploadUrl = () => {
-  // 请求基准地址
-  let baseUploadUrl = import.meta.env.VITE_UPLOAD_BASEURL
-
-  // 小程序端环境区分
-  if (isMp) {
-    const {
-      miniProgram: { envVersion },
-    } = uni.getAccountInfoSync()
-
-    switch (envVersion) {
-      case 'develop':
-        baseUploadUrl = 'https://tools.mcode.fun/upload'
-        break
-      case 'trial':
-        baseUploadUrl = 'https://tools.mcode.fun/upload'
-        break
-      case 'release':
-        baseUploadUrl = 'https://tools.mcode.fun/upload'
-        break
-    }
+  // 从环境变量获取上传基准地址
+  const baseUploadUrl = import.meta.env.VITE_UPLOAD_BASEURL
+  
+  if (!baseUploadUrl) {
+    console.warn('环境变量 VITE_UPLOAD_BASEURL 未配置')
+    return ''
   }
-
+  
   return baseUploadUrl
 }
 
