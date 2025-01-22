@@ -1,7 +1,7 @@
 {
   "globalStyle": {
     "navigationStyle": "default",
-    "navigationBarTitleText": "消印乐",
+    "navigationBarTitleText": "unibest",
     "navigationBarBackgroundColor": "#f8f8f8",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#FFFFFF"
@@ -75,7 +75,7 @@
       "type": "page",
       "style": {
         "navigationStyle": "default",
-        "navigationBarTitleText": "AI助手",
+        "navigationBarTitleText": "AI聊天",
         "navigationBarTextStyle": "white",
         "navigationBarBackgroundColor": "#3B82F6"
       }
