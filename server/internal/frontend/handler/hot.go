@@ -19,11 +19,13 @@ func (h *Hot) Lists(c *gin.Context) {
 	// 获取单个平台的数据
 	provider, err := hot.NewHotDataProvider(hot.Platform(paramType))
 	if err != nil {
-		// 处理错误
+		response.FailWithMsg(c, err.Error())
+		return
 	}
 	data, err := provider.GetHotData()
 	if err != nil {
-		// 处理错误
+		response.FailWithMsg(c, err.Error())
+		return
 	}
 
 	//// 获取所有平台的数据
