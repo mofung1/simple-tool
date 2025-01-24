@@ -25,11 +25,13 @@ type bilibiliResponse struct {
 	Message string `json:"message"`
 	Data    struct {
 		List []struct {
-			Title    string `json:"title"`    // 标题
-			URI      string `json:"uri"`      // 链接
-			Desc     string `json:"desc"`     // 描述
-			PlayInfo struct {
-				Play int `json:"play"`        // 播放量
+			Title       string `json:"title"`         // 标题
+			URI        string `json:"uri"`          // 链接
+			Desc       string `json:"desc"`         // 描述
+			Stat       struct {
+				View     int `json:"view"`      // 播放量
+				Like     int `json:"like"`      // 点赞数
+				Reply    int `json:"reply"`     // 评论数
 			} `json:"stat"`
 			ShortLinkV2 string `json:"short_link_v2"` // 短链接
 		} `json:"list"`
@@ -88,7 +90,7 @@ func (b *BilibiliProvider) GetHotData() (HotDataList, error) {
 		result = append(result, HotData{
 			Title:    item.Title,
 			URL:      url,
-			Hot:      fmt.Sprintf("%d播放", item.PlayInfo.Play),
+			Hot:      fmt.Sprintf("%d播放 %d点赞", item.Stat.View, item.Stat.Like),
 			Desc:     item.Desc,
 			Index:    i + 1,
 			Platform: b.GetPlatformName(),
