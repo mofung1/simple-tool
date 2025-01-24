@@ -20,6 +20,7 @@ func setupFrontendRoutes(r *gin.Engine) {
 		loginHandler := new(handler.Login)
 		chatHandler := new(handler.Chat)
 		coupletHandler := new(handler.Couplet)
+		hotHandler := new(handler.Hot)
 		// 小程序登录
 		frontend.POST("/user/login", loginHandler.MnpLogin)
 		// 解析视频
@@ -30,6 +31,9 @@ func setupFrontendRoutes(r *gin.Engine) {
 		frontend.POST("/ai/couplet", coupletHandler.GenerateCoupletImage)
 		// AI聊天
 		frontend.POST("/ai/chat", chatHandler.StreamChat)
+
+		// 热门
+		frontend.GET("/hot/lists", hotHandler.Lists)
 	}
 
 }
