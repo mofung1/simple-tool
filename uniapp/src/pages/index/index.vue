@@ -28,17 +28,15 @@
       <view
         class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 transition-all duration-300 hover:shadow-md hover:border-blue-100"
       >
-        <view class="flex items-center space-x-4 mb-4">
-          <view
-            class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center transform transition-transform duration-300 hover:scale-105"
-          >
-            <view class="i-carbon-video text-white text-2xl"></view>
-          </view>
-          <text class="text-lg font-semibold text-gray-800">短视频去水印</text>
-        </view>
-
-        <text class="text-gray-600 text-base leading-relaxed">
-          抖音、快手、小红书等平台的视频无水印下载，一键解析快速便捷。
+        <!-- <text class="text-blue-600 font-medium text-xl mb-2">功能介绍</text> -->
+        <text class="text-gray-600 text-base font-medium">
+          一键解析短视频地址，支持
+          <text class="text-red-600">抖音</text>
+          、
+          <text class="text-red-600">快手</text>
+          、
+          <text class="text-red-600">小红书</text>
+          等主流平台的短视频无水印下载。
         </text>
       </view>
 
