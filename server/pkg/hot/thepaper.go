@@ -23,15 +23,16 @@ func NewThePaperProvider() *ThePaperProvider {
 type thePaperResponse struct {
 	Data struct {
 		List []struct {
-			Name      string `json:"name"`      // 标题
-			URL       string `json:"url"`       // 链接
-			ReadCount int    `json:"readCount"` // 阅读数
-			Source    string `json:"source"`    // 来源
-			Abstract  string `json:"abstract"`  // 摘要
+			Title      string `json:"title"`       // 标题
+			Link       string `json:"link"`        // 链接
+			ViewCount  int    `json:"view_count"`  // 阅读数
+			SourceName string `json:"source_name"` // 来源
+			Summary    string `json:"summary"`     // 摘要
+			PublishTime string `json:"publish_time"` // 发布时间
 		} `json:"list"`
 	} `json:"data"`
 	Code    int    `json:"code"`
-	Message string `json:"msg"`
+	Message string `json:"message"`
 }
 
 // GetHotData 获取澎湃新闻热榜数据
@@ -85,10 +86,10 @@ func (t *ThePaperProvider) GetHotData() (HotDataList, error) {
 	var result HotDataList
 	for i, item := range paperResp.Data.List {
 		result = append(result, HotData{
-			Title:    item.Name,
-			URL:      item.URL,
-			Hot:      fmt.Sprintf("%d阅读", item.ReadCount),
-			Desc:     fmt.Sprintf("[%s] %s", item.Source, item.Abstract),
+			Title:    item.Title,
+			URL:      item.Link,
+			Hot:      fmt.Sprintf("%d阅读", item.ViewCount),
+			Desc:     fmt.Sprintf("[%s] %s", item.SourceName, item.Summary),
 			Index:    i + 1,
 			Platform: t.GetPlatformName(),
 		})
