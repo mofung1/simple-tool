@@ -17,14 +17,15 @@ func (p *Parse) Handle(c *gin.Context) {
 		return
 	}
 
-	userId, exists := c.Get("userId")
-	if !exists {
-		response.FailWithMsg(c, "登录信息异常")
-		return
-	}
+	//userId, exists := c.Get("userId")
+	//if !exists {
+	//	response.FailWithMsg(c, "登录信息异常")
+	//	return
+	//}
 
 	parseService := new(service.ParseService)
-	result, err := parseService.ParseUrl(userId.(int64), paramUrl)
+	//result, err := parseService.ParseUrl(userId.(int64), paramUrl)
+	result, err := parseService.ParseUrl(paramUrl)
 	if err != nil {
 		response.FailWithMsg(c, err.Error())
 		return

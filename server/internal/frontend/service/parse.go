@@ -12,7 +12,7 @@ type ParseService struct {
 }
 
 // ParseUrl 视频地址解析
-func (p *ParseService) ParseUrl(userId int64, paramUrl string) (*parser.VideoParseInfo, error) {
+func (p *ParseService) ParseUrl(paramUrl string) (*parser.VideoParseInfo, error) {
 	// 解析视频
 	parseRes, err := parser.ParseVideoShareUrlByRegexp(paramUrl)
 	if err != nil {
@@ -24,7 +24,7 @@ func (p *ParseService) ParseUrl(userId int64, paramUrl string) (*parser.VideoPar
 
 	// 记录解析日志
 	parseRecord := models.ParseRecord{
-		UserId:   userId,
+		//UserId:   userId,
 		Author:   parseRes.Author.Name,
 		Avatar:   parseRes.Author.Avatar,
 		Title:    parseRes.Title,

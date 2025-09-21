@@ -34,12 +34,6 @@
         "selectedIconPath": "static/tabbar/toolsHL.png",
         "pagePath": "pages/tools/tools",
         "text": "更多"
-      },
-      {
-        "iconPath": "static/tabbar/personal.png",
-        "selectedIconPath": "static/tabbar/personalHL.png",
-        "pagePath": "pages/user/user",
-        "text": "我的"
       }
     ]
   },
