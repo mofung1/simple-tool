@@ -38,12 +38,12 @@ export default defineUniPages({
         pagePath: 'pages/tools/tools',
         text: '更多',
       },
-      {
-        iconPath: 'static/tabbar/personal.png',
-        selectedIconPath: 'static/tabbar/personalHL.png',
-        pagePath: 'pages/user/user',
-        text: '我的',
-      },
+      // {
+      //   iconPath: 'static/tabbar/personal.png',
+      //   selectedIconPath: 'static/tabbar/personalHL.png',
+      //   pagePath: 'pages/user/user',
+      //   text: '我的',
+      // },
     ],
   },
 })
